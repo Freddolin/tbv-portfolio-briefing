@@ -1,0 +1,99 @@
+# <Company>: everything that appears on screen. Voice-over text lives in script.md.
+#
+# Anchors (when something appears) are taken from the voice-over of the same block:
+#   a word or phrase  -> "retrofit", "seven thousand"   (first match after the block starts)
+#   a sentence        -> s0, s1, s2 ... (start of that sentence; [pause] and ':' also split sentences)
+#   inside founder cutaways and f4 words: seconds from the start of the cutaway / segment
+# Keep on-screen text short: headlines <= 8 words, list items <= 5 words.
+# Full reference: docs/CONTENT.md
+
+company: <Company>            # as written in the logo / file name
+number: 5                     # portfolio briefing number (spoken in the intro)
+origin: "City, Country  ·  Founded 20XX"
+logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # light = for dark backgrounds
+founders:
+  - {name: First Last, role: "Co-founder & CEO, <Company>"}
+portrait: {inset: [220, 610, 290, 610], x: 0, y: 0}   # crop of the first interview frame for the founder card (px: top right bottom left)
+pronounce: {}                 # e.g. {petkov: P EH T K AA F} for alignment only (ARPAbet); usually not needed
+
+voice:
+  take: media/vo.mp3          # Jessica, generated from script.md (python -m briefing tts <slug>)
+  intro: media/intro.mp3      # Jarnathan, generated from the intro text printed by the same command
+
+problem:                      # 01 The problem: 2-4 panels, one per thought
+  panels:
+    - {type: statement, at: s0, text: "The headline<br>in two lines.", sub: Optional smaller line, sub_at: s1}
+    - {type: tiles, at: s2, head: Today, items: [Pain one, Pain two, Pain three], item_at: [one, two, three]}
+
+how:                          # 02 How it works: 2-4 panels
+  panels:
+    - type: flow              # inputs -> company -> outputs
+      at: s0
+      head: What goes in, what comes out
+      inputs: [Input one, Input two]
+      input_at: [one, two]
+      hub: logo               # or a word, e.g. REDI (+ hub_caption)
+      hub_at: <word>
+      outputs: [Output one]
+      output_at: [<word>]
+    - {type: points, at: s1, head: Short headline, items: [{label: Point one, value: detail}, {label: Point two, value: detail}], item_at: [a, b]}
+    - {type: statement, at: s2, text: The result in one line, sub: optional}
+  # other panel types: words, beats (label/head/image cards), stat (counter), image, screens, steps — see docs/CONTENT.md
+
+questions: {}                 # optional overrides, e.g. {q_ds: "Where does Drees & Sommer<br>come in?"}
+
+why:                          # 03 Why we invested: exactly three rows, each with a card on the right
+  rows:
+    - {title: Reason one, at: <words>, card: {type: text, caption: Card label, text: "One or two short lines"}}
+    - {title: Reason two, at: <words>, card: {type: stat, caption: Card label, value: 7000, suffix: "", label: what the number means}}
+    - {title: Reason three, at: <words>, card: {type: people, caption: The founders, items: [{name: First Last, role: CEO}, {name: First Last, role: CTO}]}}
+
+ds:                           # 04 With Drees & Sommer: four fixed screens
+  a:                          # why it matters (rows) — or kind: trans (from -> to rows with three short heads)
+    kind: rows
+    cap: Why <Company> matters for Drees & Sommer
+    head: One-line promise
+    rows: [[Point one, one-line explanation], [Point two, explanation], [Point three, explanation]]
+  b:                          # who brings what
+    kind: boxes
+    head: Expertise + <Company> + Delivery
+    boxes:
+      - [Drees & Sommer, What D&S brings, [line, line, line], false]
+      - [<Company>, What the company brings, [line, line, line], true]
+      - [Drees & Sommer, What D&S delivers, [line, line, line], false]
+    end: One line on the combined offer.
+  c:                          # use cases by team / project phase (3-4 cards)
+    kind: cards
+    head: How Drees & Sommer teams can use <Company> in their projects
+    cards:
+      - {bu: Team or phase, title: "Use case<br>title", trigger: When it helps, bullets: [what, what, what], style: dk}
+      - {bu: Team or phase, title: "Use case<br>title", trigger: When it helps, bullets: [what, what, what], style: dk}
+      - {bu: Team or phase, title: "Use case<br>title", trigger: When it helps, bullets: [what, what, what], style: lt}
+    end: One closing line.
+  d:                          # who leads + next steps (no dates)
+    kind: people
+    head: Bringing <Company> to Drees & Sommer projects
+    pcap: Leading the collaboration at Drees & Sommer
+    people: [[First Last, ""], [First Last, ""]]
+    names_at: [first last, first last]
+    steps: [[Step label, Step title, one line], [Step label, Step title, one line], [Step label, Step title, one line]]
+
+interview:                    # four selects from the founder interview (seconds inside the source files)
+  f1:
+    founder: 0
+    parts:
+      - {video: media/interview.mp4, in: 0, dur: 15}
+      # - {video: media/interview.mp4, in: 40, dur: 8}          # a second part: the template punches in at the join
+      # - {video: media/cam.mp4, in: 3, dur: 6, audio: media/recorder.wav, ain: 12.4}   # separate audio recorder
+    cutaways: []              # optional: [{at: 9, until: 18, bg: dk|wm, caption: optional, panel: {...any panel...}}]
+  f2:
+    parts: [{video: media/interview.mp4, in: 60, dur: 18}]
+  f3:
+    parts: [{video: media/interview.mp4, in: 120, dur: 18}]
+  f4:
+    parts: [{video: media/interview.mp4, in: 200, dur: 7}]
+    words: [{at: 0.4, text: One.}, {at: 2.0, text: Two.}, {at: 4.0, text: Three.}]
+
+close:
+  tagline: The company's line in a few words
+  tagline_at: s1

@@ -1,0 +1,10 @@
+{
+  "name": "tbv-portfolio-briefing",
+  "private": true,
+  "description": "Rendering runtime for TBV portfolio briefing films",
+  "dependencies": {
+    "@fontsource/archivo": "5.3.0",
+    "gsap": "3.15.0",
+    "playwright-core": "1.64.0"
+  }
+}

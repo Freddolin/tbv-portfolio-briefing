@@ -1,0 +1,12 @@
+build/
+node_modules/
+__pycache__/
+*.pyc
+companies/*/media/*
+!companies/*/media/*.svg
+!companies/*/media/*.png
+!companies/*/media/*.jpg
+!companies/*/media/*.mp3
+templates/company/media/*
+.DS_Store
+!templates/company/media/.gitkeep

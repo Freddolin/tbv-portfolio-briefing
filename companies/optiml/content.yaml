@@ -1,0 +1,193 @@
+# Optiml: portfolio briefing #4 (test case for the template).
+# Anchors ("at", "item_at", ...): a word or phrase from the voice-over section ("retrofit"),
+# a sentence ("s2" = start of the 3rd sentence), or seconds (inside founder cutaways: seconds from cutaway start).
+
+company: Optiml
+number: 4
+origin: "Zurich, Switzerland  ·  Founded 2022  ·  ETH Zurich spin-off"
+logo: {light: media/optiml_w.svg, dark: media/optiml_d.svg}
+founders:
+  - {name: Evan Petkov, role: "Co-founder & CEO, Optiml"}
+portrait: {inset: [50, 550, 460, 671], x: -60, y: 170}
+pronounce: {petkov: P EH T K AA F, optimal: AA P T AH M AH L}
+
+voice:
+  take: media/vo.mp3          # Jessica, generated from script.md
+  intro: media/intro.mp3      # Jarnathan, generated from `python -m briefing tts optiml`
+
+problem:
+  panels:
+    - type: words
+      at: s0
+      head: Every portfolio faces competing capital decisions.
+      words: [Keep., Sell., Invest., Retrofit., Refinance.]
+      word_at: [keep, sell, invest, retrofit, refinance]
+    - type: statement
+      at: s2
+      text: A limited budget.
+      sub: Where should capital go, when, and why?
+      sub_at: s3
+    - type: tiles
+      at: s4
+      head: Today
+      items: [Fragmented evidence, Disconnected assumptions, Static investment plans]
+      item_at: [fragmented, disconnected, static]
+    - type: statement
+      at: s5
+      text: More data doesn't mean<br>better capital decisions.
+
+how:
+  panels:
+    - type: flow
+      at: s0
+      head: From building evidence to a decision-grade model
+      inputs: [Building-specific evidence]
+      input_at: [building-specific]
+      hub: logo
+      hub_at: decision-grade
+      outputs: [Decision-grade building model, Technical implications, Financial implications]
+      output_at: [building model, technical, financial]
+    - type: points
+      at: s1
+      head: Optimise capital across the entire portfolio
+      items:
+        - {label: Financial performance, value: NAV / IRR}
+        - {label: Capital constraints, value: Budget / timing}
+        - {label: Transition requirements, value: Carbon / regulation}
+      item_at: [returns, budget, carbon]
+    - type: statement
+      at: s3
+      text: A defensible capital allocation<br>and execution plan
+      sub: What to invest in  ·  Where  ·  When  ·  Why
+
+questions:
+  q_ds: Where does Drees & Sommer<br>come in?
+
+why:
+  rows:
+    - title: A critical industry problem
+      at: a critical
+      card:
+        type: people
+        caption: The status quo
+        items:
+          - {name: Fragmented evidence, role: "Audits · PDFs · Spreadsheets"}
+          - {name: Static planning, role: "Roadmaps, not live strategies"}
+    - title: A differentiated decision layer
+      at: a differentiated
+      card:
+        type: people
+        caption: The decision layer
+        items:
+          - {name: Building-specific intelligence, role: Decision-grade building model}
+          - {name: Constraint-based optimisation, role: "NAV · IRR · Budget · Timing"}
+    - title: An exceptional team
+      at: exceptional team
+      card:
+        type: people
+        caption: The team
+        items:
+          - {name: ETH Zurich spin-off, role: Real-estate and software expertise}
+          - {name: PropTech of the Year, role: Award winner}
+
+ds:
+  a:
+    kind: trans
+    cap: Why Optiml matters for Drees & Sommer
+    heads: [[Win earlier., 110], [Expand further., 520], [Stay involved longer., 1010]]
+    heads_at: [win earlier, expand further, stay involved]
+    rows:
+      - [Individual building audits, Portfolio and fund-level decisions]
+      - [Technical Capex planning, Financial value and capital efficiency]
+      - [Static roadmaps, Live investment strategies]
+      - [Project-based engagements, Recurring advisory and execution]
+    at: [building audits, fund-level, single projects, recurring]
+    end: From technical service provider to strategic investment partner.
+  b:
+    kind: boxes
+    head: Expertise + Decision Intelligence + Execution
+    boxes:
+      - [Drees & Sommer, Expertise & Evidence, [Real-estate strategy, Technical advisory, Sustainability, Digital services], false]
+      - [Optiml, REDI Decision Layer, [Building-specific evidence, Investment optimisation, Capital allocation, Decision governance], true]
+      - [Drees & Sommer, Execution, [Project management, Technical planning, Construction management, Refurbishment], false]
+    end: Connect strategic capital decisions with advisory and implementation.
+  c:
+    kind: cards
+    head: Four opportunities for D&S to create more client value
+    hdSize: 54
+    at: [investment-grade, portfolio value, compliance, implementation]
+    cards:
+      - {title: "Technical / ESG<br>Due Diligence", trigger: "Acquisition, disposal or refinancing", bullets: [Investment-grade due diligence, Improve delivery efficiency and margins, Access to follow-on advisory and execution], style: dk}
+      - {title: "Portfolio Value<br>Creation", trigger: "Portfolio strategy, Capex budget or transition planning", bullets: [Portfolio-level capital and value optimisation, Less manual rework, Long-term advisory and execution opportunities], style: dk}
+      - {title: "Compliance &<br>Financing Screening", trigger: Lender or borrower portfolio review, bullets: [Screen portfolio risks and investment measures, Improve delivery efficiency and margins, Additional borrower advisory opportunities], style: lt, dev: true}
+      - {title: "Implementation<br>Impact Tracking", trigger: Refurbishment or Capex implementation, bullets: [Track actual investment and building performance, Improve delivery efficiency and margins, Continuously refresh the next investment decisions], style: lt, dev: true}
+    end: From due diligence to financing and execution, REDI creates value throughout the investment lifecycle.
+  d:
+    kind: people
+    head: Turning the partnership into client mandates
+    pcap: Leading the collaboration at Drees & Sommer
+    people: [[Michael Bauer, ""], [Marco Abdallah, ""]]
+    names_at: [michael bauer, marco abdallah]
+    steps:
+      - [Pilots, Three pilots, "Due diligence, portfolio value creation, compliance and financing screening"]
+      - [Go to market, Joint strategic accounts, Both teams go to market together]
+      - [Next, Client mandates, The partnership turns into recurring work for clients]
+    at: [three pilots, both teams, joint strategic]
+
+interview:
+  f1:
+    parts:
+      - {video: media/o1a.mp4, in: 0, dur: 13.05, audio: media/int3_full.wav, ain: 0}
+      - {video: media/o1b.mp4, in: 0, dur: 9.40, audio: media/int3_full.wav, ain: 24.30}
+    cutaways:
+      - at: 13.05
+        until: 22.45
+        bg: dk
+        panel:
+          type: flow
+          head: From fragmented evidence to investment decisions
+          inputs: [Building evidence, Financial data, Investment constraints]
+          input_at: [0.6, 1.2, 1.8]
+          hub: REDI
+          hub_caption: Decision layer
+          hub_at: 3.4
+          outputs: [Defensible capital decisions]
+          output_at: [5.6]
+  f2:
+    parts:
+      - {video: media/o2.mp4, in: 0, dur: 21.32, audio: media/int3_full.wav, ain: 42.40}
+    cutaways:
+      - at: 5.2
+        until: 18.25
+        bg: dk
+        caption: The Optiml platform  ·  demo data
+        panel:
+          type: screens
+          items:
+            - {src: media/web_asset.jpg, caption: Evaluate building-specific investment alternatives}
+            - {src: media/web_compare.jpg, caption: "Compare financial outcomes, risks and constraints"}
+            - {src: media/web_plan.jpg, caption: Create evidence-backed decisions that can be reviewed}
+          item_at: [0.1, 4.2, 8.4]
+  f3:
+    parts:
+      - {video: media/o3.mp4, in: 0, dur: 24.58, audio: media/int3_full.wav, ain: 63.72}
+    cutaways:
+      - at: 7.0
+        until: 20.0
+        bg: wm
+        caption: Evan Petkov on The Bau Ventures
+        panel:
+          type: words
+          words: [Dynamic and entrepreneurial., Proactive., Opens doors at Drees & Sommer.]
+          word_at: [2.35, 5.0, 10.15]
+  f4:
+    parts:
+      - {video: media/o4.mp4, in: 0, dur: 8.45, audio: media/int3_full.wav, ain: 93.50}
+    words:
+      - {at: 0.2, text: Dynamic.}
+      - {at: 1.9, text: Supportive.}
+      - {at: 4.6, text: Understanding.}
+
+close:
+  tagline: Real Estate Decision Intelligence (REDI)
+  tagline_at: s1
