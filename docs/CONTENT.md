@@ -66,6 +66,10 @@ Every panel can set `min: <seconds>` (minimum time on screen; the voice-over pau
 and `at: after` (starts when the previous panel's `min` is over, without a voice cue).
 `handover: {bg: media/...}` and `close: {bg: ...}` put a dimmed product picture behind the logo.
 The D&S chapter can use panels too: `ds: {d: {bg: wm, panels: [...]}}`.
+`pacing: voice` (top level of content.yaml): the voice-over is never paused; panels follow it and `min` is ignored.
+Use this for every voice-over-only film: inserted pauses make the narrator stop mid-thought.
+`handover: {shot: media/..., shot_at: <anchor>, shot_view: [x,y,w,h], shot_size: [w,h], shot_caption}`: the logo moves up and a product screen rises under it.
+Overlays in `ui` can reveal their rows on voice cues with `row_at[]`; `path` takes `sub`/`sub_at`; `units` takes `cols`, `icon_size`, `gap`.
 
 Every panel needs `at` (except the first, which starts with the block).
 

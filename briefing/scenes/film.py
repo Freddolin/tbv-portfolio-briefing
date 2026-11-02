@@ -26,13 +26,13 @@ def explainer(b, c, chapter_key, spec):
         if i + 1 < len(pans) and pt:      # the next panel must not replace this one before it was read
             short = max(t + reading_time(x) for t, x in pt) - (t1 - .35)
             if short > .05 and pans[i + 1].get('at') != 'after': holds.append((pans[i + 1]['at'], short))
-        if p.get('min') and i + 1 < len(pans) and pans[i + 1].get('at') != 'after' and t1 - t0 < p['min'] - .05:   # visual panels: let the picture breathe
+        if c.get('pacing') != 'voice' and p.get('min') and i + 1 < len(pans) and pans[i + 1].get('at') != 'after' and t1 - t0 < p['min'] - .05:   # visual panels: let the picture breathe
             holds.append((pans[i + 1]['at'], p['min'] - (t1 - t0)))
     h += '</div>'
     tl.on(f'#{sid}', b.t0); tl.hide(f'#{sid} .chap,#{sid} .rule', b.t_end - .35, .3); tl.off(f'#{sid}', b.t_end + .01)
     # readability: the last panel decides how long the scene must stay
     last = [x for x in texts if x[0] >= starts[-1] - .2]
-    need = max(need_for(last), starts[-1] - .1 + pans[-1].get('min', 0) + .35)
+    need = max(need_for(last), starts[-1] - .1 + (0 if c.get('pacing') == 'voice' else pans[-1].get('min', 0)) + .35)
     sc = Scene(h, '', tl.js(), need); sc.holds = holds
     return sc
 
@@ -66,11 +66,24 @@ def handover(b, c):
 
 def _handover_plain(b, c):
     sid = b.sid; tl = TL()
-    bg = c.get('handover', {}).get('bg')
+    hv = c.get('handover', {}); bg = hv.get('bg'); shot = hv.get('shot')
     h = (frame(sid, 'dk') + (_bg(sid, bg) if bg else '') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
-         f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:610px">{E(c["origin"])}</div></div>')
+         f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:610px">{E(c["origin"])}</div>')
+    if shot:      # the product rises under the logo
+        h += (f'<div class="hshot h" style="left:360px;top:330px;width:1200px;height:690px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff">'
+              f'<div style="left:0;top:0;width:1200px;height:34px;background:#e9e7e3"></div>'
+              + (lambda v, sz: (f'<img src="{shot}" style="left:{-v[0] * 1200 / v[2]:.0f}px;top:{34 - v[1] * 1200 / v[2]:.0f}px;width:{sz[0] * 1200 / v[2]:.0f}px;height:{sz[1] * 1200 / v[2]:.0f}px"></div>')
+                 if v else f'<img src="{shot}" style="left:0;top:34px;width:1200px;height:656px;object-fit:cover;object-position:left top"></div>')(hv.get('shot_view'), hv.get('shot_size')))
+        if hv.get('shot_caption'): h += f'<div class="cap hscap h" style="left:0;width:1920px;text-align:center;top:280px;color:var(--orange)">{E(hv["shot_caption"])}</div>'
+    h += '</div>'
     tl.on(f'#{sid}', b.t0)
     if bg: tl.vin(f'#{sid} .hbg', b.t0, .6); tl.zoom(f'#{sid} .hbg img', b.t0, max(1, b.t_end - b.t0), 1.0, 1.06)
+    if shot:
+        ts_ = b.T(hv['shot_at']) - .2
+        tl.hide(f'#{sid} .hcap', ts_ - .1, .3)
+        tl(f"tl.to('#{sid} .hero',{{y:-300,scale:.55,duration:.8,ease:'power2.inOut'}},{ts_:.3f});")
+        tl(f"tl.fromTo('#{sid} .hshot',{{autoAlpha:0,y:120}},{{autoAlpha:1,y:0,duration:.9,ease:'power3.out'}},{ts_ + .2:.3f});")
+        if hv.get('shot_caption'): tl.show(f'#{sid} .hscap', ts_ + .6, .45, 8)
     tl.show(f'#{sid} .hero', b.t_speech - .2, .7, 14); tl.show(f'#{sid} .hcap', b.t_speech + 1.2, .5, 10)
     tl.hide(f'#{sid} .hero,#{sid} .hcap', b.t_end - .45, .35)
     tl.off(f'#{sid}', b.t_end + .05)

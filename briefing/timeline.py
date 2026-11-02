@@ -31,18 +31,21 @@ def build(content, take, segs, pad=None):
             place.append(('int', key, 0.0, info['dur'], b.t_speech))
         else:                                              # voice-over block
             delays = {}                                    # take time of a cut -> seconds of pause inserted there
-            for _ in range(6):
+            voice_led = content.get('pacing') == 'voice'   # visuals follow the voice: never pause the voice-over
+            for _ in range(1 if voice_led else 6):
                 b = _vo_block(Block(key, i, t), key, take, delays, pad, content)
                 sc = _scene(F, DS, b, content, key)
                 if sc.need > b.t_end + 1e-3:
-                    b.t_end = sc.need; sc = _scene(F, DS, b, content, key)
+                    b.t_end = min(sc.need, b.t_end + 1.2) if voice_led else sc.need
+                    sc = _scene(F, DS, b, content, key)
+                if voice_led: break
                 todo = [(a, s_) for a, s_ in sc.holds if s_ > .05]
                 if not todo: break
                 for a, s_ in todo:
                     cut = _cut_before(take, key, a)
                     delays[cut] = round(delays.get(cut, 0) + s_ + .1, 3)
             else:
-                b.warnings.append(f'{key}: could not give every text enough time')
+                if not voice_led: b.warnings.append(f'{key}: could not give every text enough time')
             for lo, hi in b.chunks: place.append(('vo', key, lo, hi, b.M(lo)))
         blocks.append(b); scenes.append(sc); t = b.t_end
     return blocks, scenes, place, t

@@ -215,8 +215,9 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             h += (f'<div class="ucd uo{j} h" style="left:{ox}px;top:{oy}px"><div class="k">{E(o.get("kicker", ""))}</div>'
                   f'<div class="hh">{E(o.get("title", ""))}</div>{rows}{btn}</div>')
             tl(f"tl.fromTo('#{pid} .uo{j}',{{autoAlpha:0,x:60}},{{autoAlpha:1,x:0,duration:.5,ease:'power3.out'}},{t - .1:.3f});")
-            for r_i in range(len(o.get('rows', []))):
-                tl(f"tl.fromTo(document.querySelectorAll('#{pid} .uo{j} .r')[{r_i}],{{opacity:0}},{{opacity:1,duration:.3}},{t + .35 + r_i * .35:.3f});")
+            r_ts = _times(o, len(o.get('rows', [])), T0, t + .35, te, key='row_at', gap=.35) if o.get('row_at') else [t + .35 + r_i * .35 for r_i in range(len(o.get('rows', [])))]
+            for r_i, tr in enumerate(r_ts):
+                tl(f"tl.fromTo(document.querySelectorAll('#{pid} .uo{j} .r')[{r_i}],{{opacity:0,x:-10}},{{opacity:1,x:0,duration:.3}},{tr - .05:.3f});")
             texts.append((t, f'{o.get("title", "")} ' + ' '.join(r_['text'] for r_ in o.get('rows', []))))
             nrows = len(o.get('rows', []))
             events.append((t, o['at'], .35 + nrows * .35 + (.8 if o.get('click_at') is not None else 2.3)))
@@ -289,16 +290,22 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
 
     elif k == 'path':
         n = len(p['items']); y = 600 if p.get('head') else 540; x0, x1 = 300, 1620
+        if p.get('sub'):
+            h += f'<div class="psub sb pathsub" style="top:276px;font-size:34px">{T(p["sub"])}</div>'
+            tsub = T0(p['sub_at']) if p.get('sub_at') is not None else t_start + .4
+            tl.show(sel('.pathsub'), tsub, .45, 10); texts.append((tsub, p['sub']))
+            y += 40
         if n == 1: x0 = x1 = 960
         dx = (x1 - x0) / max(1, n - 1); cw = min(560, dx - 40) if n > 1 else 700
         h += f'<div class="hair pline pl0" style="left:{x0 - 140}px;top:{y}px;width:{x1 - x0 + 280}px;height:2px"></div>'
+        tfs = 46 if n <= 3 else 40                      # title size; long titles wrap, the text moves down with them
         for i, it in enumerate(p['items']):
             x = x0 + dx * i
-            lines = 1 + str(it['title']).count('<br>')
+            lines = sum(max(1, -(-int(len(part) * tfs * .5) // int(cw))) for part in str(it['title']).split('<br>'))
             h += (f'<div class="pnode pn{i}" style="left:{x - 14:.0f}px;top:{y - 13}px"></div>'
                   f'<div class="pic pc{i}" style="left:{x - 64:.0f}px;top:{y - 196}px">{icon(it.get("icon", "check"), 72, "currentColor", 1.4)}</div>'
-                  f'<div class="pt tx pt{i}" style="left:{x - cw / 2:.0f}px;width:{cw:.0f}px;top:{y + 52}px">{T(it["title"])}</div>'
-                  f'<div class="pd sb pd{i}" style="left:{x - cw / 2:.0f}px;width:{cw:.0f}px;top:{y + 52 + 58 * lines}px">{T(it.get("text", ""))}</div>')
+                  f'<div class="pt tx pt{i}" style="left:{x - cw / 2:.0f}px;width:{cw:.0f}px;top:{y + 52}px;font-size:{tfs}px">{T(it["title"])}</div>'
+                  f'<div class="pd sb pd{i}" style="left:{x - cw / 2:.0f}px;width:{cw:.0f}px;top:{y + 60 + int(tfs * 1.12) * lines}px">{T(it.get("text", ""))}</div>')
         tl.grow(sel('.pl0'), t_start + .1, 1.2)
         for i, t in enumerate(_times(p, n, T0, t_start, t_end)):
             tl(f"tl.fromTo('#{pid} .pn{i}',{{autoAlpha:0,scale:0}},{{autoAlpha:1,scale:1,duration:.4,ease:'back.out(2)'}},{t - .15:.3f});")
@@ -306,13 +313,13 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             texts.append((t + .05, f"{p['items'][i]['title']} {p['items'][i].get('text', '')}"))
 
     elif k == 'units':                       # a big number and a grid of buildings filling up (one icon per `per` units)
-        n = int(round(float(p['value']) / float(p.get('per', 100)))); cols = p.get('cols', 8); sz = 92; gap = 26
+        n = int(round(float(p['value']) / float(p.get('per', 100)))); cols = p.get('cols', 8); sz = p.get('icon_size', 92); gap = p.get('gap', 26)
         gx = 1810 - cols * sz - (cols - 1) * gap; gy = 300
         h += (f'<div class="sv tx uvn" style="left:104px;top:330px">0</div>'
               f'<div class="st2 sb uvl" style="top:600px;width:760px">{T(p.get("label", ""))}</div>')
         for i in range(n):
             r, c_ = divmod(i, cols)
-            h += f'<div class="ug ug{i}" style="left:{gx + c_ * (sz + gap)}px;top:{gy + r * (sz + gap)}px;color:{"#EF7619" if i == n - 1 else "#F5F5F5"}">{icon("building", sz, "currentColor", 1.3)}</div>'
+            h += f'<div class="ug ug{i}" style="left:{gx + c_ * (sz + gap)}px;top:{gy + r * (sz + gap)}px;width:{sz}px;height:{sz}px;color:{"#EF7619" if i == n - 1 else "#F5F5F5"}">{icon("building", sz, "currentColor", 1.3 if sz > 60 else 1.6)}</div>'
         t = T0(p['value_at']) if p.get('value_at') is not None else t_start + .3
         tl.show(sel('.uvn'), t - .1, .3, 0)
         disp = json.dumps(p.get('display', ''))
