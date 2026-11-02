@@ -6,7 +6,7 @@ company: walter
 kind: build_first
 number: 5
 origin: "Berlin, Germany  ·  Founded 2026"
-logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # TODO from Paul (walter brand files)
+logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # from the walter slides in the Commitment Days deck (light = walter's sage version, dark = same artwork in walter green #0d1d00)
 pronounce: {valter: V AA L T ER, haeusser: HH OY S ER, eisenmann: AY Z AH N M AH N}
 
 voice:
@@ -70,11 +70,11 @@ team:
       at: christoph
       head: The walter team
       items:
-        - {name: Christoph Wend-Erdel, role: Managing Director}
-        - {name: Alexander Assimidis, role: Managing Director}
-        - {name: Philipp Piepenstock, role: Venture Architect}
-        - {name: Valentin Heidrich, role: Venture Architect}
-        - {name: Paul Koch, role: Venture Architect}
+        - {name: Christoph Wend-Erdel, role: Managing Director, photo: media/team_christoph.png}
+        - {name: Alexander Assimidis, role: Managing Director, photo: media/team_alex.png}
+        - {name: Philipp Piepenstock, role: Venture Architect, photo: media/team_philipp.png}
+        - {name: Valentin Heidrich, role: Venture Architect, photo: media/team_valentin.png}
+        - {name: Paul Koch, role: Venture Architect, photo: media/team_paul.png}
       item_at: [christoph, alexander, philipp, valentin, paul]
 
 traction:

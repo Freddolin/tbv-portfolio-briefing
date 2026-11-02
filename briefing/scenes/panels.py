@@ -53,6 +53,8 @@ CSS = r"""
 .pn .knote{top:900px;font-size:28px;opacity:.75}
 .pn .per{left:110px;width:1700px;height:110px}
 .pn .per .t{left:0;top:26px;font-size:52px;letter-spacing:-.03em;white-space:nowrap}
+.pn .per .pp{left:0;top:9px;width:96px;height:96px;border-radius:50%;object-fit:cover}
+.pn .per.wp .t{left:124px}
 .pn .per .v{right:0;top:38px;font-weight:600;font-size:22px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:right}
 .pn .gi{height:230px}
 .pn .gi .t{left:0;top:30px;font-size:42px;letter-spacing:-.025em;line-height:1.1}
@@ -217,8 +219,10 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         n = len(p['items']); top0 = 330 if p.get('head') else 220; step = min(130, (1000 - top0) // max(1, n))
         for i, it in enumerate(p['items']):
             nm, rl = (it, '') if isinstance(it, str) else (it.get('name', ''), it.get('role', ''))
-            h += (f'<div class="per" style="top:{top0 + i * step}px"><div class="hair" style="left:0;top:0;width:1700px"></div>'
-                  f'<div class="t tx">{E(nm)}</div><div class="v sb">{E(rl)}</div></div>')
+            ph = None if isinstance(it, str) else it.get('photo')   # optional round portrait left of the name
+            h += (f'<div class="per{" wp" if ph else ""}" style="top:{top0 + i * step}px"><div class="hair" style="left:0;top:0;width:1700px"></div>'
+                  + (f'<img class="pp" src="{ph}">' if ph else '')
+                  + f'<div class="t tx">{E(nm)}</div><div class="v sb">{E(rl)}</div></div>')
         if p.get('head'): tl.show(sel('.ph'), t_start + .1, .55); texts.append((t_start + .1, p['head']))
         for i, t in enumerate(_items_at(p, 'item_at', n, T0, t_start, t_end)):
             tl(f"show(document.querySelectorAll('#{pid} .per')[{i}],{t - .05:.3f},.45,16);")
