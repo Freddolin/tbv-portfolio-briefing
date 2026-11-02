@@ -52,3 +52,13 @@ Research on 2 Nov 2026. Voice-over: the full take with the walter team's correct
 | team | Portraits | TBV_External_Deck_2026, team slide; roles: Notion, 04 Team & key contacts |
 | traction | Customer bars: June 4, July 8, September 22, today 30 | CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots"; 30: walter team feedback |
 | all | "As of November 2026" | Fred (2 Nov) |
+
+## Script v3 (draft, not recorded yet)
+| Block | Statement | Source |
+|---|---|---|
+| problem | Margins are under pressure | Entscheidungsvorlage: "Margin pressure: Property management firms face increasing margin pressure."; Fred (2 Nov) |
+| team | Thomas Häusser and Karsten Eisenmann spotted the problem and brought it to TBV | Fred (2 Nov); Entscheidungsvorlage: "Business leads: Tom Häusser, Karsten Eisenmann"; Notion PM-Pilot: "Vorschlag ursprünglich von T.Häusser & K.Eisenmann" |
+| team | Build First team built prototypes, tested them with property managers, validated assumptions; customer feedback shaped the product | Fred (2 Nov); IZ (Daniel Hinz): "Wir bauen sehr, sehr schnell, auch mit Software-Agents, erste Prototypen" |
+| how | First version, keeps developing along the roadmap | Fred (2 Nov); Okt-Walter: "Die gesamte Immobilie in einem System" |
+| next | Around €1.5bn a year for property management software in DACH | Entscheidungsvorlage (June 2026): "TAM ~€1.496bn · SAM ~€754M · SOM ~€75M ARR (DACH)" (business plan figure, to confirm it is still current) |
+| next | Starts with mid-size residential property managers, runs alongside existing software, priced per unit | Walter GTM Strategy v1: primary ICP "Mid-size Wohnungsverwaltungen (WEG + Miete), 500–5.000 Einheiten", "Kein Rip-and-Replace. Läuft parallel."; Entscheidungsvorlage: "SaaS subscription per unit per month" |
