@@ -124,7 +124,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
                   + ('' if it.get('time') else '<div class="dot"></div>') + '</div>')
         for i, t in enumerate(ts):
             tl(f"tl.fromTo(document.querySelectorAll('#{pid} .nt')[{i}],{{autoAlpha:0,y:-46,scale:.93}},{{autoAlpha:1,y:0,scale:1,duration:.45,ease:'back.out(1.7)'}},{t - .05:.3f});")
-            texts.append((t, ''))
+            texts.append((t, f"{p['items'][i]['title']} {p['items'][i].get('meta', '')}"))
         if p.get('caption'):
             h += f'<div class="vnote tx">{E(p["caption"])}</div>'; tl.show(sel('.vnote'), ts[-1] + .3, .4, 0); texts.append((ts[-1] + .3, p['caption']))
 
@@ -198,7 +198,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
                     tl(f"tl.to('#{pid} .uc',{{x:{nx:.1f},y:{ny:.1f},scale:{ns:.4f},duration:1.0,ease:'power2.inOut'}},{t - .15:.3f});")
                 cur = (nx, ny, ns)
             ta = t - .15 + move
-            events.append((t, s_.get('at'), move + (1.6 if (s_.get('box') or s_.get('label')) else .2)))
+            events.append((t, s_.get('at'), move + (2.4 if (s_.get('box') or s_.get('label')) else .2)))
             if s_.get('box'):
                 tl(f"tl.fromTo('#{pid} .ubx{i}',{{autoAlpha:0,scale:1.04}},{{autoAlpha:1,scale:1,duration:.35,ease:'power2.out'}},{ta:.3f});")
                 tl.hide(sel(f'.ubx{i}'), max(nxt - .15, ta + .5), .25)
@@ -219,8 +219,8 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
                 tl(f"tl.fromTo(document.querySelectorAll('#{pid} .uo{j} .r')[{r_i}],{{opacity:0}},{{opacity:1,duration:.3}},{t + .35 + r_i * .35:.3f});")
             texts.append((t, f'{o.get("title", "")} ' + ' '.join(r_['text'] for r_ in o.get('rows', []))))
             nrows = len(o.get('rows', []))
-            events.append((t, o['at'], .35 + nrows * .35 + (.6 if o.get('click_at') is not None else 1.0)))
-            if o.get('click_at') is not None: events.append((T0(o['click_at']), o['click_at'], 1.1))
+            events.append((t, o['at'], .35 + nrows * .35 + (.8 if o.get('click_at') is not None else 2.3)))
+            if o.get('click_at') is not None: events.append((T0(o['click_at']), o['click_at'], 2.4))
             if o.get('button') and o.get('click_at') is not None:
                 tc = T0(o['click_at'])
                 tl(f"tl.to('#{pid} .uo{j} .b1',{{scale:.92,duration:.12,yoyo:true,repeat:1}},{tc:.3f});")

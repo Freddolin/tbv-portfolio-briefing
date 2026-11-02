@@ -1,6 +1,6 @@
 """Sound: voice-over, interview, music and the final mix. Same chain for every film."""
-import re, subprocess, numpy as np
-from .config import SR, MUSIC_FILE, INTRO, ALOOP, TWO, BLOOP, MUSIC_TRIM_TARGET, VO_LUFS
+import os, re, subprocess, numpy as np
+from .config import SR, MUSIC_FILE, INTRO, ALOOP, TWO, BLOOP, MUSIC_TRIM_TARGET, VO_LUFS, MIX_LUFS_RANGE
 
 def run(cmd):
     r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
@@ -99,7 +99,13 @@ def mixdown(voice_st, jumps, hit_full, D, last_voice, out_wav, tmpdir, boost=(7,
            f'[m][sc]sidechaincompress=threshold=0.09:ratio=2.5:attack=15:release=400[md];[voice][md]amix=inputs=2:normalize=0,alimiter=limit=0.84:level=false[a]" '
            f'-map "[a]" -t {D} -ar {SR} -ac 2 "{out_wav}"')
     run(cmd)
-    r = run(f'ffmpeg -hide_banner -i "{out_wav}" -af ebur128=peak=true -f null -').stderr
+    meas = lambda: run(f'ffmpeg -hide_banner -i "{out_wav}" -af ebur128=peak=true -f null -').stderr
+    r = meas(); l = float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r)[-1])
+    lo, hi = MIX_LUFS_RANGE
+    if not lo <= l <= hi:            # films with little voice (visual-first) end up quiet: bring the whole mix into range
+        g = (lo + hi) / 2 - l
+        run(f'ffmpeg -hide_banner -loglevel error -y -i "{out_wav}" -af "volume={g:.2f}dB,alimiter=limit=0.84:level=false" -ar {SR} -ac 2 "{out_wav}.tmp.wav"')
+        os.replace(f'{out_wav}.tmp.wav', out_wav); r = meas()
     return dict(lufs=float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r)[-1]), peak=float(re.findall(r'Peak:\s+(-?[\d.]+) dBFS', r)[-1]), trim=round(trim, 3))
 
 # ---------------- checks ----------------
