@@ -49,8 +49,20 @@ how:
 why:
   rows:
     - {title: Born inside Drees & Sommer, at: idea, card: {type: text, caption: Origin, text: "An idea from the Consulting business unit"}}
-    - {title: Tested first, then founded, at: we tested, card: {type: stat, at: more than, caption: Demo requests, value: 50, suffix: "+", label: within weeks of the first test}}
-    - {title: A name that opens doors, at: and drees, card: {type: text, caption: Advantage, text: "Drees & Sommer brand and network in a cautious market"}}
+    - title: Strong demand, proven fast
+      at: we tested
+      card:
+        type: list
+        caption: Traction
+        items: [{name: 50+, role: demo requests within weeks}, {name: "22", role: pilot customers}, {name: "3,200+", role: units they manage}]
+        item_at: [more than fifty, twenty-two, three thousand]
+    - title: Now turning into revenue
+      at: the first pilots
+      card:
+        type: list
+        caption: Since launch
+        items: [{name: First paying customers, role: after the test phase}, {name: "~12,000 units", role: first project agreed in principle}]
+        item_at: [the first pilots, almost twelve]
 
 ds:
   a:
