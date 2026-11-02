@@ -2,7 +2,7 @@
 anchor resolver) plus the company content, and returns a Scene."""
 from .base import E, T, TL, Scene, frame, need_for
 from . import panels as P
-from ..config import CHAPTERS, reading_time
+from ..config import CHAPTERS, reading_time, chapters
 
 def explainer(b, c, chapter_key, spec):
     """'The problem' and 'How it works': chapter frame + a sequence of panels cued to the voice-over."""
@@ -134,8 +134,9 @@ WHY_CSS = r"""
 
 def why(b, c, spec):
     sid = b.sid; tl = TL(); texts = []
-    h = frame(sid, 'wm', CHAPTERS['why'], c['logo_dark']) + '<div class="why" style="left:0;top:0;width:1920px;height:1080px">'
-    h += '<div class="hdx tx h" style="left:110px;top:186px;font-size:104px;letter-spacing:-.04em;line-height:1;white-space:nowrap">Why we invested</div>'
+    wt = chapters(c)['why'][1]
+    h = frame(sid, 'wm', chapters(c)['why'], c['logo_dark']) + '<div class="why" style="left:0;top:0;width:1920px;height:1080px">'
+    h += f'<div class="hdx tx h" style="left:110px;top:186px;font-size:104px;letter-spacing:-.04em;line-height:1;white-space:nowrap">{wt}</div>'
     h += '<div class="card h">'
     for i, r in enumerate(spec['rows']):
         cd = r.get('card', {}); k = cd.get('type', 'text'); h += f'<div class="cp h" id="{sid}cp{i}"><div class="cap">{E(cd.get("caption", ""))}</div>'
@@ -153,7 +154,7 @@ def why(b, c, spec):
     for i, r in enumerate(spec['rows']):
         h += f'<div class="row h" id="{sid}r{i}" style="top:{392 + i * 150}px"><div class="hair" style="left:0;top:0;width:880px"></div><div class="n">0{i + 1}</div><div class="t">{T(r["title"])}</div></div>'
     h += '</div></div>'
-    tl.on(f'#{sid}', b.t0); tl.show(f'#{sid} .hdx', b.t_speech - .1, .6); texts.append((b.t_speech - .1, 'Why we invested'))
+    tl.on(f'#{sid}', b.t0); tl.show(f'#{sid} .hdx', b.t_speech - .1, .6); texts.append((b.t_speech - .1, wt))
     ts = [b.T(r.get('at', f's{i + 1}')) - .1 for i, r in enumerate(spec['rows'])]
     tl.vin(f'#{sid} .card', ts[0], .4)
     for i, r in enumerate(spec['rows']):
@@ -176,7 +177,7 @@ def why(b, c, spec):
     tl.hide(f'#{sid} .why,#{sid} .chap,#{sid} .rule', b.t_end - .35, .3); tl.off(f'#{sid}', b.t_end + .25)
     holds = []
     for i in range(1, len(ts)):                 # a card is replaced when the next row appears
-        titles = {r['title'] for r in spec['rows']} | {'Why we invested'}
+        titles = {r['title'] for r in spec['rows']} | {wt}
         prev = [(t, x) for t, x in texts if ts[i - 1] - .01 <= t < ts[i] - .05 and x not in titles]
         if prev:
             short = max(t + reading_time(x) for t, x in prev) - (ts[i] - .15)

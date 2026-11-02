@@ -52,6 +52,23 @@ TAG_IMAGE = ASSETS / 'img' / 'tag_internal.png'   # "Internal use only", always 
 ELEVEN = dict(vo_voice='Jessica - Playful, Bright, Warm', intro_voice='Jarnathan', model='Eleven v4',
               stability='50%', notes='Use [pause] tags between sentences. Spell abbreviations as spoken: A I, H S E, C O two.')
 INTRO_TEXT = ("The Bau Ventures. [pause] Portfolio briefing number {num_word}. [pause] "
-              "Who we backed, why, and what it means for Drees and Sommer. [pause] This is our latest investment.")
+              "Who we backed, why, and what it means for Drees and Sommer. [pause] {end}")
+
+# Film variants. `kind` in content.yaml picks one (default: investment).
+# build_first = a venture TBV built itself (e.g. walter): same structure, different wording in four places.
+VARIANTS = {
+    'investment':  dict(intro_end='This is our latest investment.', ident_cap='Our latest investment',
+                        why='Why we invested', q_founders='What do the founders<br>get from us?'),
+    'build_first': dict(intro_end='This one, we built ourselves.', ident_cap='Built in-house',
+                        why='Why we built it', q_founders='What does the team<br>get from us?'),
+}
+
+def variant(content):
+    k = content.get('kind', 'investment')
+    if k not in VARIANTS: raise ValueError(f'content.yaml: kind must be one of {list(VARIANTS)}, not {k!r}')
+    return VARIANTS[k]
+
+def chapters(content):
+    ch = dict(CHAPTERS); ch['why'] = ('03', variant(content)['why']); return ch
 NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
              'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']

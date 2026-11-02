@@ -1,0 +1,113 @@
+# walter: everything that appears on screen. Voice-over text lives in script.md, sources in SOURCES.md.
+# Build First film: TBV built walter itself, so `kind: build_first` changes the intro ending, the ident caption,
+# chapter 03 ("Why we built it") and the team question. Everything else is the standard structure.
+
+company: walter
+kind: build_first
+number: 5
+origin: "Berlin, Germany  ·  Founded 2026"
+logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # TODO from Paul (walter brand files)
+founders:                       # people with a lower third; not called "founder" on screen
+  - {name: Christoph Wend-Erdel, role: "Managing Director, walter"}
+portrait: {inset: [220, 610, 290, 610], x: 0, y: 0}   # TODO set from the first interview frame
+pronounce: {valter: V AA L T ER, haeusser: HH OY S ER, eisenmann: AY Z AH N M AH N}
+
+voice:
+  take: media/vo.mp3
+  intro: media/intro.mp3
+
+problem:
+  panels:
+    - {type: statement, at: s0, text: "Property management<br>runs on manual work."}
+    - type: words
+      at: tenant
+      head: Every day
+      words: [Tenant emails, Phone calls, Invoices, Owner meetings]
+      word_at: [tenant, phone, invoices, owner]
+    - {type: tiles, at: each, head: Today, items: [Separate tools, Thin margins, Staff hard to find], item_at: [each, margins, staff], mark: x}
+    - {type: statement, at: so every, text: "Every new building<br>means more work."}
+
+how:
+  panels:
+    - {type: statement, at: s0, text: "Not another tool.<br>A new colleague."}
+    - type: steps
+      at: a tenant
+      head: A burst pipe
+      items:
+        - {title: Report, text: "Lands in the building's own inbox"}
+        - {title: Ticket, text: walter opens it}
+        - {title: Contractor, text: "Right trade found, reply drafted"}
+      item_at: [tenant, ticket, contractor]
+    - type: points
+      at: same for
+      head: Also prepared by walter
+      items:
+        - {label: Invoices, value: assigned to the building}
+        - {label: Owner meetings, value: "agenda, invitations, votes"}
+        - {label: Annual statements, value: ready for review}
+      item_at: [invoices, owner, annual]
+    - {type: statement, at: property manager, text: "Nothing goes out<br>without approval.", sub: Human in the loop, sub_at: only then}
+
+why:
+  rows:
+    - {title: Born inside Drees & Sommer, card: {type: text, caption: Origin, text: "An idea from the Consulting business unit"}}
+    - {title: Demand from day one, card: {type: stat, caption: Demo requests, value: 50, suffix: "+", label: within days of the first test}}
+    - {title: A name that opens doors, card: {type: text, caption: Advantage, text: "Drees & Sommer brand and network in a cautious market"}}
+
+ds:
+  a:
+    kind: rows
+    cap: Why walter matters for Drees & Sommer
+    head: Close to the building, every day
+    rows:
+      - [Early insight, Daily operations show where advice is needed]
+      - [Steady revenue, Digital income beyond single projects]
+      - [A new service, "Option: property management run with walter"]
+    at: [first, second, third]
+  b:
+    kind: boxes
+    head: Drees & Sommer + walter
+    boxes:
+      - [Drees & Sommer, Clients and know-how, [Brand trust, Client network, Real estate expertise], false]
+      - [walter, The AI colleague, [Tenant communication, Invoices and statements, Owner meetings], true]
+      - [Drees & Sommer, The advice that follows, [Due diligence, ESG and refurbishment, Operating models], false]
+    at: [drees and sommer brings, valter brings, delivers]
+    end: walter runs the day to day. Drees & Sommer advises on what it shows.
+  c:
+    kind: cards
+    head: How Drees & Sommer teams can use walter
+    cards:
+      - {bu: Real Estate Consulting, title: "Property management<br>back in house", trigger: Client unhappy with its property manager, bullets: [walter does the daily work, D&S designs the operating model, One view of every building], style: dk}
+      - {bu: Transactions, title: "Portfolio<br>taken over", trigger: Client buys a portfolio or a property manager, bullets: [walter reads leases and declarations, Buildings and units set up automatically, Clean data for due diligence], style: dk}
+      - {bu: ESG & Refurbishment, title: "From operations<br>to roadmap", trigger: Owner needs ESG data or a refurbishment roadmap, bullets: [Operating and maintenance data in one place, Basis for refurbishment roadmaps], style: lt, dev: true}
+    at: [real estate, transactions, next up]
+    end: Bring the case. The walter team does the set-up.
+  d:
+    kind: people
+    head: Bringing walter to Drees & Sommer clients
+    pcap: Leading the collaboration at Drees & Sommer
+    people: [[Thomas Häusser, ""], [Karsten Eisenmann, ""]]
+    names_at: [thomas, karsten]
+    steps:
+      - [Step 1, Bring a client, A portfolio with a real pain point]
+      - [Step 2, Joint workshop, Half a day to map the use cases]
+      - [Step 3, Test phase, Supported by the walter team]
+    at: [next step, workshop, test phase]
+
+# Interview still to be recorded (see INTERVIEW.md). In/out points are placeholders until the footage exists.
+interview:
+  f1:
+    founder: 0
+    parts: [{video: media/interview.mp4, in: 0, dur: 20}]
+    cutaways: []
+  f2:
+    parts: [{video: media/interview.mp4, in: 30, dur: 20}]
+  f3:
+    parts: [{video: media/interview.mp4, in: 60, dur: 20}]
+  f4:
+    parts: [{video: media/interview.mp4, in: 90, dur: 7}]
+    words: [{at: 0.4, text: One.}, {at: 2.0, text: Two.}, {at: 4.0, text: Three.}]
+
+close:
+  tagline: The AI colleague for property management
+  tagline_at: s1

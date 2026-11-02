@@ -3,7 +3,7 @@ import json, os, re, math, shutil, subprocess, time
 from pathlib import Path
 import numpy as np, yaml
 from .config import (ROOT, COMPANIES, BUILD, WEB, FPS, SR, VO_LUFS, TAG_IMAGE, SIZE_LIMIT_BYTES, AUDIO_KBPS,
-                     INTRO_TEXT, NUM_WORDS, MIX_LUFS_RANGE, PEAK_MAX_DB)
+                     INTRO_TEXT, NUM_WORDS, variant, MIX_LUFS_RANGE, PEAK_MAX_DB)
 from . import script as S, align as A, interview as I, timeline as TLN, page as PG, audio as AU
 
 def paths(slug):
@@ -20,7 +20,7 @@ def load(slug):
     return content, sections
 
 def intro_text(content):
-    return INTRO_TEXT.format(num_word=NUM_WORDS[int(content['number'])])
+    return INTRO_TEXT.format(num_word=NUM_WORDS[int(content['number'])], end=variant(content)['intro_end'])
 
 def _links(bdir, cdir):
     bdir.mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,7 @@ def make(slug, log=print):
     D = round(math.ceil(D * FPS) / FPS, 3)
     (bdir / 'film.html').write_text(PG.film(scenes, segs, D), encoding='utf-8')
     wm = content['logo_light']
-    (bdir / 'ident.html').write_text(PG.ident(content['number'], wm, cues), encoding='utf-8')
+    (bdir / 'ident.html').write_text(PG.ident(content['number'], wm, cues, variant(content)['ident_cap']), encoding='utf-8')
     # ---- sound
     N = int(round(D * SR)); vo_bus = np.zeros(N, np.float32); it_bus = np.zeros(N, np.float32)
     def put(bus, src, a, b, t, fade=.012):
@@ -145,8 +145,8 @@ def lint(content, sections):
     rules = [(r'\b(January|February|March|April|June|July|August|September|October|November|December)\b', 'date / month (keep it timeless)'),
              (r'(?<!Founded )(?<!founded )\b20\d\d\b', 'year (keep it timeless)'), (r'\b(this|next|last) (week|month|quarter|year)\b', 'relative date'),
              (r'\bQ[1-4]\b', 'quarter'), (r'\b(upcoming|tomorrow|soon to be)\b', 'upcoming event'),
-             (r'\b(valuation|stake|ticket|term sheet|pre-money|post-money|co-invest\w*|cap table)\b', 'deal terms (never in the film)'),
-             (r'\b(approved|approval|budget (is |was )?(approved|signed|released)|signed off)\b', 'operational detail (budget/approval)'), (r'\bco-creation\b', 'check wording "co-creation" with the partner')]
+             (r'\b(valuation|stake|(investment|our|their|the) ticket|ticket size|term sheet|pre-money|post-money|co-invest\w*|cap table)\b', 'deal terms (never in the film)'),
+             (r'\b((board|budget|investment|committee) (approved|approval)|approved (the )?(budget|investment|funding)|budget (is |was )?(approved|signed|released)|signed off)\b', 'operational detail (budget/approval)'), (r'\bco-creation\b', 'check wording "co-creation" with the partner')]
     out = []
     for rx, why in rules:
         for m in re.finditer(rx, blob, re.I): out.append(f'{why}: "...{blob[max(0, m.start() - 30):m.end() + 30].strip()}..."')

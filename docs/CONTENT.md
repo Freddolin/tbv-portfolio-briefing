@@ -2,6 +2,11 @@
 
 Start from `templates/company/content.yaml` (copied by `python -m briefing new <slug>`). Paths are relative to the company folder.
 
+## Film kind
+`kind: investment` (default) or `kind: build_first` for a venture TBV built itself (e.g. walter).
+Build First changes four things and nothing else: the intro ends "This one, we built ourselves.", the ident caption reads
+"Built in-house", chapter 03 is "Why we built it" and the team question is "What does the team get from us?".
+
 ## Anchors
 Everything that appears on screen is cued to the voice-over of its block:
 

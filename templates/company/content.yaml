@@ -9,6 +9,7 @@
 
 company: <Company>            # as written in the logo / file name
 number: 5                     # portfolio briefing number (spoken in the intro)
+kind: investment              # or build_first for a venture TBV built itself (see docs/CONTENT.md)
 origin: "City, Country  ·  Founded 20XX"
 logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # light = for dark backgrounds
 founders:

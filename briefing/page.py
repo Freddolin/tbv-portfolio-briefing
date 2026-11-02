@@ -40,7 +40,7 @@ IDENT = r"""<!doctype html>
   <div class="ln h" id="l1" style="top:300px">Who we backed.</div>
   <div class="ln h" id="l2" style="top:432px">Why.</div>
   <div class="ln h" id="l3" style="top:564px">What it means for Drees &amp; Sommer.</div>
-  <div id="capL" class="cap h"><b></b>Our latest investment</div>
+  <div id="capL" class="cap h"><b></b>__CAP__</div>
   <div id="hair" class="h"></div>
   <img id="wm" class="h" src="__WM__">
 </div>
@@ -73,8 +73,8 @@ window.ready=Promise.all([document.fonts.ready,...$$('img').map(i=>i.decode().ca
 </body></html>
 """
 
-def ident(num, wordmark, cues):
-    return IDENT.replace('__NUM__', str(num)).replace('__WM__', wordmark).replace('__CUES__', json.dumps(cues))
+def ident(num, wordmark, cues, cap='Our latest investment'):
+    return IDENT.replace('__CAP__', cap).replace('__NUM__', str(num)).replace('__WM__', wordmark).replace('__CUES__', json.dumps(cues))
 
 def ident_cues(take_words, offset=0.5):
     """Cue times from the aligned intro voice (placed at `offset` s)."""

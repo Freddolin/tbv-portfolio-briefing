@@ -1,6 +1,6 @@
 """Turns content + aligned voice-over + interview segments into a film: one block after another,
 every block as long as its audio and its texts need. No hand-set timings anywhere."""
-from .config import BLOCK_ORDER
+from .config import BLOCK_ORDER, variant
 
 LEAD = dict(problem=.5, handover=.3, how=.5, q_ds=.45, why=.6, ds_a=.55, ds_b=.5, ds_c=.5, ds_d=.5, q_founders=.45, q_words=.45, close=.4)
 TAIL = dict(problem=.8, handover=.25, how=.7, q_ds=.35, why=.8, ds_a=.7, ds_b=.7, ds_c=.7, ds_d=.8, q_founders=.35, q_words=.35, close=.0)
@@ -77,7 +77,7 @@ def _scene(F, DS, b, c, key):
     if key == 'how': return F.explainer(b, c, 'how', c['how'])
     if key == 'handover': return F.handover(b, c)
     if key == 'q_ds': return F.question(b, c, c.get('questions', {}).get('q_ds', 'What does that mean<br>for Drees & Sommer?'), 'dk')
-    if key == 'q_founders': return F.question(b, c, c.get('questions', {}).get('q_founders', 'What do the founders<br>get from us?'), 'wm')
+    if key == 'q_founders': return F.question(b, c, c.get('questions', {}).get('q_founders', variant(c)['q_founders']), 'wm')
     if key == 'q_words': return F.question(b, c, c.get('questions', {}).get('q_words', 'The Bau Ventures,<br>in three words?'), 'wm')
     if key == 'why': return F.why(b, c, c['why'])
     if key.startswith('ds_'): return DS.screen(b, c, key[-1], c['ds'][key[-1]])
