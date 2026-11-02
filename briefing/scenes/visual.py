@@ -319,6 +319,10 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         tl(f"count('#{pid} .uvn',{t:.3f},{float(p['value'])},1.6,n=>(n>={float(p['value']) - .5}&&{disp})?{disp}:Math.round(n).toLocaleString('en-US'));")
         tl(f"tl.fromTo('#{pid} .ug',{{autoAlpha:0,scale:.6}},{{autoAlpha:1,scale:1,duration:.3,ease:'back.out(2)',stagger:{1.5 / max(1, n):.3f}}},{t:.3f});")
         tl.show(sel('.uvl'), t + .5, .4, 10); texts.append((t + .5, p.get('label', '')))
+        if p.get('extra'):
+            h += f'<div class="uvx tx" style="left:110px;top:720px;width:760px;font-size:44px;letter-spacing:-.02em;line-height:1.15">{T(p["extra"])}</div>'
+            tx_ = T0(p['extra_at']) if p.get('extra_at') is not None else t + 1.4
+            tl.show(sel('.uvx'), tx_, .45, 12); texts.append((tx_, p['extra']))
         if p.get('note'):
             h += f'<div class="vnote tx">{E(p["note"])}</div>'; tl.show(sel('.vnote'), t + .6, .4, 0)
 

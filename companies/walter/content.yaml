@@ -117,6 +117,7 @@ traction:
       per: 100
       display: "3,200+"
       label: units managed with walter
+      extra: "€150k+ revenue potential per year"
       note: As of November 2026
     - type: funnel
       at: after

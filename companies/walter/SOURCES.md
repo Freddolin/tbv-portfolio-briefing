@@ -27,6 +27,7 @@ Visual-first version (2 Nov 2026). Main sources:
 | traction | 4 pilot customers in June, 8 in July, 22 at the September launch | CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots" |
 | traction | 30 live customers today | Team feedback; Fred (2 Nov): 30 is the more current number |
 | traction | 3,200+ units | CD deck: "22 pilots that manage 3,200+ units"; kept in the team feedback |
+| traction | €150k+ revenue potential per year | CD deck walter slide: "€153k revenue potential p.a. from pilots"; Okt-Walter: ">153 T€ ARR-Potenzial Bestand" (at €4 per unit per month, not current revenue); kept in the team feedback |
 | traction | 280+ leads, 170+ demos | Team feedback; earlier Okt-Walter (mid-October: 249 leads, 103 demos) |
 | traction | Next in line: pilot with 7,700 units, agreed by handshake | Team feedback; Fred (2 Nov): use it as Christoph wrote it (previously 11,800 units in CD deck and Okt-Walter) |
 | traction | "As of November 2026" | Fred (2 Nov): add the status date |
@@ -38,5 +39,5 @@ Visual-first version (2 Nov 2026). Main sources:
 - **Customer and lead names**: the CD deck names some, but the film may travel further. The real screens show the product's demo data.
 - **Dates and the launch event**, except the month labels of the customer chart and "As of November 2026".
 - **Time savings.** One property manager reported a third less communication time, the ads claim 40 %; Christoph in the IZ draft: "Wir haben noch keine festen Zahlen."
-- **Money beyond what is shown:** revenue potential, budget, funding amount, cap table, founder package.
+- **Money beyond the revenue potential:** budget, funding amount, cap table, founder package.
 - **Pipeline in euros.** CD deck says >€177k (slide) and >€240k (appendix).
