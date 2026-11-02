@@ -17,7 +17,7 @@ Valter is not another tool. It works like a new colleague. [pause] A tenant repo
 [pause] So what does that mean for Drees and Sommer? Christoph.
 
 ## why
-Why did we build it? [pause] The idea came from Drees and Sommer's own consulting partners. [pause] In the first test, more than fifty companies asked for a demo within days. [pause] And Drees and Sommer's name opens doors in a cautious market.
+Why did we build it? [pause] The idea came from Drees and Sommer's own consulting partners. [pause] When we first advertised it, more than fifty companies asked for a demo within weeks. [pause] And Drees and Sommer's name opens doors in a cautious market.
 
 ## ds_a
 What does Valter mean for Drees and Sommer? [pause] First, a view into buildings in daily operation. [pause] Second, digital revenue beyond single projects. [pause] Third, the option to offer property management as a service.

@@ -51,7 +51,7 @@ how:
 why:
   rows:
     - {title: Born inside Drees & Sommer, card: {type: text, caption: Origin, text: "An idea from the Consulting business unit"}}
-    - {title: Demand from day one, card: {type: stat, caption: Demo requests, value: 50, suffix: "+", label: within days of the first test}}
+    - {title: Strong demand, fast, card: {type: stat, caption: Demo requests, value: 50, suffix: "+", label: within weeks of the first ads}}
     - {title: A name that opens doors, card: {type: text, caption: Advantage, text: "Drees & Sommer brand and network in a cautious market"}}
 
 ds:
