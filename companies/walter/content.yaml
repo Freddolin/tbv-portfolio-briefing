@@ -37,7 +37,6 @@ how:
   panels:
     - type: ui                # the water-damage case on the real walter object page
       at: s0
-      min: 13
       src: media/app_object.jpg
       size: [2048, 1131]
       url: walter · Bismarckstraße 88

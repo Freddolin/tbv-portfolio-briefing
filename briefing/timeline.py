@@ -71,7 +71,8 @@ def _cut_before(take, key, anchor):
     flat = [w for s in take.sec[key] for w in s['words']]
     prev = [w[2] for w in flat if w[2] <= ta + 1e-6]
     pe = prev[-1] if prev else ta - .2
-    return round(quiet_point(take.env, min(pe, ta) - .03, ta + .03), 3)
+    cut = quiet_point(take.env, min(pe, ta) - .03, ta + .03)
+    return round(min(cut, ta - .005), 3)         # never after the anchor word starts, or the pause would not move it
 
 def _scene(F, DS, b, c, key):
     if key == 'problem': return F.explainer(b, c, 'problem', c['problem'])
