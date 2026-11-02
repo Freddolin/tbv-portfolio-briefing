@@ -76,7 +76,7 @@ TAG_IMAGE = ASSETS / 'img' / 'tag_internal.png'   # "Internal use only", always 
 # ElevenLabs (documented here so every take sounds the same)
 ELEVEN = dict(vo_voice='Jessica - Playful, Bright, Warm', intro_voice='Jarnathan', model='Eleven v4',
               stability='50%', notes='Use [pause] tags between sentences. Spell abbreviations as spoken: A I, H S E, C O two.')
-INTRO_TEXT = ("The Bau Ventures. [pause] Portfolio briefing number {num_word}. [pause] "
+INTRO_TEXT = ("The Bau Ventures portfolio briefing, number {num_word}. [pause] "   # wording of the intros #1-#4
               "Who we backed, why, and what it means for Drees and Sommer. [pause] {end}")
 
 # Film variants. `kind` in content.yaml picks one (default: investment).
