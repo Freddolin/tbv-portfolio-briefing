@@ -3,7 +3,7 @@ The text under each heading is exactly what goes into ElevenLabs."""
 import re
 from .config import SCRIPT_SECTIONS
 
-def load(path):
+def load(path, expected=SCRIPT_SECTIONS):
     secs, cur = {}, None
     for line in open(path, encoding='utf-8'):
         m = re.match(r'^##\s+(\w+)\s*$', line)
@@ -16,15 +16,15 @@ def load(path):
             continue
         secs[cur].append(line.rstrip('\n'))
     out = {k: ' '.join(' '.join(v).split()) for k, v in secs.items()}
-    missing = [k for k in SCRIPT_SECTIONS if not out.get(k)]
-    extra = [k for k in out if k not in SCRIPT_SECTIONS]
+    missing = [k for k in expected if not out.get(k)]
+    extra = [k for k in out if k not in expected]
     if missing or extra:
-        raise ValueError(f'script sections missing {missing} / unknown {extra}; expected {SCRIPT_SECTIONS}')
-    return {k: out[k] for k in SCRIPT_SECTIONS}
+        raise ValueError(f'script sections missing {missing} / unknown {extra}; expected {expected}')
+    return {k: out[k] for k in expected}
 
 def tts_text(sections):
     """Text to paste into ElevenLabs: sections in film order, separated by blank lines."""
-    return '\n\n'.join(sections[k] for k in SCRIPT_SECTIONS)
+    return '\n\n'.join(sections.values())
 
 def sentences(text):
     """Split a section into sentences the way alignment and anchors see them."""

@@ -22,6 +22,7 @@ Every film has the same structure, look, sound and checks. Only the content chan
 | 16 | `close` | logo + tagline, TBV lock-up, music hit | voice-over |
 
 Target length 3:30–4:15. Voice-over about 120–135 seconds, interviews about 70–80 seconds.
+Without interview footage (no `interview` in content.yaml) blocks 3, 5, 6, 12–15 drop out and the film runs about 2:45–3:00.
 
 ## Steps
 

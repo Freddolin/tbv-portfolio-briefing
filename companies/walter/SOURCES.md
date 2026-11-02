@@ -12,13 +12,13 @@ Research on 2 Nov 2026. Notion = TBV workspace, Granola = meeting transcripts, I
 | problem | More work for the same people | GTM Strategy v1: "Verwaltungen must handle more units per person or shrink." |
 | handover | First company TBV built from scratch | IZ: "Erstmals hat sie eine Geschäftsidee bis zur Gründung eines eigenständigen Unternehmens entwickelt." |
 | handover | Berlin, founded 2026 | Entscheidungsvorlage (Sitz Bundesallee, Berlin); Notion, Board Update Walter Sept. 2026: "Walter Property Solutions GmbH: Gegründet" |
-| handover | Christoph Wend-Erdel, Managing Director | IZ: "einer der Geschäftsführer der Walter Property Solutions GmbH" |
 | how | Not another tool, a new colleague | hallowalter.com: "Keine Software. Ein neuer Mitarbeiter." |
 | how | Burst pipe: ticket, contractor, reply | IZ: "Er erkennt die Schadensmeldung, ordnet sie dem richtigen Objekt zu, schlägt einen Handwerksbetrieb vor und bereitet die Kommunikation vor." |
 | how | Own inbox per building | Entscheidungsvorlage: "Mailbox per property: Mail · Voice · WhatsApp (Live)" |
 | how | Invoices, owner meetings, annual statements | IZ: "die Vorbereitung von Hausgeld- und Betriebskostenabrechnungen, die Organisation von Eigentümerversammlungen"; Granola, Vorstellung Walter KI-Agent (15 Oct): invoice assigned to the right property |
 | how | Manager approves, only then walter acts | IZ: "Der Verwalter prüft die Vorschläge und gibt sie frei."; hallowalter.com: nothing is sent, paid or billed without approval |
 | why | Idea from D&S consulting partners | Notion, Venture Funnel: "Linked BU: Tom Häusser [P] Consulting, Karsten Eisenmann [AP] Consulting"; Notion, PM-Pilot: "Vorschlag ursprünglich von T.Häusser & K.Eisenmann"; IZ: "Die Idee zu Walter entstand in einer Geschäftseinheit von Drees & Sommer." |
+| why | Tested in the market before the company was founded | IZ: "prüfte zunächst, ob es überhaupt genügend Nachfrage gab" and "Erst wenn sich zeigt, dass Kunden das Produkt tatsächlich nachfragen, gründet The Bau Ventures ein Unternehmen"; Board Update Walter Sept. 2026: GmbH founded after the test |
 | why | More than 50 demo requests within weeks of the first ads | Entscheidungsvorlage: ">50 demos requested" "in just a few weeks"; Granola, 15 Oct (Philipp Piepenstock): about 50 demo bookings after the first LinkedIn campaign; IZ: "Wir haben Werbung geschaltet und innerhalb kürzester Zeit eine sehr, sehr starke Nachfrage". Not "first test": the earlier PM-Pilot email test got no response (Notion, Property Management - Opportunity). |
 | why | D&S name opens doors in a cautious market | Entscheidungsvorlage: "trust advantage with a conservative target group"; Notion, TBV Board General Update 22.10.2026: "Dreso Netzwerk eröffnet Kundenzugänge" |
 | ds_a | View into buildings in daily operation | Granola, 15 Oct (Philipp): whoever runs the building has much more information for TDDs; PM-Pilot: upselling "Transaktionsberatung, Sanierungsfahrpläne" |
@@ -40,5 +40,5 @@ Research on 2 Nov 2026. Notion = TBV workspace, Granola = meeting transcripts, I
 - **Customer and lead names** (pilot customers, the large investor, retail chains): no written OK.
 - **Money:** budget, funding round, cap table, founder package. Deal terms and internal.
 - **Launch event and dates.** Timeless rule.
-- **"Founder".** The founding team is not settled yet (Granola, Walter next steps, 26 Oct). Christoph is shown as Managing Director.
+- **Interview.** Fred decided: no interview footage. The film is voice-over only, so no person is named as founder or managing director.
 - **Commercial today.** The product is residential first (Demo prep 21 Oct: commercial not covered yet), so commercial appears only as a test phase.

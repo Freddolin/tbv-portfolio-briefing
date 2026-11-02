@@ -7,6 +7,11 @@ Start from `templates/company/content.yaml` (copied by `python -m briefing new <
 Build First changes four things and nothing else: the intro ends "This one, we built ourselves.", the ident caption reads
 "Built in-house", chapter 03 is "Why we built it" and the team question is "What does the team get from us?".
 
+## Without interview
+Leave out the whole `interview` section (and `founders`, `portrait`) and the film is voice-over only: no interview segments,
+no question cards (q_ds, q_founders, q_words), so script.md has no such sections. The handover shows logo and origin only.
+About 2:45–3:00 instead of 3:30–4:15.
+
 ## Anchors
 Everything that appears on screen is cued to the voice-over of its block:
 

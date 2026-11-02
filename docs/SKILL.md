@@ -38,6 +38,8 @@ Only `companies/<slug>/content.yaml`, `script.md` and the media change per compa
   `media/vo.mp3` and `media/intro.mp3`.
 
 ## 4. Interview and images
+- No interview footage, or Fred wants none: leave `interview` (and `founders`, `portrait`) out of content.yaml and drop the
+  q_ds / q_founders / q_words sections from script.md. The film becomes voice-over only (see docs/CONTENT.md).
 - Interview footage, logos (light and dark) and screenshots come from Fred's computer (stage them) into `media/`.
 - Choose the four selects in `content.yaml > interview` (f1 company intro, f2 on Drees & Sommer, f3 on TBV, f4 three words).
   Use the interview transcript (Granola or speech recognition) to pick in/out points; cut "ehm"s by splitting into parts.

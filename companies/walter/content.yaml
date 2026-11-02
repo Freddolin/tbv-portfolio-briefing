@@ -1,15 +1,13 @@
 # walter: everything that appears on screen. Voice-over text lives in script.md, sources in SOURCES.md.
-# Build First film: TBV built walter itself, so `kind: build_first` changes the intro ending, the ident caption,
-# chapter 03 ("Why we built it") and the team question. Everything else is the standard structure.
+# Build First film: TBV built walter itself, so `kind: build_first` changes the intro ending, the ident caption and
+# chapter 03 ("Why we built it"). No interview: without an `interview` section the film is voice-over only
+# (no interview segments, no question cards).
 
 company: walter
 kind: build_first
 number: 5
 origin: "Berlin, Germany  ·  Founded 2026"
 logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # TODO from Paul (walter brand files)
-founders:                       # people with a lower third; not called "founder" on screen
-  - {name: Christoph Wend-Erdel, role: "Managing Director, walter"}
-portrait: {inset: [220, 610, 290, 610], x: 0, y: 0}   # TODO set from the first interview frame
 pronounce: {valter: V AA L T ER, haeusser: HH OY S ER, eisenmann: AY Z AH N M AH N}
 
 voice:
@@ -50,9 +48,9 @@ how:
 
 why:
   rows:
-    - {title: Born inside Drees & Sommer, card: {type: text, caption: Origin, text: "An idea from the Consulting business unit"}}
-    - {title: Strong demand, fast, card: {type: stat, caption: Demo requests, value: 50, suffix: "+", label: within weeks of the first ads}}
-    - {title: A name that opens doors, card: {type: text, caption: Advantage, text: "Drees & Sommer brand and network in a cautious market"}}
+    - {title: Born inside Drees & Sommer, at: idea, card: {type: text, caption: Origin, text: "An idea from the Consulting business unit"}}
+    - {title: Tested first, then founded, at: we tested, card: {type: stat, at: more than, caption: Demo requests, value: 50, suffix: "+", label: within weeks of the first test}}
+    - {title: A name that opens doors, at: and drees, card: {type: text, caption: Advantage, text: "Drees & Sommer brand and network in a cautious market"}}
 
 ds:
   a:
@@ -94,19 +92,6 @@ ds:
       - [Step 3, Test phase, Supported by the walter team]
     at: [next step, workshop, test phase]
 
-# Interview still to be recorded (see INTERVIEW.md). In/out points are placeholders until the footage exists.
-interview:
-  f1:
-    founder: 0
-    parts: [{video: media/interview.mp4, in: 0, dur: 20}]
-    cutaways: []
-  f2:
-    parts: [{video: media/interview.mp4, in: 30, dur: 20}]
-  f3:
-    parts: [{video: media/interview.mp4, in: 60, dur: 20}]
-  f4:
-    parts: [{video: media/interview.mp4, in: 90, dur: 7}]
-    words: [{at: 0.4, text: One.}, {at: 2.0, text: Two.}, {at: 4.0, text: Three.}]
 
 close:
   tagline: The AI colleague for property management

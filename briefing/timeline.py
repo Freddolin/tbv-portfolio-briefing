@@ -1,6 +1,6 @@
 """Turns content + aligned voice-over + interview segments into a film: one block after another,
 every block as long as its audio and its texts need. No hand-set timings anywhere."""
-from .config import BLOCK_ORDER, variant
+from .config import block_order, has_interview, variant
 
 LEAD = dict(problem=.5, handover=.3, how=.5, q_ds=.45, why=.6, ds_a=.55, ds_b=.5, ds_c=.5, ds_d=.5, q_founders=.45, q_words=.45, close=.4)
 TAIL = dict(problem=.8, handover=.25, how=.7, q_ds=.35, why=.8, ds_a=.7, ds_b=.7, ds_c=.7, ds_d=.8, q_founders=.35, q_words=.35, close=.0)
@@ -17,7 +17,7 @@ def build(content, take, segs, pad=None):
     from .scenes import film as F, ds as DS
     pad = pad or {}
     t = 0.0; blocks, scenes, place = [], [], []
-    for i, key in enumerate(BLOCK_ORDER):
+    for i, key in enumerate(block_order(content)):
         b = Block(key, i, t)
         if key in segs:                                    # interview
             seg = content['interview'][key]; info = segs[key]
@@ -32,7 +32,7 @@ def build(content, take, segs, pad=None):
         else:                                              # voice-over block
             delays = {}                                    # take time of a cut -> seconds of pause inserted there
             for _ in range(6):
-                b = _vo_block(Block(key, i, t), key, take, delays, pad)
+                b = _vo_block(Block(key, i, t), key, take, delays, pad, content)
                 sc = _scene(F, DS, b, content, key)
                 if sc.need > b.t_end + 1e-3:
                     b.t_end = sc.need; sc = _scene(F, DS, b, content, key)
@@ -47,7 +47,7 @@ def build(content, take, segs, pad=None):
         blocks.append(b); scenes.append(sc); t = b.t_end
     return blocks, scenes, place, t
 
-def _vo_block(b, key, take, delays, pad):
+def _vo_block(b, key, take, delays, pad, content):
     """Voice-over block with optional pauses (delays) at cut points inside the section."""
     t = b.t0; off = t + LEAD[key] - take.start(key)
     splits = sorted(delays.items())
@@ -57,7 +57,8 @@ def _vo_block(b, key, take, delays, pad):
     b.T = lambda anchor, k=key: M(take.find(k, anchor))
     lo, hi = take.bounds[key]; pts = [lo] + [s_ for s_, _ in splits if lo < s_ < hi] + [hi]
     b.chunks = list(zip(pts[:-1], pts[1:]))
-    b.t_end = b.t_audio_end + TAIL[key] + pad.get(key, 0)
+    tail = TAIL[key] if key != 'handover' or has_interview(content) else .7     # no portrait card to open
+    b.t_end = b.t_audio_end + tail + pad.get(key, 0)
     if key == 'close':
         b.t_lock = max(b.t_audio_end + .6, b.T('s1') + 2.6 + .4) + pad.get(key, 0)
         b.t_end = b.t_lock + 3.4

@@ -3,7 +3,7 @@ import json, os, re, math, shutil, subprocess, time
 from pathlib import Path
 import numpy as np, yaml
 from .config import (ROOT, COMPANIES, BUILD, WEB, FPS, SR, VO_LUFS, TAG_IMAGE, SIZE_LIMIT_BYTES, AUDIO_KBPS,
-                     INTRO_TEXT, NUM_WORDS, variant, MIX_LUFS_RANGE, PEAK_MAX_DB)
+                     INTRO_TEXT, NUM_WORDS, variant, has_interview, script_sections, MIX_LUFS_RANGE, PEAK_MAX_DB)
 from . import script as S, align as A, interview as I, timeline as TLN, page as PG, audio as AU
 
 def paths(slug):
@@ -16,7 +16,7 @@ def load(slug):
     content['_dir'] = str(c)
     content.setdefault('logo_light', content.get('logo', {}).get('light'))
     content.setdefault('logo_dark', content.get('logo', {}).get('dark'))
-    sections = S.load(c / 'script.md')
+    sections = S.load(c / 'script.md', script_sections(content))
     return content, sections
 
 def intro_text(content):
@@ -42,8 +42,8 @@ def prepare(slug, log=print):
     ix = AU.decode(intro, bdir / '_intro.f32')
     iw, _ = A.align_take(intro, intro_text(content))
     cues = PG.ident_cues(iw)
-    segs = I.prepare(cdir, content['interview'], bdir / 'clips')
-    log('interviews: ' + ', '.join(f'{k} {v["dur"]:.1f}s' for k, v in segs.items()))
+    segs = I.prepare(cdir, content['interview'], bdir / 'clips') if has_interview(content) else {}
+    log(('interviews: ' + ', '.join(f'{k} {v["dur"]:.1f}s' for k, v in segs.items())) if segs else 'no interview: voice-over film')
     return content, sections, take, x, ix, cues, segs
 
 def make(slug, log=print):
@@ -71,7 +71,7 @@ def make(slug, log=print):
         if kind == 'vo': put(vo_bus, vo_x, a, b, t)
         else: put(it_bus, segs[key]['audio'], a, b, t, .08)
     vo_l = AU.lufs(vo_bus, str(bdir / '_t.f32'))
-    it_c, it_l = AU.interview_bus(it_bus, vo_l, str(bdir))
+    it_c, it_l = AU.interview_bus(it_bus, vo_l, str(bdir)) if segs else (it_bus, None)
     bus = vo_bus + it_c
     full = np.zeros((int(round((TOFF + D) * SR)), 2), np.float32)
     j = int(.5 * SR); full[j:j + len(intro_x)] += (intro_x * .9886)[:, None][:len(full) - j]
@@ -138,7 +138,7 @@ def lint(content, sections):
                                    and k not in ('interview', 'type', 'kind', 'style', 'bg', 'src', 'video', 'audio', 'at', 'pronounce')]
         elif isinstance(o, list): [walk(v) for v in o]
     walk({k: v for k, v in content.items() if k not in ('voice', 'logo', 'logo_light', 'logo_dark', 'portrait')})
-    for seg in content.get('interview', {}).values():
+    for seg in (content.get('interview') or {}).values():
         for cw in seg.get('cutaways', []): walk(cw.get('panel', {})); walk(cw.get('caption', ''))
         for w in seg.get('words', []): walk(w.get('text', ''))
     blob = ' | '.join(texts)

@@ -21,6 +21,20 @@ SCRIPT_SECTIONS = ['problem', 'handover', 'how', 'q_ds', 'why', 'ds_a', 'ds_b', 
 INTERVIEW_SEGMENTS = ['f1', 'f2', 'f3', 'f4']
 BLOCK_ORDER = ['problem', 'handover', 'f1', 'how', 'q_ds', 'f2', 'why', 'ds_a', 'ds_b', 'ds_c', 'ds_d',
                'q_founders', 'f3', 'q_words', 'f4', 'close']
+# Films without interview footage (no `interview` in content.yaml): the four interview segments and the three
+# question cards that lead into them are left out. Everything else stays in the same order.
+QUESTION_SECTIONS = ['q_ds', 'q_founders', 'q_words']
+
+def has_interview(content):
+    return bool(content.get('interview'))
+
+def script_sections(content):
+    return SCRIPT_SECTIONS if has_interview(content) else [k for k in SCRIPT_SECTIONS if k not in QUESTION_SECTIONS]
+
+def block_order(content):
+    skip = [] if has_interview(content) else INTERVIEW_SEGMENTS + QUESTION_SECTIONS
+    return [k for k in BLOCK_ORDER if k not in skip]
+
 CHAPTERS = {'problem': ('01', 'The problem'), 'how': ('02', 'How it works'),
             'why': ('03', 'Why we invested'), 'ds': ('04', 'With Drees & Sommer')}
 

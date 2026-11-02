@@ -2,7 +2,7 @@
 anchor resolver) plus the company content, and returns a Scene."""
 from .base import E, T, TL, Scene, frame, need_for
 from . import panels as P
-from ..config import CHAPTERS, reading_time, chapters
+from ..config import CHAPTERS, reading_time, chapters, has_interview
 
 def explainer(b, c, chapter_key, spec):
     """'The problem' and 'How it works': chapter frame + a sequence of panels cued to the voice-over."""
@@ -30,7 +30,9 @@ def explainer(b, c, chapter_key, spec):
     return sc
 
 def handover(b, c):
-    """Company logo + origin, then the founder portrait card that opens into the first interview."""
+    """Company logo + origin, then the founder portrait card that opens into the first interview.
+    Without interview: logo + origin only, held while the voice-over introduces the company."""
+    if not has_interview(c): return _handover_plain(b, c)
     sid = b.sid; tl = TL(); f = c['founders'][c['interview']['f1'].get('founder', 0)]
     por = c.get('portrait', {}); ins = por.get('inset', [220, 610, 290, 610]); px, py = por.get('x', 0), por.get('y', 0)
     h = (frame(sid, 'dk') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
@@ -54,6 +56,17 @@ def handover(b, c):
     clip = dict(el=f'#{sid}por', seg='f1', s=b.t_end, pre=tm, end=b.t_end + .1)
     need = max(tm + .7 + 2.6 + .95, b.t_speech + 1.2 + 2.4)
     return Scene(h, '', tl.js(), need, texts, [clip])
+
+def _handover_plain(b, c):
+    sid = b.sid; tl = TL()
+    h = (frame(sid, 'dk') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
+         f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:610px">{E(c["origin"])}</div></div>')
+    tl.on(f'#{sid}', b.t0)
+    tl.show(f'#{sid} .hero', b.t_speech - .2, .7, 14); tl.show(f'#{sid} .hcap', b.t_speech + 1.2, .5, 10)
+    tl.hide(f'#{sid} .hero,#{sid} .hcap', b.t_end - .45, .35)
+    tl.off(f'#{sid}', b.t_end + .05)
+    texts = [(b.t_speech + 1.2, c['origin'])]
+    return Scene(h, '', tl.js(), b.t_speech + 1.2 + 2.4 + .45, texts, [])
 
 def founder(b, c, seg_key, seg):
     """Interview segment: full-frame clip, lower third, optional cutaways and (f4) the three words."""
