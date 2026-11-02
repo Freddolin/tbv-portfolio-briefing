@@ -7,9 +7,13 @@ from ..config import CHAPTERS, reading_time, chapters, has_interview
 def explainer(b, c, chapter_key, spec):
     """'The problem' and 'How it works': chapter frame + a sequence of panels cued to the voice-over."""
     sid = b.sid; tl = TL(); texts = []
-    h = frame(sid, 'dk', chapters(c)[chapter_key], c['logo_light'])
+    bg = spec.get('bg', 'dk'); logo = c['logo_light'] if bg == 'dk' else c['logo_dark']
+    h = frame(sid, bg, chapters(c)[chapter_key], logo)
     pans = spec['panels']
-    starts = [b.T(p['at']) if p.get('at') is not None else (b.t_speech if i == 0 else None) for i, p in enumerate(pans)]
+    starts = []
+    for i, p in enumerate(pans):                 # at: 'after' = follows the previous panel once its `min` is over (no voice needed)
+        if p.get('at') == 'after' and i: starts.append(starts[-1] + pans[i - 1].get('min', 3))
+        else: starts.append(b.T(p['at']) if p.get('at') is not None else (b.t_speech if i == 0 else None))
     for i in range(len(pans)):
         if starts[i] is None: raise ValueError(f'{chapter_key}: panel {i + 1} needs an "at" anchor')
     starts[0] = min(starts[0], b.t_speech)
@@ -17,16 +21,19 @@ def explainer(b, c, chapter_key, spec):
     for i, p in enumerate(pans):
         t0 = starts[i] - .1
         t1 = starts[i + 1] - .1 if i + 1 < len(pans) else b.t_end
-        ph, pj, pt, ph_holds = P.build(f'{sid}p{i}', p, t0, t1, b.T, c['logo_light'])
+        ph, pj, pt, ph_holds = P.build(f'{sid}p{i}', p, t0, t1, b.T, logo)
         h += ph; tl(pj); texts += pt; holds += ph_holds
         if i + 1 < len(pans) and pt:      # the next panel must not replace this one before it was read
             short = max(t + reading_time(x) for t, x in pt) - (t1 - .35)
-            if short > .05: holds.append((pans[i + 1]['at'], short))
+            if short > .05 and pans[i + 1].get('at') != 'after': holds.append((pans[i + 1]['at'], short))
+        if p.get('min') and i + 1 < len(pans) and pans[i + 1].get('at') != 'after' and t1 - t0 < p['min'] - .05:   # visual panels: let the picture breathe
+            holds.append((pans[i + 1]['at'], p['min'] - (t1 - t0)))
     h += '</div>'
     tl.on(f'#{sid}', b.t0); tl.hide(f'#{sid} .chap,#{sid} .rule', b.t_end - .35, .3); tl.off(f'#{sid}', b.t_end + .01)
     # readability: the last panel decides how long the scene must stay
     last = [x for x in texts if x[0] >= starts[-1] - .2]
-    sc = Scene(h, '', tl.js(), need_for(last)); sc.holds = holds
+    need = max(need_for(last), starts[-1] - .1 + pans[-1].get('min', 0) + .35)
+    sc = Scene(h, '', tl.js(), need); sc.holds = holds
     return sc
 
 def handover(b, c):
@@ -59,9 +66,11 @@ def handover(b, c):
 
 def _handover_plain(b, c):
     sid = b.sid; tl = TL()
-    h = (frame(sid, 'dk') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
+    bg = c.get('handover', {}).get('bg')
+    h = (frame(sid, 'dk') + (_bg(sid, bg) if bg else '') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
          f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:610px">{E(c["origin"])}</div></div>')
     tl.on(f'#{sid}', b.t0)
+    if bg: tl.vin(f'#{sid} .hbg', b.t0, .6); tl.zoom(f'#{sid} .hbg img', b.t0, max(1, b.t_end - b.t0), 1.0, 1.06)
     tl.show(f'#{sid} .hero', b.t_speech - .2, .7, 14); tl.show(f'#{sid} .hcap', b.t_speech + 1.2, .5, 10)
     tl.hide(f'#{sid} .hero,#{sid} .hcap', b.t_end - .45, .35)
     tl.off(f'#{sid}', b.t_end + .05)
@@ -198,14 +207,21 @@ def why(b, c, spec):
     sc = Scene(h, WHY_CSS, tl.js(), need_for([x for x in texts if x[0] >= ts[-1] - .2]), texts); sc.holds = holds
     return sc
 
+def _bg(sid, src):
+    """A product picture behind a logo: large, dimmed, slowly zooming."""
+    return (f'<div class="hbg h" style="left:0;top:0;width:1920px;height:1080px;overflow:hidden">'
+            f'<img src="{src}" style="left:-40px;top:-20px;width:2000px;height:1120px;object-fit:cover;opacity:.16;filter:grayscale(.3)">'
+            f'<div style="left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at center,rgba(40,37,36,.35) 0%,rgba(40,37,36,.92) 70%)"></div></div>')
+
 def close(b, c, spec):
     sid = b.sid; tl = TL()
-    h = (frame(sid, 'dk') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:390px;width:600px;height:170px;object-fit:contain">'
+    h = (frame(sid, 'dk') + (_bg(sid, spec['bg']) if spec.get('bg') else '') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:390px;width:600px;height:170px;object-fit:contain">'
          f'<div class="tag tx" style="left:0;width:1920px;top:600px;text-align:center;font-size:46px;letter-spacing:-.025em">{E(spec["tagline"])}</div>'
          f'<img class="tbv" src="assets/img/tbv_h_alpha.png" style="left:568px;top:480px;width:784px;height:106px">'
          f'<div class="cap tcap" style="left:0;width:1920px;top:650px;text-align:center">Part of The Bau Ventures portfolio</div></div>')
     for s_ in ('.tbv', '.tcap', '.hero', '.tag'): tl(f"gsap.set('#{sid} {s_}',{{autoAlpha:0}});")
     tl.on(f'#{sid}', b.t0)
+    if spec.get('bg'): tl.vin(f'#{sid} .hbg', b.t0, .6); tl.zoom(f'#{sid} .hbg img', b.t0, max(1, b.t_lock - b.t0), 1.0, 1.05); tl.hide(f'#{sid} .hbg', b.t_lock - .4, .35)
     tl.show(f'#{sid} .hero', b.t_speech - .1, .6, 14)
     tt = b.T(spec.get('tagline_at', 's1')) - .1
     tl.show(f'#{sid} .tag', tt, .6, 12)

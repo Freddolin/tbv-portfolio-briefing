@@ -1,6 +1,6 @@
 # walter: everything that appears on screen. Voice-over text lives in script.md, sources in SOURCES.md.
-# Build First film (kind: build_first): 01 The problem, 02 What it does, 03 Built in-house, 04 Traction,
-# 05 Next steps, 06 With Drees & Sommer. Voice-over only, no interview.
+# Build First film (kind: build_first), visual-first version (Fred, 2 Nov 2026): real walter screens,
+# team photos and charts carry the story; the voice-over is short.
 
 company: walter
 kind: build_first
@@ -13,114 +13,148 @@ voice:
   take: media/vo.mp3
   intro: media/intro.mp3
 
+handover:
+  bg: media/app_home.jpg
+
 problem:
   panels:
-    - {type: statement, at: s0, text: "Property management<br>runs on manual work."}
-    - type: words
-      at: tenant
-      head: Every day, in separate tools
-      words: [Tenant emails, Phone calls, Invoices, Billing statements, Owner meetings]
-      word_at: [tenant, phone, invoices, service charge, owner]
-    - {type: statement, at: and good, text: "Good staff<br>are hard to find."}
-    - {type: statement, at: so every, text: "Every new building<br>means more work."}
+    - type: notify            # a property manager's evening: everything arrives at once
+      min: 5.5
+      items:
+        - {icon: phone, title: Missed calls, meta: 14 since lunch, time: "17:46"}
+        - {icon: mail, title: "Heating failure, flat 12", meta: Tenant email, time: "17:52"}
+        - {icon: invoice, title: "Invoice #2026-089", meta: Waiting for approval, time: "18:03"}
+        - {icon: sheet, title: Utility_billing_final_v7.xlsx, meta: Edited by 3 people, time: "18:10"}
+        - {icon: calendar, title: Owner meeting, meta: Agenda still missing, time: "18:15"}
+        - {icon: alert, kind: error, title: Property software, meta: Export failed, time: "18:21"}
+        - {icon: chat, title: WhatsApp from a tenant, meta: Water in the bathroom, time: "18:30"}
+      item_at: [property, emails, calls, paperwork]
+    - type: skyline           # every new building brings its own pile
+      at: every new
+      min: 4.5
 
 how:
   panels:
-    - {type: statement, at: s0, text: "Not another tool.<br>A new colleague."}
-    - type: steps
-      at: every building
-      head: One inbox per building
-      items:
-        - {title: Request, text: Tenant writes or calls}
-        - {title: Ticket, text: walter opens it}
-        - {title: Contractor, text: walter books the right trade}
-      item_at: [every building, opens, books]
-    - type: grid
-      at: he also
-      head: Also handled by walter
-      items:
-        - {title: Documents & deadlines, text: "Filed, read, tracked"}
-        - {title: Invoices & banking, text: Bank matching and SEPA}
-        - {title: Utility billing, text: Service charges and owner accounts}
-        - {title: Owner meetings, text: "Agenda, invitations, votes"}
-        - {title: Letting & handovers, text: "Listings, protocols, e-signature"}
-        - {title: App for tenants & owners, text: Requests and documents}
-      item_at: [documents, invoices, utility, owner meetings, letting, an app]
-    - {type: statement, at: valter prepares, text: "walter prepares.<br>People approve.", sub: Nothing goes out without approval, sub_at: the property manager}
-    - type: points
-      at: next comes
-      head: "Next: the whole property in one system"
-      items:
-        - {label: Property management, value: residential and commercial}
-        - {label: Asset management, value: "value, returns, reporting"}
-        - {label: Facility management, value: technical operations}
-        - {label: Sale & data room, value: up to the change of owner}
-      item_at: [one system, asset, facility, the sale]
+    - type: ui                # the water-damage case on the real walter object page
+      at: s0
+      min: 13
+      src: media/app_object.jpg
+      size: [2048, 1131]
+      url: walter · Bismarckstraße 88
+      steps:
+        - {at: s0, view: [1174, 466, 853, 645], box: [1200, 520, 780, 100], label: "Tenant email: water damage"}
+        - {at: reads it, view: [1174, 500, 853, 300], box: [1200, 600, 780, 135], label: walter reads and understands it}
+        - {at: finds, view: [330, 0, 1718, 440], box: [358, 14, 352, 46], label: Matched to the right building}
+        - {at: opens, view: [940, 330, 620, 300], box: [968, 380, 330, 52], label: Ticket opened}
+        - {at: books, view: [0, 0, 2048, 1131]}
+      overlays:
+        - at: books
+          pos: [1150, 250]
+          kicker: walter · proposal
+          title: Water damage, bathroom
+          rows:
+            - {text: Ticket opened, status: Open}
+            - {text: Contractor for plumbing, status: Requested}
+            - {text: Reply to the tenant, status: Drafted}
+          button: Approve
+          done: Approved
+          click_at: approves
+    - type: ui                # the rest runs the same way: deadlines, invoices, utility billing
+      at: deadlines
+      min: 6
+      src: media/app_home.jpg
+      size: [1407, 766]
+      url: walter · Home
+      steps:
+        - {at: deadlines, view: [230, 360, 600, 260], box: [262, 383, 518, 224], label: Deadlines tracked}
+      overlays:
+        - at: invoices
+          until: utility
+          pos: [1150, 230]
+          kicker: Invoices
+          title: Recorded and pre-checked
+          rows:
+            - {text: "Invoice #2026-089", status: Recorded}
+            - {text: Maintenance invoice Q1, status: Pre-checked}
+        - at: utility
+          pos: [1150, 230]
+          kicker: Utility billing
+          title: Statements prepared
+          rows:
+            - {text: Receipts collected, status: Done}
+            - {text: Costs allocated, status: Done}
+            - {text: Statements sent, status: Done}
 
 team:
   panels:
-    - type: steps
-      head: From idea to market
+    - type: faces
+      at: s0
+      min: 7
       items:
-        - {title: Idea, text: "Drees & Sommer Partner Thomas Häusser and Associate Partner Karsten Eisenmann"}
-        - {title: Build, text: "The TBV studio team, built with AI"}
-        - {title: Launch, text: Live on the market within months}
-      item_at: [the idea, studio team, market launch]
-    - type: people
-      at: christoph
-      head: The walter team
-      items:
-        - {name: Christoph Wend-Erdel, role: Managing Director, photo: media/team_christoph.png}
-        - {name: Alexander Assimidis, role: Managing Director, photo: media/team_alex.png}
-        - {name: Philipp Piepenstock, role: Venture Architect, photo: media/team_philipp.png}
-        - {name: Valentin Heidrich, role: Venture Architect, photo: media/team_valentin.png}
-        - {name: Paul Koch, role: Venture Architect, photo: media/team_paul.png}
-      item_at: [christoph, alexander, philipp, valentin, paul]
+        - {name: Christoph Wend-Erdel, role: Managing Director, photo: media/face_christoph.jpg}
+        - {name: Alexander Assimidis, role: Managing Director, photo: media/face_alex.jpg}
+        - {name: Philipp Piepenstock, role: Venture Architect, photo: media/face_philipp.jpg}
+        - {name: Valentin Heidrich, role: Venture Architect, photo: media/face_valentin.jpg}
+        - {name: Paul Koch, role: Venture Architect, photo: media/face_paul.jpg}
+      item_at: [built, null, null, null, paul]
 
 traction:
   panels:
-    - type: kpis
+    - type: bars
+      at: s0
+      head: Customers on walter
+      note: As of November 2026
+      items:
+        - {label: June, value: 4, tag: First pilots}
+        - {label: July, value: 8}
+        - {label: September, value: 22, tag: Market launch}
+        - {label: Today, value: 30, tag: Live}
+      item_at: [four, null, null, thirty]
+    - type: units
+      at: managing
+      min: 4
+      value: 3200
+      per: 100
+      display: "3,200+"
+      label: units managed with walter
+      note: As of November 2026
+    - type: funnel
+      at: after
+      min: 5
       head: Sales funnel
-      note: As of November 2026
-      items: [{value: 280+, label: leads}, {value: 170+, label: demos held}]
-      item_at: [two hundred and eighty, one hundred and seventy]
-    - type: kpis
-      at: thirty
-      head: Live today
-      note: As of November 2026
-      items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}, {value: "€150k+", label: revenue potential per year}, {value: First, label: customers converting to paying contracts}]
-      item_at: [thirty, three thousand, revenue, the first customers]
-    - type: kpis
-      at: next in line
-      head: Next in line
-      note: As of November 2026
-      items: [{value: "7,700", label: units in a pilot agreed by handshake}, {value: First, label: "commercial pilots signed, more in the pipeline"}]
-      item_at: [seven thousand, commercial]
+      note: "As of November 2026  ·  Next in line: a pilot with 7,700 units, agreed by handshake"
+      items:
+        - {value: 280, display: "280+", label: leads}
+        - {value: 170, display: "170+", label: demos held}
+        - {value: 30, display: "30", label: live customers}
 
 next:
   panels:
-    - type: steps
-      head: Next steps
+    - type: path
+      at: s0
+      min: 6
       items:
-        - {title: Convert, text: Pilots become paying customers}
-        - {title: Commercial, text: From residential to commercial portfolios}
-        - {title: Funding, text: First round with external investors}
-        - {title: Team, text: "Complete it, including co-founders"}
-      item_at: [turn, grow, prepare, complete]
+        - {title: Convert, text: Pilots become paying customers, icon: check}
+        - {title: Commercial, text: From residential to commercial portfolios, icon: tower}
+        - {title: Funding, text: First round with external investors, icon: euro}
+        - {title: Team, text: "Complete it, including co-founders", icon: people}
+      item_at: [next, commercial, funding, null]
 
 ds:
   d:
-    kind: people
-    head: How Drees & Sommer can help
-    pcap: The business unit partners behind walter
-    people: [[Thomas Häusser, ""], [Karsten Eisenmann, ""]]
-    names_at: [thomas, karsten]
-    steps:
-      - [Network, Doors opened, Large retail and real estate companies]
-      - [Intros, Clients open to a pilot, "Asset managers, portfolio holders, property managers"]
-      - [In-house, Utility billing review, "Exchange on Drees & Sommer's own process"]
-    at: [their network, introductions, utility]
+    bg: wm
+    panels:
+      - type: path
+        at: s0
+        min: 9
+        head: How Drees & Sommer can help
+        items:
+          - {title: The idea, text: "Thomas Häusser, Partner<br>Karsten Eisenmann, Associate Partner", icon: people}
+          - {title: Introductions, text: Portfolio holders and property managers, icon: chat}
+          - {title: A pilot with walter, text: Open to a pilot project, icon: building}
+        item_at: [the idea, introductions, pilot]
 
 close:
   tagline: The AI colleague for property management
   tagline_at: s1
+  bg: media/app_home.jpg

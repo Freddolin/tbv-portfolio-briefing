@@ -2,8 +2,10 @@
 A panel fills the area below the chapter rule. Each panel type has a fixed layout so every
 film looks the same; only the words, numbers and images change.
 
-Types: statement, words, tiles, flow, points, beats, stat, image, screens, steps, kpis, people, grid."""
+Types: statement, words, tiles, flow, points, beats, stat, image, screens, steps, kpis, people, grid,
+plus the visual types in visual.py (notify, skyline, ui, faces, bars, funnel, path)."""
 from .base import E, T, TL
+from . import visual as V
 from ..config import reading_time
 
 X_ICON = '<svg viewBox="0 0 30 30" fill="none" stroke="#EF7619" stroke-width="3"><path d="M4 4L26 26M26 4L4 26"/></svg>'
@@ -59,7 +61,7 @@ CSS = r"""
 .pn .gi{height:230px}
 .pn .gi .t{left:0;top:30px;font-size:42px;letter-spacing:-.025em;line-height:1.1}
 .pn .gi .d{left:0;top:132px;font-size:27px;font-weight:400;line-height:1.3}
-"""
+""" + V.CSS
 
 def _items_at(p, key, n, T0, t_start, t_end):
     """Cue times for n items: anchors from the panel spec, else spread evenly."""
@@ -72,6 +74,7 @@ def _items_at(p, key, n, T0, t_start, t_end):
 def build(pid, p, t_start, t_end, T0, logo_light=None):
     """One panel. T0(anchor) -> film time. Returns (html, js, texts, holds);
     holds = [(anchor, seconds)]: an item is replaced too early, the voice-over needs a pause before `anchor`."""
+    if p['type'] in V.TYPES: return V.build(pid, p, t_start, t_end, T0, logo_light)
     k = p['type']; tl = TL(); texts = []; holds = []; h = f'<div id="{pid}" class="pn h">'
     tl.on(f'#{pid}', t_start)
     sel = lambda c: f'#{pid} {c}'

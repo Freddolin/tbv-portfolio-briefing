@@ -81,6 +81,7 @@ def _scene(F, DS, b, c, key):
     if key == 'q_founders': return F.question(b, c, c.get('questions', {}).get('q_founders', variant(c)['q_founders']), 'wm')
     if key == 'q_words': return F.question(b, c, c.get('questions', {}).get('q_words', 'The Bau Ventures,<br>in three words?'), 'wm')
     if key == 'why': return F.why(b, c, c['why'])
+    if key.startswith('ds_') and c['ds'][key[-1]].get('panels'): return F.explainer(b, c, 'ds', c['ds'][key[-1]])
     if key.startswith('ds_'): return DS.screen(b, c, key[-1], c['ds'][key[-1]])
     if key == 'close': return F.close(b, c, c['close'])
     raise KeyError(key)
