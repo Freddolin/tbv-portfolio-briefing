@@ -48,19 +48,27 @@ how:
       url: walter · Bismarckstraße 88
       start: [0, 0, 2048, 1131]
       steps:
-        - {at: he works, view: [1150, 440, 898, 691], box: [1174, 466, 853, 640], label: walter works inside the property file}
-        - {at: every building, view: [330, 0, 1718, 440], box: [596, 116, 150, 48], label: One inbox per building}
-        - {at: reads, view: [1174, 500, 853, 300], box: [1200, 560, 780, 170], label: walter reads the request}
-        - {at: opens, view: [940, 330, 620, 300], box: [968, 380, 330, 52], label: Ticket opened}
-        - {at: books, view: [330, 0, 1718, 440], box: [872, 116, 100, 48], label: Contractor booked}
+        - {at: he works, view: [330, 0, 1718, 440]}
+        - {at: every building, box: [596, 116, 150, 48], label: One inbox per building}
+        - {at: reads, view: [1150, 440, 898, 691]}
+      overlays:
+        - at: reads
+          pos: [1150, 300]
+          kicker: walter · tenant request
+          title: Water damage, bathroom
+          rows:
+            - {text: Request read and understood, status: Done}
+            - {text: Ticket opened, status: Open}
+            - {text: Contractor booked, status: Requested}
+          row_at: [reads, opens, books]
     - type: ui                # everything else on the walter home screen, then the proposal to approve
-      at: he also
+      at: documents
       src: media/app_home.jpg
       size: [1407, 766]
       url: walter · Home
       start: [0, 0, 890, 476]
       overlays:
-        - at: he also
+        - at: documents
           until: valter prepares
           pos: [1110, 200]
           kicker: Also handled by walter
@@ -83,7 +91,7 @@ how:
             - {text: Reply to the tenant, status: Drafted}
           button: Approve
           done: Approved
-          click_at: approves
+          click_at: the property manager
     - type: path              # the roadmap: the whole property in one system
       at: next comes
       head: "Next: the whole property in one system"
@@ -103,7 +111,7 @@ team:
         - {title: The idea, text: "Thomas Häusser, Partner<br>Karsten Eisenmann, Associate Partner<br>Drees & Sommer", icon: chat}
         - {title: Built with AI, text: By the TBV studio team, icon: wrench}
         - {title: On the market, text: Live within months, icon: check}
-      item_at: [the idea, studio team, market launch]
+      item_at: [the idea, studio team, first prototype]
     - type: faces
       at: christoph
       items:
@@ -143,7 +151,7 @@ traction:
         - {label: July, value: 8}
         - {label: September, value: 22, tag: Market launch}
         - {label: Today, value: 30, tag: Converting to paid}
-      item_at: [the first, null, null, paying]
+      item_at: [the first, customers, are now, being]
     - type: units
       at: next in line
       value: 7700
