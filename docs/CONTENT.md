@@ -42,7 +42,7 @@ before the anchor that replaces it. You never set times by hand.
 | `image` | `src`, `caption`, `source` | screenshot with slow zoom |
 | `screens` | `items[{src, caption}]`, `item_at[]` | several screenshots one after another |
 | `steps` | `head`, `items[{title, text}]`, `item_at[]` | 3–4 numbered steps side by side |
-| `kpis` | `head`, `items[{value, label}]`, `item_at[]` | 2–4 big numbers side by side (traction) |
+| `kpis` | `head`, `items[{value, label}]`, `item_at[]`, `note` | 2–4 big numbers side by side (traction); `note` = small footnote such as "As of November 2026" |
 | `people` | `head`, `items[{name, role}]`, `item_at[]` | team list, name left, role right |
 | `grid` | `head`, `items[{title, text}]`, `item_at[]` | up to 6 short items in 2–3 columns (features) |
 

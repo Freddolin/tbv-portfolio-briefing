@@ -72,25 +72,28 @@ team:
       items:
         - {name: Christoph Wend-Erdel, role: Managing Director}
         - {name: Alexander Assimidis, role: Managing Director}
-        - {name: Philipp Piepenstock}
-        - {name: Valentin Heidrich}
-        - {name: Paul Koch}
+        - {name: Philipp Piepenstock, role: Venture Architect}
+        - {name: Valentin Heidrich, role: Venture Architect}
+        - {name: Paul Koch, role: Venture Architect}
       item_at: [christoph, alexander, philipp, valentin, paul]
 
 traction:
   panels:
     - type: kpis
       head: Sales funnel
+      note: As of November 2026
       items: [{value: 280+, label: leads}, {value: 170+, label: demos held}]
       item_at: [two hundred and eighty, one hundred and seventy]
     - type: kpis
       at: thirty
       head: Live today
+      note: As of November 2026
       items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}, {value: "€150k+", label: revenue potential per year}, {value: First, label: customers converting to paying contracts}]
       item_at: [thirty, three thousand, revenue, the first customers]
     - type: kpis
       at: next in line
       head: Next in line
+      note: As of November 2026
       items: [{value: "7,700", label: units in a pilot agreed by handshake}, {value: First, label: "commercial pilots signed, more in the pipeline"}]
       item_at: [seven thousand, commercial]
 

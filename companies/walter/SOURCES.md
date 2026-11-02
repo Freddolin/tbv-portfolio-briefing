@@ -21,13 +21,14 @@ Research on 2 Nov 2026. Main sources:
 | how | Next: the whole property in one system | Okt-Walter: "Die gesamte Immobilie in einem System": Asset Management, Property Management (Wohnen & Gewerbe), Facility Management, Verkauf & Datenraum |
 | team | Idea from D&S Partner Thomas Häusser and Associate Partner Karsten Eisenmann | Notion, PM-Pilot: "Vorschlag ursprünglich von T.Häusser & K.Eisenmann"; titles from walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Granola 15.10.: idea originally from Tom Häusser and Carsten Eisenmann |
 | team | Built by the studio team with AI, prototype to launch within months | IZ (Daniel Hinz): "Wir bauen sehr, sehr schnell, auch mit Software-Agents, erste Prototypen"; CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots" |
-| team | Christoph Wend-Erdel and Alexander Assimidis lead as managing directors; Philipp Piepenstock, Valentin Heidrich, Paul Koch | IZ: "Wend-Erdel und Alexander Assimidis führen das Unternehmen"; CD deck: TBV team; Fred (2 Nov): team incl. Valentin Heidrich |
+| team | Christoph Wend-Erdel and Alexander Assimidis lead as managing directors; Philipp Piepenstock, Valentin Heidrich, Paul Koch as Venture Architects | IZ: "Wend-Erdel und Alexander Assimidis führen das Unternehmen"; CD deck: TBV team; Fred (2 Nov): team incl. Valentin Heidrich; roles from Notion, Onboarding @ TBV, 04 Team & key contacts: "Venture Architect" for all three ("Photos and roles as on thebau.ventures/team") |
 | traction | 280+ leads, 170+ demos | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); earlier status in Okt-Walter (mid-October: 249 leads, 103 demos) |
-| traction | 30 live customers, 3,200+ units | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); CD deck still says 22 pilots (status before 30 Oct) |
+| traction | 30 live customers, 3,200+ units | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Fred (2 Nov): 30 is the more current number. CD deck still says 22 pilots (earlier status) |
 | traction | Revenue potential over €150k a year | CD deck walter slide: "€153k revenue potential p.a. from pilots"; Okt-Walter: ">153 T€ ARR-Potenzial Bestand" (at €4 per unit per month, not current revenue); kept by the walter team on 2 Nov |
 | traction | First customers being converted to paying contracts | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); CD deck: "First paying customer after the test phase" |
-| traction | Pilot with 7,700 units | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026) (previously 11,800 units by handshake in CD deck and Okt-Walter); to confirm before voice recording |
+| traction | Pilot with 7,700 units, agreed by handshake | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Fred (2 Nov): use it as Christoph wrote it. Previously 11,800 units by handshake in CD deck and Okt-Walter |
 | traction | First commercial pilots, more in the pipeline | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Team Weekly 19.10.: "Erste Pilotkunden commercial haben gesignt" |
+| traction | "As of November 2026" under the traction numbers | Fred (2 Nov): add the status date, since the numbers are newer than the CD deck |
 | next | Convert pilots, commercial, funding, team incl. co-founders | CD deck NEXT: "Convert pilots into paying customers / Set up cap table for third-party financing and VSOP / Prepare fundraising / Build the team, incl. co-founders"; CD appendix: "Expansion into commercial" |
 | ds_d | Thomas Häusser and Karsten Eisenmann are the partners behind walter | CD deck: "D&S PARTNERS T. Häusser, K. Eisenmann"; Board 22.10.: "Partner Lead: Thomas Häusser (P), Karsten Eisenmann (AP)" |
 | ds_d | Network opened doors to large retail and real estate companies | CD deck: "D&S introductions to McDonald's, Aldi, dm, REWE and Hahn AG" (not named in the film) |
@@ -36,7 +37,7 @@ Research on 2 Nov 2026. Main sources:
 
 ## Left out on purpose
 - **Customer and lead names** (pilot customers, the 11,800-unit project, retail chains): the CD deck names some, but the film may travel further.
-- **Dates and the launch event.** Timeless rule; "within months" instead of months.
+- **Dates and the launch event.** Timeless rule; "within months" instead of months. Only exception: "As of November 2026" under the traction numbers (Fred, 2 Nov).
 - **Time savings.** One property manager reported a third less communication time, the ads claim 40 %; Christoph in the IZ draft: "Wir haben noch keine festen Zahlen."
 - **Money beyond the revenue potential:** budget, funding amount, cap table, founder package.
 - **Pipeline in euros.** CD deck says >€177k (slide) and >€240k (appendix); the film uses the unit count instead.

@@ -50,6 +50,7 @@ CSS = r"""
 .pn .kpi{height:330px}
 .pn .kpi .v{left:0;top:36px;font-size:124px;letter-spacing:-.05em;line-height:1;white-space:nowrap}
 .pn .kpi .l{left:0;top:186px;font-size:30px;font-weight:400;line-height:1.25}
+.pn .knote{top:900px;font-size:28px;opacity:.75}
 .pn .per{left:110px;width:1700px;height:110px}
 .pn .per .t{left:0;top:26px;font-size:52px;letter-spacing:-.03em;white-space:nowrap}
 .pn .per .v{right:0;top:38px;font-weight:600;font-size:22px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:right}
@@ -204,7 +205,9 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             v = str(it['value']); fs = int(min(124, wcol / (.62 * max(3, len(v)))))
             h += (f'<div class="kpi" style="left:{110 + i * (wcol + 60):.0f}px;top:420px;width:{wcol:.0f}px"><div class="hair" style="left:0;top:0;width:{wcol:.0f}px"></div>'
                   f'<div class="v tx" style="font-size:{fs}px">{E(v)}</div><div class="l sb" style="width:{wcol - 20:.0f}px">{T(it.get("label", ""))}</div></div>')
+        if p.get('note'): h += f'<div class="psub sb knote">{T(p["note"])}</div>'   # small footnote, e.g. 'As of November 2026'
         if p.get('head'): tl.show(sel('.ph'), t_start + .1, .55); texts.append((t_start + .1, p['head']))
+        if p.get('note'): tl.show(sel('.knote'), t_start + .4, .45, 0)
         for i, t in enumerate(_items_at(p, 'item_at', n, T0, t_start, t_end)):
             tl(f"show(document.querySelectorAll('#{pid} .kpi')[{i}],{t - .05:.3f},.45,16);")
             tl(f"grow(document.querySelectorAll('#{pid} .kpi .hair')[{i}],{t - .05:.3f},.6);")
