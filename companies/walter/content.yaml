@@ -19,8 +19,8 @@ problem:
     - type: words
       at: tenant
       head: Every day, in separate tools
-      words: [Tenant emails, Phone calls, Invoices, Owner meetings]
-      word_at: [tenant, phone, invoices, owner]
+      words: [Tenant emails, Phone calls, Invoices, Billing statements, Owner meetings]
+      word_at: [tenant, phone, invoices, service charge, owner]
     - {type: statement, at: and good, text: "Good staff<br>are hard to find."}
     - {type: statement, at: so every, text: "Every new building<br>means more work."}
 
@@ -29,14 +29,14 @@ how:
     - {type: statement, at: s0, text: "Not another tool.<br>A new colleague."}
     - type: steps
       at: every building
-      head: One inbox and phone line per building
+      head: One inbox per building
       items:
         - {title: Request, text: Tenant writes or calls}
         - {title: Ticket, text: walter opens it}
         - {title: Contractor, text: walter books the right trade}
       item_at: [every building, opens, books]
     - type: grid
-      at: it also
+      at: he also
       head: Also handled by walter
       items:
         - {title: Documents & deadlines, text: "Filed, read, tracked"}
@@ -62,7 +62,7 @@ team:
     - type: steps
       head: From idea to market
       items:
-        - {title: Idea, text: "Drees & Sommer partners Thomas Häusser and Karsten Eisenmann"}
+        - {title: Idea, text: "Drees & Sommer Partner Thomas Häusser and Associate Partner Karsten Eisenmann"}
         - {title: Build, text: "The TBV studio team, built with AI"}
         - {title: Launch, text: Live on the market within months}
       item_at: [the idea, studio team, market launch]
@@ -81,18 +81,18 @@ traction:
   panels:
     - type: kpis
       head: Sales funnel
-      items: [{value: "249", label: leads}, {value: "103", label: demos held}, {value: "31", label: firms in the contract phase}]
-      item_at: [almost two hundred, more than one, thirty-one]
+      items: [{value: 280+, label: leads}, {value: 170+, label: demos held}]
+      item_at: [two hundred and eighty, one hundred and seventy]
     - type: kpis
-      at: twenty-two
+      at: thirty
       head: Live today
-      items: [{value: "22", label: live customers}, {value: "3,200+", label: units they manage}, {value: "€150k+", label: revenue potential per year}, {value: First, label: paying customers}]
-      item_at: [twenty-two, three thousand, revenue, first are]
+      items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}, {value: "€150k+", label: revenue potential per year}, {value: First, label: customers converting to paying contracts}]
+      item_at: [thirty, three thousand, revenue, the first customers]
     - type: kpis
       at: next in line
       head: Next in line
-      items: [{value: "11,800", label: units in a pilot agreed by handshake}, {value: First, label: commercial pilots signed}, {value: "100,000+", label: units in the pipeline}]
-      item_at: [almost twelve, commercial, one hundred thousand]
+      items: [{value: "7,700", label: units in a pilot agreed by handshake}, {value: First, label: "commercial pilots signed, more in the pipeline"}]
+      item_at: [seven thousand, commercial]
 
 next:
   panels:
@@ -109,7 +109,7 @@ ds:
   d:
     kind: people
     head: How Drees & Sommer can help
-    pcap: The partners behind walter
+    pcap: The business unit partners behind walter
     people: [[Thomas Häusser, ""], [Karsten Eisenmann, ""]]
     names_at: [thomas, karsten]
     steps:
