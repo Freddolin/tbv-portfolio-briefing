@@ -1,33 +1,30 @@
 # walter — voice-over script (Jessica)
-<!-- Portfolio briefing #5. Build First film (kind: build_first): the intro ends "This one, we built ourselves."
+<!-- Portfolio briefing #5. Build First film (kind: build_first): what walter does, who built it, traction, next steps,
+     how Drees & Sommer can help. Voice-over only. Intro ends "This one, we built ourselves."
      "Valter" is the phonetic spelling so the English voice says the German name. On screen it stays "walter".
-     No interview: voice-over film, so there are no q_ds / q_founders / q_words sections.
-     Names to check in the take: Häusser (if wrong: "Hoysser"), Eisenmann.
+     Names to check in the take: Wend-Erdel, Assimidis, Piepenstock, Heidrich, Häusser (if wrong: "Hoysser"), Eisenmann.
      Sources per sentence: companies/walter/SOURCES.md -->
 
 ## problem
-Property management runs on manual work. [pause] Tenant emails, phone calls, invoices, owner meetings. [pause] Each in a different tool. [pause] Margins are thin, and good staff are hard to find. [pause] So every new building means more work for the same people.
+Property management runs on manual work. [pause] Tenant emails, phone calls, invoices, owner meetings, each in a different tool. [pause] And good staff are hard to find. [pause] So every new building means more work for the same people.
 
 ## handover
 Valter, from Berlin, is an A I colleague for property managers, [pause] and the first venture from The Bau Ventures' studio to launch fully on the market.
 
 ## how
-Valter is not another tool. It works like a new colleague. [pause] A tenant reports a burst pipe? Valter opens a ticket, finds the contractor and drafts the reply. [pause] Same for invoices, owner meetings and annual statements. [pause] The property manager approves. Only then does Valter act.
+Valter is not another tool. It works like a new colleague. [pause] Every building gets its own inbox and phone line. Valter reads each request, opens a ticket and books the contractor. [pause] It also handles documents and deadlines, invoices and banking, utility billing, owner meetings, letting and handovers, and an app for tenants and owners. [pause] Valter prepares the work. The property manager approves. [pause] Next comes the whole property in one system: property, asset and facility management, up to the sale.
 
-## why
-Why did we build it? [pause] The idea came from Drees and Sommer's own consulting partners. [pause] We tested demand first: within weeks, more than fifty firms asked for a demo. [pause] Today there are twenty-two pilot customers, managing over three thousand two hundred units. [pause] The first pilots have become paying customers, and a project with almost twelve thousand units is agreed in principle.
+## team
+Valter was built in-house. [pause] The idea came from Drees and Sommer partners Thomas Häusser and Karsten Eisenmann. [pause] The studio team built it with A I, from first prototype to market launch within months. [pause] Christoph Wend-Erdel and Alexander Assimidis lead the company as managing directors, together with Philipp Piepenstock, Valentin Heidrich and Paul Koch.
 
-## ds_a
-What does Valter mean for Drees and Sommer? [pause] First, a view into buildings in daily operation. [pause] Second, digital revenue beyond single projects. [pause] Third, the option to offer property management as a service.
+## traction
+And the market is responding. [pause] Almost two hundred and fifty leads, more than one hundred demos, and thirty-one firms in the contract phase. [pause] Twenty-two customers are live on Valter, with over three thousand two hundred units and a revenue potential of over one hundred and fifty thousand euros a year. The first are now paying. [pause] Next in line: a pilot with almost twelve thousand units agreed by handshake, the first commercial pilots, and more than one hundred thousand units in the pipeline.
 
-## ds_b
-Drees and Sommer brings clients and real estate know-how. [pause] Valter brings the A I that does the daily work. [pause] Drees and Sommer delivers the advice that follows.
-
-## ds_c
-So how can our teams use it? [pause] Real estate consulting: a client wants property management back in house. Valter makes it workable. [pause] Transactions: a client buys a portfolio. Valter reads the documents and sets up the buildings. [pause] Next up: E S G and refurbishment roadmaps.
+## next
+What comes next? [pause] Turn the pilots into paying customers. [pause] Grow from residential into commercial property management. [pause] Prepare the first funding round with external investors. [pause] And complete the team, including co-founders.
 
 ## ds_d
-At Drees and Sommer, Thomas Häusser and Karsten Eisenmann lead the collaboration. [pause] Their intros already brought the first commercial pilot, and introductions to large retail chains. [pause] The next step: bring a client. [pause] A joint workshop maps the use cases, then a test phase starts with the Valter team.
+How can Drees and Sommer help? [pause] Thomas Häusser and Karsten Eisenmann are the partners behind Valter. [pause] Their network has already opened doors to large retail and real estate companies. [pause] What helps most now: introductions to asset managers, portfolio holders and property managers who are open to a pilot. [pause] And the team is in exchange with Drees and Sommer on its own utility billing review.
 
 ## close
 Valter. [pause] The A I colleague for property management.

@@ -4,8 +4,11 @@ Start from `templates/company/content.yaml` (copied by `python -m briefing new <
 
 ## Film kind
 `kind: investment` (default) or `kind: build_first` for a venture TBV built itself (e.g. walter).
-Build First changes four things and nothing else: the intro ends "This one, we built ourselves.", the ident caption reads
-"Built in-house", chapter 03 is "Why we built it" and the team question is "What does the team get from us?".
+
+Build First films tell their own story, voice-over only (no `interview`). Script sections and chapters:
+`problem` (01 The problem) · `handover` (logo + origin) · `how` (02 What it does) · `team` (03 Built in-house) ·
+`traction` (04 Traction) · `next` (05 Next steps) · `ds_d` (06 With Drees & Sommer, the `people` screen) · `close`.
+`how`, `team`, `traction` and `next` take `panels` like `problem`. The intro ends "This one, we built ourselves."
 
 ## Without interview
 Leave out the whole `interview` section (and `founders`, `portrait`) and the film is voice-over only: no interview segments,
@@ -39,6 +42,9 @@ before the anchor that replaces it. You never set times by hand.
 | `image` | `src`, `caption`, `source` | screenshot with slow zoom |
 | `screens` | `items[{src, caption}]`, `item_at[]` | several screenshots one after another |
 | `steps` | `head`, `items[{title, text}]`, `item_at[]` | 3–4 numbered steps side by side |
+| `kpis` | `head`, `items[{value, label}]`, `item_at[]` | 2–4 big numbers side by side (traction) |
+| `people` | `head`, `items[{name, role}]`, `item_at[]` | team list, name left, role right |
+| `grid` | `head`, `items[{title, text}]`, `item_at[]` | up to 6 short items in 2–3 columns (features) |
 
 Every panel needs `at` (except the first, which starts with the block).
 

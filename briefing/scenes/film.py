@@ -7,7 +7,7 @@ from ..config import CHAPTERS, reading_time, chapters, has_interview
 def explainer(b, c, chapter_key, spec):
     """'The problem' and 'How it works': chapter frame + a sequence of panels cued to the voice-over."""
     sid = b.sid; tl = TL(); texts = []
-    h = frame(sid, 'dk', CHAPTERS[chapter_key], c['logo_light'])
+    h = frame(sid, 'dk', chapters(c)[chapter_key], c['logo_light'])
     pans = spec['panels']
     starts = [b.T(p['at']) if p.get('at') is not None else (b.t_speech if i == 0 else None) for i, p in enumerate(pans)]
     for i in range(len(pans)):

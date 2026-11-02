@@ -2,8 +2,8 @@
 every block as long as its audio and its texts need. No hand-set timings anywhere."""
 from .config import block_order, has_interview, variant
 
-LEAD = dict(problem=.5, handover=.3, how=.5, q_ds=.45, why=.6, ds_a=.55, ds_b=.5, ds_c=.5, ds_d=.5, q_founders=.45, q_words=.45, close=.4)
-TAIL = dict(problem=.8, handover=.25, how=.7, q_ds=.35, why=.8, ds_a=.7, ds_b=.7, ds_c=.7, ds_d=.8, q_founders=.35, q_words=.35, close=.0)
+LEAD = dict(team=.55, traction=.55, next=.55, problem=.5, handover=.3, how=.5, q_ds=.45, why=.6, ds_a=.55, ds_b=.5, ds_c=.5, ds_d=.5, q_founders=.45, q_words=.45, close=.4)
+TAIL = dict(team=.7, traction=.7, next=.7, problem=.8, handover=.25, how=.7, q_ds=.35, why=.8, ds_a=.7, ds_b=.7, ds_c=.7, ds_d=.8, q_founders=.35, q_words=.35, close=.0)
 
 class Block:
     def __init__(self, key, idx, t0):
@@ -75,7 +75,7 @@ def _cut_before(take, key, anchor):
 
 def _scene(F, DS, b, c, key):
     if key == 'problem': return F.explainer(b, c, 'problem', c['problem'])
-    if key == 'how': return F.explainer(b, c, 'how', c['how'])
+    if key in ('how', 'team', 'traction', 'next'): return F.explainer(b, c, key, c[key])
     if key == 'handover': return F.handover(b, c)
     if key == 'q_ds': return F.question(b, c, c.get('questions', {}).get('q_ds', 'What does that mean<br>for Drees & Sommer?'), 'dk')
     if key == 'q_founders': return F.question(b, c, c.get('questions', {}).get('q_founders', variant(c)['q_founders']), 'wm')

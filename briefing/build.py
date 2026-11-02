@@ -3,7 +3,7 @@ import json, os, re, math, shutil, subprocess, time
 from pathlib import Path
 import numpy as np, yaml
 from .config import (ROOT, COMPANIES, BUILD, WEB, FPS, SR, VO_LUFS, TAG_IMAGE, SIZE_LIMIT_BYTES, AUDIO_KBPS,
-                     INTRO_TEXT, NUM_WORDS, variant, has_interview, script_sections, MIX_LUFS_RANGE, PEAK_MAX_DB)
+                     INTRO_TEXT, NUM_WORDS, variant, has_interview, script_sections, pad_blocks, MIX_LUFS_RANGE, PEAK_MAX_DB)
 from . import script as S, align as A, interview as I, timeline as TLN, page as PG, audio as AU
 
 def paths(slug):
@@ -54,7 +54,7 @@ def make(slug, log=print):
     blocks, scenes, place, D = TLN.build(content, take, segs)
     close = blocks[-1]
     jumps, add = AU.tune(TOFF + close.t_lock, str(bdir))
-    pad = {k: add / 4 for k in ('ds_a', 'ds_b', 'ds_c', 'ds_d')}
+    pk = pad_blocks(content); pad = {k: add / len(pk) for k in pk}
     blocks, scenes, place, D = TLN.build(content, take, segs, pad)
     close = blocks[-1]; hit_full = TOFF + close.t_lock
     D = round(math.ceil(D * FPS) / FPS, 3)

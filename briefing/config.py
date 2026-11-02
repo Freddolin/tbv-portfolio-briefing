@@ -28,12 +28,23 @@ QUESTION_SECTIONS = ['q_ds', 'q_founders', 'q_words']
 def has_interview(content):
     return bool(content.get('interview'))
 
+def _build_first(content):
+    if content.get('kind') != 'build_first': return False
+    if has_interview(content): raise ValueError('build_first films are voice-over only: remove `interview` from content.yaml')
+    return True
+
 def script_sections(content):
+    if _build_first(content): return BUILD_FIRST_SECTIONS
     return SCRIPT_SECTIONS if has_interview(content) else [k for k in SCRIPT_SECTIONS if k not in QUESTION_SECTIONS]
 
 def block_order(content):
+    if _build_first(content): return BUILD_FIRST_SECTIONS
     skip = [] if has_interview(content) else INTERVIEW_SEGMENTS + QUESTION_SECTIONS
     return [k for k in BLOCK_ORDER if k not in skip]
+
+def pad_blocks(content):
+    """Blocks that absorb the extra seconds needed to land the music accent on the lock-up."""
+    return ['team', 'traction', 'next', 'ds_d'] if _build_first(content) else ['ds_a', 'ds_b', 'ds_c', 'ds_d']
 
 CHAPTERS = {'problem': ('01', 'The problem'), 'how': ('02', 'How it works'),
             'why': ('03', 'Why we invested'), 'ds': ('04', 'With Drees & Sommer')}
@@ -77,12 +88,19 @@ VARIANTS = {
                         why='Why we built it', q_founders='What does the team<br>get from us?'),
 }
 
+# Build First films (a venture TBV built itself) tell a different story: what it does, who built it, traction,
+# next steps, and how Drees & Sommer can help. Voice-over only (no interview).
+BUILD_FIRST_SECTIONS = ['problem', 'handover', 'how', 'team', 'traction', 'next', 'ds_d', 'close']
+BUILD_FIRST_CHAPTERS = {'problem': ('01', 'The problem'), 'how': ('02', 'What it does'), 'team': ('03', 'Built in-house'),
+                        'traction': ('04', 'Traction'), 'next': ('05', 'Next steps'), 'ds': ('06', 'With Drees & Sommer')}
+
 def variant(content):
     k = content.get('kind', 'investment')
     if k not in VARIANTS: raise ValueError(f'content.yaml: kind must be one of {list(VARIANTS)}, not {k!r}')
     return VARIANTS[k]
 
 def chapters(content):
+    if content.get('kind') == 'build_first': return dict(BUILD_FIRST_CHAPTERS)
     ch = dict(CHAPTERS); ch['why'] = ('03', variant(content)['why']); return ch
 NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
              'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']

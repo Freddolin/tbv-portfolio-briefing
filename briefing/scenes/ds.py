@@ -178,7 +178,7 @@ def build(screens, chap, logo):
 def screen(b, c, letter, spec):
     """One D&S screen as a film block. Items are cued to voice-over anchors (default: sentence starts)."""
     from .base import Scene, need_for
-    from ..config import CHAPTERS
+    from ..config import chapters
     s = dict(spec); k = s['kind']; sid = b.sid
     n = {'rows': len(s.get('rows', [])), 'trans': len(s.get('rows', [])), 'boxes': len(s.get('boxes', [])), 'cards': len(s.get('cards', [])), 'people': len(s.get('steps', []))}[k]
     ats = s.get('at')
@@ -196,7 +196,7 @@ def screen(b, c, letter, spec):
         q['names'] = [round(b.T(a) - .05, 3) for a in s.get('names_at', [])] or [round(b.t_speech + .5 + i * 1.0, 3) for i in range(len(s['people']))]
     s.update(t0=b.t0, t1=round(b.t_end - .35, 3), t_off=round(b.t_end + .25, 3), cues=q)
     logo = f'<img class="dsLogo" src="{c["logo_dark"]}">'
-    html = BUILD[k](sid, CHAPTERS['ds'], logo, s)
+    html = BUILD[k](sid, chapters(c)['ds'], logo, s)
     js = js_screen(sid, s)
     texts = [(q.get('head', q.get('heads', [0])[-1]), s.get('head', ''))] + [(t, f'item {i + 1}') for i, t in enumerate(items)]
     if k == 'trans':

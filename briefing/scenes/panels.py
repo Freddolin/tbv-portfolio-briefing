@@ -2,7 +2,7 @@
 A panel fills the area below the chapter rule. Each panel type has a fixed layout so every
 film looks the same; only the words, numbers and images change.
 
-Types: statement, words, tiles, flow, points, beats, stat, image, screens, steps."""
+Types: statement, words, tiles, flow, points, beats, stat, image, screens, steps, kpis, people, grid."""
 from .base import E, T, TL
 from ..config import reading_time
 
@@ -47,6 +47,15 @@ CSS = r"""
 .pn .step .n{left:0;top:30px;font-weight:600;font-size:22px;letter-spacing:.06em;color:var(--orange)}
 .pn .step .t{left:0;top:70px;width:370px;font-size:40px;letter-spacing:-.02em;line-height:1.12}
 .pn .step .d{left:0;top:200px;width:370px;font-size:28px;font-weight:400;line-height:1.3}
+.pn .kpi{height:330px}
+.pn .kpi .v{left:0;top:36px;font-size:124px;letter-spacing:-.05em;line-height:1;white-space:nowrap}
+.pn .kpi .l{left:0;top:186px;font-size:30px;font-weight:400;line-height:1.25}
+.pn .per{left:110px;width:1700px;height:110px}
+.pn .per .t{left:0;top:26px;font-size:52px;letter-spacing:-.03em;white-space:nowrap}
+.pn .per .v{right:0;top:38px;font-weight:600;font-size:22px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:right}
+.pn .gi{height:230px}
+.pn .gi .t{left:0;top:30px;font-size:42px;letter-spacing:-.025em;line-height:1.1}
+.pn .gi .d{left:0;top:132px;font-size:27px;font-weight:400;line-height:1.3}
 """
 
 def _items_at(p, key, n, T0, t_start, t_end):
@@ -188,6 +197,43 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             tl(f"show(document.querySelectorAll('#{pid} .step')[{i}],{t - .05:.3f},.45,16);")
             tl(f"grow(document.querySelectorAll('#{pid} .step .hair')[{i}],{t - .05:.3f},.6);")
             texts.append((t, f"{p['items'][i]['title']} {p['items'][i].get('text', '')}"))
+    elif k == 'kpis':                        # 2-4 big numbers side by side, each with a short label
+        if p.get('head'): h += f'<div class="ph tx">{T(p["head"])}</div>'
+        n = len(p['items']); wcol = (1700 - 60 * (n - 1)) / n
+        for i, it in enumerate(p['items']):
+            v = str(it['value']); fs = int(min(124, wcol / (.62 * max(3, len(v)))))
+            h += (f'<div class="kpi" style="left:{110 + i * (wcol + 60):.0f}px;top:420px;width:{wcol:.0f}px"><div class="hair" style="left:0;top:0;width:{wcol:.0f}px"></div>'
+                  f'<div class="v tx" style="font-size:{fs}px">{E(v)}</div><div class="l sb" style="width:{wcol - 20:.0f}px">{T(it.get("label", ""))}</div></div>')
+        if p.get('head'): tl.show(sel('.ph'), t_start + .1, .55); texts.append((t_start + .1, p['head']))
+        for i, t in enumerate(_items_at(p, 'item_at', n, T0, t_start, t_end)):
+            tl(f"show(document.querySelectorAll('#{pid} .kpi')[{i}],{t - .05:.3f},.45,16);")
+            tl(f"grow(document.querySelectorAll('#{pid} .kpi .hair')[{i}],{t - .05:.3f},.6);")
+            texts.append((t, f"{p['items'][i]['value']} {p['items'][i].get('label', '')}"))
+    elif k == 'people':                      # a team: one row per person, name left, role right
+        if p.get('head'): h += f'<div class="ph tx">{T(p["head"])}</div>'
+        n = len(p['items']); top0 = 330 if p.get('head') else 220; step = min(130, (1000 - top0) // max(1, n))
+        for i, it in enumerate(p['items']):
+            nm, rl = (it, '') if isinstance(it, str) else (it.get('name', ''), it.get('role', ''))
+            h += (f'<div class="per" style="top:{top0 + i * step}px"><div class="hair" style="left:0;top:0;width:1700px"></div>'
+                  f'<div class="t tx">{E(nm)}</div><div class="v sb">{E(rl)}</div></div>')
+        if p.get('head'): tl.show(sel('.ph'), t_start + .1, .55); texts.append((t_start + .1, p['head']))
+        for i, t in enumerate(_items_at(p, 'item_at', n, T0, t_start, t_end)):
+            tl(f"show(document.querySelectorAll('#{pid} .per')[{i}],{t - .05:.3f},.45,16);")
+            tl(f"grow(document.querySelectorAll('#{pid} .per .hair')[{i}],{t - .05:.3f},.6);")
+            it = p['items'][i]; texts.append((t, it if isinstance(it, str) else f"{it.get('name', '')} {it.get('role', '')}"))
+    elif k == 'grid':                        # up to 6 short items in 3 columns (features, services)
+        if p.get('head'): h += f'<div class="ph tx">{T(p["head"])}</div>'
+        n = len(p['items']); cols = 3 if n > 4 else 2 if n == 4 else n; wcol = (1700 - 50 * (cols - 1)) / cols
+        for i, it in enumerate(p['items']):
+            tt, dd = (it, '') if isinstance(it, str) else (it.get('title', ''), it.get('text', ''))
+            x = 110 + (i % cols) * (wcol + 50); y = 340 + (i // cols) * 280
+            h += (f'<div class="gi" style="left:{x:.0f}px;top:{y}px;width:{wcol:.0f}px"><div class="hair" style="left:0;top:0;width:{wcol:.0f}px"></div>'
+                  f'<div class="t tx" style="width:{wcol - 20:.0f}px">{T(tt)}</div><div class="d sb" style="width:{wcol - 20:.0f}px">{T(dd)}</div></div>')
+        if p.get('head'): tl.show(sel('.ph'), t_start + .1, .55); texts.append((t_start + .1, p['head']))
+        for i, t in enumerate(_items_at(p, 'item_at', n, T0, t_start, t_end)):
+            tl(f"show(document.querySelectorAll('#{pid} .gi')[{i}],{t - .05:.3f},.45,16);")
+            tl(f"grow(document.querySelectorAll('#{pid} .gi .hair')[{i}],{t - .05:.3f},.6);")
+            it = p['items'][i]; texts.append((t, it if isinstance(it, str) else f"{it.get('title', '')} {it.get('text', '')}"))
     else:
         raise ValueError(f'unknown panel type {k}')
     h += '</div>'
