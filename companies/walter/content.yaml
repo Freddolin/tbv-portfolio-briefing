@@ -1,5 +1,5 @@
 # walter: everything that appears on screen. Voice-over text lives in script.md, sources in SOURCES.md.
-# Build First film (kind: build_first) on the full voice-over take. Same mix as the other films (Fred, 2 Nov):
+# Build First film (kind: build_first), script v3. Same mix as the other films (Fred, 2 Nov):
 # on-screen text panels alternate with real pictures (walter screens, team photos, a chart).
 # The voice runs without inserted pauses; panels cue to it.
 
@@ -36,7 +36,7 @@ problem:
         - {icon: calendar, title: Owner meeting, meta: Agenda still missing, time: "18:15"}
         - {icon: alert, kind: error, title: Property software, meta: Export failed, time: "18:21"}
       item_at: [tenant, phone, invoices, service, owner, each in]
-    - {type: statement, at: and good, text: "Good staff<br>are hard to find."}
+    - {type: statement, at: good staff, text: "Good staff are hard to find.", sub: Margins are under pressure., sub_at: and margins}
     - type: skyline           # picture: every new building brings its own pile
       at: so every
       item_at: [so every, null, null, null, null, null, null, null, null, people]
@@ -70,9 +70,10 @@ how:
             - {text: App for tenants and owners, icon: chat}
           row_at: [documents, invoices, utility, owner, letting, an app]
     - {type: statement, at: valter prepares, text: "walter prepares.<br>People approve.", sub: Nothing goes out without approval, sub_at: the property manager}
+    - {type: statement, at: and this is, text: "This is version one.", sub: It keeps growing along the walter roadmap., sub_at: valter keeps}
     - type: points
-      at: next comes
-      head: "Next: the whole property in one system"
+      at: in one system
+      head: "The walter roadmap: the whole property in one system"
       items:
         - {label: Property management, value: residential and commercial}
         - {label: Asset management, value: "value, returns, reporting"}
@@ -82,28 +83,35 @@ how:
 
 team:
   panels:
-    - type: steps
-      at: s0
-      head: From idea to market
-      items:
-        - {title: Idea, text: "Drees & Sommer Partner Thomas Häusser and Associate Partner Karsten Eisenmann"}
-        - {title: Build, text: "The TBV studio team, built with AI"}
-        - {title: Launch, text: Live on the market within months}
-      item_at: [the idea, studio team, first prototype]
+    - {type: statement, at: s0, text: "Built in-house.<br>It started with a problem."}
+    - type: flow              # from a Drees & Sommer problem to a product
+      at: drees and sommer partner
+      head: From a Drees & Sommer problem to a walter prototype
+      inputs: [Thomas Häusser, Karsten Eisenmann]
+      input_at: [thomas, karsten]
+      hub: TBV studio
+      hub_caption: Build First
+      hub_at: they brought
+      outputs: [First prototypes, Tests with property managers, Validated assumptions]
+      output_at: [first prototypes, tested, validated]
+      caption: Property managers under growing margin pressure
+      caption_at: margin pressure
+    - {type: statement, at: customer feedback, text: "Shaped by<br>customer feedback.", sub: Now on the market, sub_at: shaped the}
     - type: faces             # picture: the team
-      at: christoph
+      at: christoph and alexander
       items:
         - {name: Christoph Wend-Erdel, role: Managing Director, photo: media/face_christoph.jpg}
         - {name: Alexander Assimidis, role: Managing Director, photo: media/face_alex.jpg}
         - {name: Philipp Piepenstock, role: Venture Architect, photo: media/face_philipp.jpg}
         - {name: Valentin Heidrich, role: Venture Architect, photo: media/face_valentin.jpg}
         - {name: Paul Koch, role: Venture Architect, photo: media/face_paul.jpg}
-      item_at: [christoph, alexander, philipp, valentin, paul]
+      item_at: [christoph and alexander, alexander lead, philipp, valentin, paul]
 
 traction:
   panels:
+    - {type: statement, at: s0, text: "The market<br>is responding."}
     - type: kpis
-      at: s0
+      at: more than two
       head: Sales funnel
       note: As of November 2026
       items: [{value: 280+, label: leads}, {value: 170+, label: demos held}]
@@ -112,8 +120,8 @@ traction:
       at: thirty
       head: Live today
       note: As of November 2026
-      items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}, {value: "€150k+", label: revenue potential per year}]
-      item_at: [thirty, three thousand, revenue]
+      items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}]
+      item_at: [thirty, three thousand]
     - type: bars              # picture: from the first pilots to paying customers
       at: the first customers
       head: From pilots to paying customers
@@ -133,15 +141,30 @@ traction:
 
 next:
   panels:
+    - {type: statement, at: s0, text: "The opportunity<br>is large."}
+    - type: kpis
+      at: software for
+      head: The market
+      note: "Total market, walter business plan"
+      items: [{value: DACH, label: "Germany, Austria and Switzerland"}, {value: "€1.5bn", label: a year for property management software}]
+      item_at: [germany, one and a half]
     - type: steps
-      at: s0
+      at: valter starts
+      head: How walter wins its share
+      items:
+        - {title: Start, text: Mid-size residential property managers}
+        - {title: Easy entry, text: Runs alongside the software they already use}
+        - {title: Grow, text: "Priced per unit, grows with every portfolio"}
+      item_at: [valter starts, runs alongside, priced]
+    - type: steps
+      at: what comes next
       head: What comes next
       items:
         - {title: Convert, text: Pilots become paying customers}
         - {title: Commercial, text: From residential to commercial portfolios}
         - {title: Funding, text: First round with external investors}
         - {title: Team, text: "Complete it, including co-founders"}
-      item_at: [turn, grow, prepare, complete]
+      item_at: [turn, grow from, prepare, complete]
 
 ds:
   d:

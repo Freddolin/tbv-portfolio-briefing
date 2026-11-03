@@ -1,6 +1,6 @@
 # walter: sources for every statement in the film
 
-Research on 2 Nov 2026. Voice-over: the full take with the walter team's corrections; pictures: visual version (2 Nov). Main sources:
+Research on 2 Nov 2026. Voice-over: script v3 (Fred, 2 Nov), recorded 3 Nov; pictures: mixed text and picture version. Main sources:
 - **CD deck** = TBV Commitment Days deck FINAL (Google Slides, 30 Oct 2026), walter slide "TBV also builds ventures itself" and appendix A4
 - **Okt-Walter** = walter board update deck (Drive, Walter folder, 14 Oct 2026)
 - **Board 22.10.** = Notion, TBV Board General Update 22.10.2026, section Build First
@@ -20,11 +20,9 @@ Research on 2 Nov 2026. Voice-over: the full take with the walter team's correct
 | how | walter prepares, people approve | Okt-Walter: "Walter schlägt vor. Der Mensch gibt frei."; IZ: "Der Verwalter prüft die Vorschläge und gibt sie frei." |
 | how | Next: the whole property in one system | Okt-Walter: "Die gesamte Immobilie in einem System": Asset Management, Property Management (Wohnen & Gewerbe), Facility Management, Verkauf & Datenraum |
 | team | Idea from D&S Partner Thomas Häusser and Associate Partner Karsten Eisenmann | Notion, PM-Pilot: "Vorschlag ursprünglich von T.Häusser & K.Eisenmann"; titles from walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Granola 15.10.: idea originally from Tom Häusser and Carsten Eisenmann |
-| team | Built by the studio team with AI, prototype to launch within months | IZ (Daniel Hinz): "Wir bauen sehr, sehr schnell, auch mit Software-Agents, erste Prototypen"; CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots" |
 | team | Christoph Wend-Erdel and Alexander Assimidis lead as managing directors; Philipp Piepenstock, Valentin Heidrich, Paul Koch as Venture Architects | IZ: "Wend-Erdel und Alexander Assimidis führen das Unternehmen"; CD deck: TBV team; Fred (2 Nov): team incl. Valentin Heidrich; roles from Notion, Onboarding @ TBV, 04 Team & key contacts: "Venture Architect" for all three ("Photos and roles as on thebau.ventures/team") |
 | traction | 280+ leads, 170+ demos | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); earlier status in Okt-Walter (mid-October: 249 leads, 103 demos) |
 | traction | 30 live customers, 3,200+ units | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Fred (2 Nov): 30 is the more current number. CD deck still says 22 pilots (earlier status) |
-| traction | Revenue potential over €150k a year | CD deck walter slide: "€153k revenue potential p.a. from pilots"; Okt-Walter: ">153 T€ ARR-Potenzial Bestand" (at €4 per unit per month, not current revenue); kept by the walter team on 2 Nov |
 | traction | First customers being converted to paying contracts | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); CD deck: "First paying customer after the test phase" |
 | traction | Pilot with 7,700 units, agreed by handshake | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Fred (2 Nov): use it as Christoph wrote it. Previously 11,800 units by handshake in CD deck and Okt-Walter |
 | traction | First commercial pilots, more in the pipeline | walter team feedback on the Notion review page (Christoph Wend-Erdel, 2 Nov 2026); Team Weekly 19.10.: "Erste Pilotkunden commercial haben gesignt" |
@@ -37,9 +35,10 @@ Research on 2 Nov 2026. Voice-over: the full take with the walter team's correct
 
 ## Left out on purpose
 - **Customer and lead names** (pilot customers, the 11,800-unit project, retail chains): the CD deck names some, but the film may travel further.
-- **Dates and the launch event.** Timeless rule; "within months" instead of months. Only exception: "As of November 2026" under the traction numbers (Fred, 2 Nov).
+- **Dates and the launch event.** Timeless rule. Only exception: "As of November 2026" under the traction numbers (Fred, 2 Nov).
 - **Time savings.** One property manager reported a third less communication time, the ads claim 40 %; Christoph in the IZ draft: "Wir haben noch keine festen Zahlen."
-- **Money beyond the revenue potential:** budget, funding amount, cap table, founder package.
+- **Revenue potential (€150k+).** Removed in v3 (Fred, 2 Nov): hard to read for outsiders; the market size explains the opportunity instead.
+- **Money:** budget, funding amount, cap table, founder package.
 - **Pipeline in euros.** CD deck says >€177k (slide) and >€240k (appendix); the film uses the unit count instead.
 
 ## Pictures
@@ -49,11 +48,13 @@ Research on 2 Nov 2026. Voice-over: the full take with the walter team's correct
 | handover, how, close | walter app screens (object page with the tenant's water-damage email, Home with deadlines) | CD deck, walter product slide |
 | how | Cards "Also handled by walter", "walter · proposal" with Approve | Built from the features in the voice-over; approval: Okt-Walter "Walter schlägt vor. Der Mensch gibt frei." |
 | how | Roadmap: property, asset and facility management, sale and data room | Okt-Walter: "Die gesamte Immobilie in einem System" |
+| team | Flow: Thomas Häusser and Karsten Eisenmann (names only, roles in the voice-over) → TBV studio (Build First) → prototypes, tests, validated assumptions | Script v3 (Fred, 2 Nov) |
+| next | DACH, €1.5bn a year | Entscheidungsvorlage (June 2026), TAM ~€1.496bn |
 | team | Portraits | TBV_External_Deck_2026, team slide; roles: Notion, 04 Team & key contacts |
 | traction | Customer bars: June 4, July 8, September 22, today 30 | CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots"; 30: walter team feedback |
 | all | "As of November 2026" | Fred (2 Nov) |
 
-## Script v3 (draft, not recorded yet)
+## Script v3 (recorded 3 Nov 2026)
 | Block | Statement | Source |
 |---|---|---|
 | problem | Margins are under pressure | Entscheidungsvorlage: "Margin pressure: Property management firms face increasing margin pressure."; Fred (2 Nov) |
