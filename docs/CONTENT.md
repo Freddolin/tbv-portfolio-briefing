@@ -56,11 +56,15 @@ voice-over-only films without interview footage. Use them as the default for Bui
 | `ui` | `src`, `size: [w, h]`, `url`, `window`, `start`, `steps[{at, view: [x,y,w,h], box: [x,y,w,h], label}]`, `overlays[{at, until, pos, kicker, title, rows[{text, status, icon}], button, done, click_at}]` | product walkthrough on a real screenshot: the camera moves to `view`, an orange box spotlights `box`, a label explains it; overlay cards slide in, a button can be clicked (`click_at`). Coordinates are image pixels. Pauses are added to the voice-over automatically so every step can be seen |
 | `faces` | `items[{name, role, photo}]`, `item_at[]` | large portraits in a row with name and role |
 | `bars` | `head`, `items[{label, value, tag, display}]`, `item_at[]`, `note` | growth bars counting up, last bar orange |
-| `funnel` | `head`, `items[{value, display, label}]`, `item_at[]`, `note` | horizontal funnel bars |
+| `funnel` | `head`, `items[{value, display, label, sub, sub_at}]`, `item_at[]`, `note` | a real funnel: stages narrow downwards, value inside, label (and optional second line) outside; last stage orange |
 | `units` | `value`, `per`, `display`, `label`, `extra`, `note`, `value_at` | big counting number and a grid of building icons (one per `per` units) |
 | `path` | `head`, `items[{title, text, icon}]`, `item_at[]` | roadmap: a line with icon nodes |
+| `stack` | `text`, `sub`/`sub_at`, `sub2`/`sub2_at`, `floors[{title, text, icon, live, tag}]`, `item_at[]` (for floors without `live`), `pulse_at` | the product as a building: the live version is the ground floor, roadmap floors drop on top as the voice names them, a roof closes it |
+| `origin` | `people[{name, role}]`, `people_at[]`, `problem{at, kicker, title, chart, text, text_at}`, `to_at`, `to_caption` | where a Build First venture came from: people (monogram avatars) spot a problem (card with a falling line), and bring it to the TBV studio box |
+| `loop` | `center`, `team[photo paths]`, `team_at`, `team_caption`, `nodes[{title, text}]`, `node_at[]`, `prototypes`, `final{at, src, size, view, caption, tag, tag_at}` | Build First as a loop (build, test, validate) with a dot running round; wireframe prototypes stack up and turn into the real product screen |
 
-Icons: `mail, phone, invoice, calendar, sheet, alert, chat, building, tower, euro, people, check, wrench, doc`.
+Icons: `mail, phone, invoice, calendar, sheet, alert, chat, building, tower, euro, people, check, wrench, doc, down`.
+An overlay with `button` and `click_at` shows a cursor that moves to the button and clicks it.
 In `item_at[]` a `null` places that item between its neighbours; missing trailing items follow 0.6 s apart.
 Every panel can set `min: <seconds>` (minimum time on screen; the voice-over pauses before the next panel if needed)
 and `at: after` (starts when the previous panel's `min` is over, without a voice cue).
@@ -69,6 +73,8 @@ The D&S chapter can use panels too: `ds: {d: {bg: wm, panels: [...]}}`.
 `pacing: voice` (top level of content.yaml): the voice-over is never paused; panels follow it and `min` is ignored.
 Use this for every voice-over-only film: inserted pauses make the narrator stop mid-thought.
 `handover: {shot: media/..., shot_at: <anchor>, shot_view: [x,y,w,h], shot_size: [w,h], shot_caption}`: the logo moves up and a product screen rises under it.
+`handover: {converge: [icons], logo_at, tagline, tagline_at, origin_at}`: icon cards (the problem's loose ends) fly into the centre and the logo pops up there on `logo_at`; a tagline and the origin line follow on their cues.
+`end_line` (top level): the line under the TBV logo at the very end; default "Portfolio Briefing #N · company".
 Overlays in `ui` can reveal their rows on voice cues with `row_at[]`; `path` takes `sub`/`sub_at`; `units` takes `cols`, `icon_size`, `gap`.
 
 Every panel needs `at` (except the first, which starts with the block).

@@ -2,12 +2,12 @@
 the voice-over needs pictures: product walkthroughs on real screenshots, notification piles,
 skylines, portraits, growth bars, funnels and roadmaps.
 
-Types: notify, skyline, ui, faces, bars, funnel, path, units.
+Types: notify, skyline, ui, faces, bars, funnel, path, units, stack, origin, loop.
 Same contract as panels.build: returns (html, js, texts, holds)."""
 import json
 from .base import E, T, TL
 
-TYPES = ('notify', 'skyline', 'ui', 'faces', 'bars', 'funnel', 'path', 'units')
+TYPES = ('notify', 'skyline', 'ui', 'faces', 'bars', 'funnel', 'path', 'units', 'stack', 'origin', 'loop')
 
 _I = {
     'mail': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
@@ -24,7 +24,11 @@ _I = {
     'check': '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>',
     'wrench': '<path d="M14.5 6.5a4 4 0 0 0 5 5l-8.3 8.3a2.1 2.1 0 0 1-3-3z"/><path d="M14.5 6.5l3-3a4 4 0 0 1 2 5"/>',
     'doc': '<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 14l2 2 4-4"/>',
+    'down': '<path d="M3 6l6 6 4-4 8 8"/><path d="M15 16h6v-6"/>',
 }
+
+CURSOR = ('<svg viewBox="0 0 24 24" width="46" height="46" style="position:static;display:block">'
+          '<path d="M5 2.5l13.5 12.2-6.1.6 3.6 7.1-2.9 1.4-3.5-7.2-4.6 4.2z" fill="#fff" stroke="#1f1d1c" stroke-width="1.4" stroke-linejoin="round"/></svg>')
 
 def icon(name, size=40, color='currentColor', sw=1.6):
     return (f'<svg viewBox="0 0 24 24" width="{size}" height="{size}" fill="none" stroke="{color}" stroke-width="{sw}" '
@@ -80,6 +84,46 @@ CSS = r"""
 .ug{width:92px;height:92px}
 .dk .pline{background:rgba(245,245,245,.35)} .wm .pline{background:rgba(40,37,36,.3)}
 .vnote{left:110px;top:960px;font-size:24px;font-weight:400;opacity:.75}
+
+.ucur{width:46px;height:46px;z-index:5}
+/* stack: the product as a building, floor by floor */
+.skt{left:110px;top:300px;width:820px;font-size:96px;letter-spacing:-.045em;line-height:1.04}
+.sks{left:110px;width:800px;font-size:40px;font-weight:400;line-height:1.25}
+.skf{border-radius:16px;border:2px dashed rgba(245,245,245,.42);background:rgba(245,245,245,.035)}
+.skf.live{border:2px solid #EF7619;background:rgba(239,118,25,.13)}
+.skf .ic{left:26px;width:64px;height:64px;border-radius:15px;border:1.5px solid rgba(245,245,245,.4);color:#F5F5F5}
+.skf.live .ic{border-color:#EF7619;color:#EF7619}
+.skf .ic svg{position:absolute !important;left:13px;top:13px}
+.skf .t1{left:116px;font-size:36px;letter-spacing:-.02em;white-space:nowrap;color:#F5F5F5}
+.skf .t2{left:116px;font-size:24px;font-weight:400;white-space:nowrap;color:#a9a39d}
+.skf .tg{right:26px;font-weight:600;font-size:18px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;padding:8px 14px;border-radius:20px;border:1.5px solid rgba(245,245,245,.4);color:#cfcbc6}
+.skf.live .tg{background:#EF7619;border-color:#EF7619;color:#1f1d1c}
+/* origin: two partners bring a problem to the studio */
+.oav{width:116px;height:116px;border-radius:50%;background:#3a3634;border:2px solid rgba(245,245,245,.35);color:#F5F5F5;font-size:40px;letter-spacing:-.02em;text-align:center;line-height:112px}
+.onm{font-size:40px;letter-spacing:-.025em;white-space:nowrap}
+.orl{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.opb{width:600px;border-radius:22px;background:#F5F5F5;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.opb .k{left:36px;top:30px;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#c0392b}
+.opb .tt{left:36px;top:66px;width:530px;font-size:40px;letter-spacing:-.025em;line-height:1.12;color:#1f1d1c}
+.opb .r2{left:36px;font-size:27px;font-weight:400;color:#4a4643;width:530px;line-height:1.25}
+.otb{border-radius:22px;border:2px solid #EF7619;background:rgba(239,118,25,.08)}
+.otb .k{left:0;width:100%;text-align:center;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#EF7619}
+/* loop: build, test, validate */
+.lpn{width:30px;height:30px;border-radius:50%;border:4px solid #EF7619;background:var(--dark)}
+.lpn.on{background:#EF7619}
+.lpl{font-size:34px;letter-spacing:-.02em;white-space:nowrap;line-height:1.1}
+#stage .lpl small{display:block;position:static;font-size:23px;font-weight:400;color:#a9a39d;letter-spacing:0;margin-top:6px}
+.lav{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid var(--dark)}
+.lwf{border-radius:16px;background:#33302e;border:1.5px solid rgba(245,245,245,.3);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.lwf i{background:rgba(245,245,245,.16);border-radius:6px}
+.lwf .lk{left:22px;top:14px;font-weight:600;font-size:18px;letter-spacing:.09em;text-transform:uppercase;color:#cfcbc6}
+.lsh{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lcap{font-size:52px;letter-spacing:-.035em;line-height:1.08;white-space:nowrap}
+/* funnel: a real funnel, values inside, labels outside */
+.fnv{font-size:66px;letter-spacing:-.04em;line-height:1;white-space:nowrap;text-align:center}
+.fnl{font-size:38px;letter-spacing:-.02em;white-space:nowrap}
+.fns{font-size:27px;font-weight:400;white-space:nowrap}
+.dk .fnk{background:rgba(245,245,245,.35)}
 """
 
 # scattered pile positions for notification cards (left, top, rotation)
@@ -211,7 +255,9 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             rows = ''.join(f'<div class="r">{icon(r_.get("icon", "check"), 30, "#EF7619", 2)}<span>{E(r_["text"])}</span>'
                            + (f'<span class="s">{E(r_["status"])}</span>' if r_.get('status') else '') + '</div>' for r_ in o.get('rows', []))
             btn = (f'<div style="position:relative;height:90px"><div class="btn b1" style="position:absolute">{E(o["button"])}</div>'
-                   f'<div class="btn ok b2" style="position:absolute;opacity:0">{E(o.get("done", "Done"))}</div></div>') if o.get('button') else ''
+                   f'<div class="btn ok b2" style="position:absolute;opacity:0">{E(o.get("done", "Done"))}</div>'
+                   + (f'<div class="ucur" style="position:absolute;left:96px;top:58px;opacity:0">{CURSOR}</div>' if o.get('click_at') is not None else '')
+                   + '</div>') if o.get('button') else ''
             h += (f'<div class="ucd uo{j} h" style="left:{ox}px;top:{oy}px"><div class="k">{E(o.get("kicker", ""))}</div>'
                   f'<div class="hh">{E(o.get("title", ""))}</div>{rows}{btn}</div>')
             tl(f"tl.fromTo('#{pid} .uo{j}',{{autoAlpha:0,x:60}},{{autoAlpha:1,x:0,duration:.5,ease:'power3.out'}},{t - .1:.3f});")
@@ -224,6 +270,9 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             if o.get('click_at') is not None: events.append((T0(o['click_at']), o['click_at'], 2.4))
             if o.get('button') and o.get('click_at') is not None:
                 tc = T0(o['click_at'])
+                tl(f"tl.fromTo('#{pid} .uo{j} .ucur',{{opacity:0,x:260,y:170}},{{opacity:1,x:0,y:0,duration:.75,ease:'power2.inOut'}},{tc - .8:.3f});")
+                tl(f"tl.to('#{pid} .uo{j} .ucur',{{scale:.85,duration:.1,yoyo:true,repeat:1}},{tc - .02:.3f});")
+                tl(f"tl.to('#{pid} .uo{j} .ucur',{{opacity:0,x:40,y:60,duration:.4}},{tc + 1.2:.3f});")
                 tl(f"tl.to('#{pid} .uo{j} .b1',{{scale:.92,duration:.12,yoyo:true,repeat:1}},{tc:.3f});")
                 tl(f"tl.to('#{pid} .uo{j} .b1',{{opacity:0,duration:.15}},{tc + .24:.3f});")
                 tl(f"tl.fromTo('#{pid} .uo{j} .b2',{{opacity:0,scale:.9}},{{opacity:1,scale:1,duration:.3,ease:'back.out(2)'}},{tc + .24:.3f});")
@@ -271,20 +320,37 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         if p.get('note'):
             h += f'<div class="vnote tx">{E(p["note"])}</div>'; tl.show(sel('.vnote'), t_start + .5, .4, 0)
 
-    elif k == 'funnel':
+    elif k == 'funnel':                      # a real funnel: stages narrow downwards, value inside, label outside
         n = len(p['items']); vmax = max(float(it['value']) for it in p['items'])
-        top0 = 330 if p.get('head') else 250; step = 150; wmax = 1150
+        top0 = 310 if p.get('head') else 220; sh = p.get('stage_h', 168); gap = 14; cx = p.get('cx', 660)
+        wmax, wmin = 1100, 360
+        ws = [wmin + (wmax - wmin) * (float(it['value']) / vmax) ** .6 for it in p['items']]
+        ws.append(ws[-1] * .62)
+        svg = '<svg class="vx" viewBox="0 0 1920 1080">'
+        lab = ''
         for i, it in enumerate(p['items']):
-            w = max(170, wmax * float(it['value']) / vmax); y = top0 + i * step
+            y = top0 + i * (sh + gap); a, b_ = ws[i] / 2, ws[i + 1] / 2
             last = i == n - 1 and p.get('accent_last', True)
-            col = 'var(--orange)' if last else 'rgba(245,245,245,.9)'; tcol = '#F5F5F5' if last else '#282524'
-            h += (f'<div class="fb fb{i}" style="left:110px;top:{y}px;width:{w:.0f}px;background:{col}"></div>'
-                  f'<div class="fv fv{i}" style="left:140px;top:{y + 27}px;color:{tcol}">{E(it.get("display", it["value"]))}</div>'
-                  f'<div class="fl2 tx flx{i}" style="left:{110 + w + 34:.0f}px;top:{y + 36}px">{E(it["label"])}</div>')
+            col = '#EF7619' if last else ('rgba(245,245,245,.92)' if i == 0 else 'rgba(245,245,245,.78)')
+            svg += f'<path class="fnp fnp{i}" fill="{col}" d="M{cx - a:.0f} {y}H{cx + a:.0f}L{cx + b_:.0f} {y + sh}H{cx - b_:.0f}Z"/>'
+            tcol = '#1f1d1c'
+            lab += f'<div class="fnv fnv{i}" style="left:{cx - 200}px;width:400px;top:{y + sh / 2 - 34:.0f}px;color:{tcol}">{E(it.get("display", it["value"]))}</div>'
+            lx = cx + wmax / 2 + 90
+            lab += (f'<div class="hair fnk fnk{i}" style="left:{cx + a + 24:.0f}px;top:{y + sh / 2:.0f}px;width:{lx - cx - a - 48:.0f}px"></div>'
+                    f'<div class="fnl tx fnl{i}" style="left:{lx:.0f}px;top:{y + sh / 2 - (40 if it.get("sub") else 22):.0f}px">{E(it["label"])}</div>')
+            if it.get('sub'): lab += f'<div class="fns sb fns{i}" style="left:{lx:.0f}px;top:{y + sh / 2 + 12:.0f}px">{E(it["sub"])}</div>'
+        svg += '</svg>'
+        h += svg + lab
         for i, t in enumerate(_times(p, n, T0, t_start, t_end)):
-            tl(f"tl.fromTo('#{pid} .fb{i}',{{scaleX:0}},{{scaleX:1,duration:.7,ease:'power3.out'}},{t - .1:.3f});")
-            tl.show(sel(f'.fv{i}'), t + .25, .35, 0); tl.show(sel(f'.flx{i}'), t + .35, .35, 0)
-            texts.append((t + .35, f"{p['items'][i].get('display', p['items'][i]['value'])} {p['items'][i]['label']}"))
+            it = p['items'][i]
+            tl(f"tl.fromTo('#{pid} .fnp{i}',{{autoAlpha:0,y:-30}},{{autoAlpha:1,y:0,duration:.55,ease:'power3.out'}},{t - .15:.3f});")
+            tl.show(sel(f'.fnv{i}'), t + .1, .35, 0)
+            tl(f"count('#{pid} .fnv{i}',{t + .1:.3f},{float(it['value'])},.8,n=>(n>={float(it['value']) - .5}?{json.dumps(str(it.get('display', it['value'])))}:Math.round(n).toLocaleString('en-US')));")
+            tl.grow(sel(f'.fnk{i}'), t + .2, .4); tl.show(sel(f'.fnl{i}'), t + .3, .35, 0)
+            texts.append((t + .3, f"{it.get('display', it['value'])} {it['label']}"))
+            if it.get('sub'):
+                ts_ = T0(it['sub_at']) if it.get('sub_at') is not None else t + .8
+                tl.show(sel(f'.fns{i}'), ts_, .35, 0); texts.append((ts_, it['sub']))
         if p.get('note'):
             h += f'<div class="vnote tx">{E(p["note"])}</div>'; tl.show(sel('.vnote'), t_start + .5, .4, 0)
 
@@ -332,6 +398,153 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             tl.show(sel('.uvx'), tx_, .45, 12); texts.append((tx_, p['extra']))
         if p.get('note'):
             h += f'<div class="vnote tx">{E(p["note"])}</div>'; tl.show(sel('.vnote'), t + .6, .4, 0)
+
+
+    elif k == 'stack':                       # version one as the ground floor, the roadmap builds the house on top
+        fl = p['floors']; n = len(fl)
+        base = 930; fh = 132; g = 14; x0 = p.get('x', 1010); w = 1810 - x0
+        h += f'<div class="skt tx">{T(p["text"])}</div>'
+        ty = 300 + 100 * (str(p['text']).count('<br>') + 1) + 40
+        for j, (sk, ak) in enumerate((('sub', 'sub_at'), ('sub2', 'sub2_at'))):
+            if p.get(sk):
+                cls = 'tx' if j else 'sb'
+                h += f'<div class="sks {cls} sks{j}" style="top:{ty}px">{T(p[sk])}</div>'
+                ty += 52 * (len(str(p[sk])) // 46 + 1) + 14
+        svg = f'<svg class="vx" viewBox="0 0 1920 1080" fill="none"><path class="d skg" stroke="rgba(245,245,245,.6)" stroke-width="2.5" d="M{x0 - 40} {base}H1850"/>'
+        ytop = base - n * (fh + g)
+        svg += f'<path class="d skr" stroke="#EF7619" stroke-width="3" stroke-linejoin="round" d="M{x0 - 10} {ytop + 4}L{x0 + w / 2:.0f} {ytop - 96}L{1820} {ytop + 4}"/></svg>'
+        h += svg
+        for i, f_ in enumerate(fl):
+            y = base - (i + 1) * (fh + g) + g
+            live = ' live' if f_.get('live') else ''
+            h += (f'<div class="skf{live} skf{i}" style="left:{x0}px;top:{y}px;width:{w}px;height:{fh}px">'
+                  f'<div class="ic" style="top:{(fh - 64) / 2:.0f}px">{icon(f_.get("icon", "building"), 38, "currentColor", 1.6)}</div>'
+                  f'<div class="t1" style="top:{fh / 2 - 40:.0f}px">{E(f_["title"])}</div>'
+                  f'<div class="t2" style="top:{fh / 2 + 8:.0f}px">{E(f_.get("text", ""))}</div>'
+                  f'<div class="tg" style="top:{fh / 2 - 20:.0f}px">{E(f_.get("tag", "Roadmap"))}</div></div>')
+        tl.show(sel('.skt'), t_start + .1, .6); texts.append((t_start + .1, p['text']))
+        tl.draw(sel('.skg'), t_start + .05, .7)
+        later = [i for i, f_ in enumerate(fl) if not f_.get('live')]
+        ts = _times(p, len(later), T0, t_start, t_end)
+        for i, f_ in enumerate(fl):
+            if f_.get('live'):
+                tl(f"tl.fromTo('#{pid} .skf{i}',{{autoAlpha:0,y:40}},{{autoAlpha:1,y:0,duration:.6,ease:'power3.out'}},{t_start + .35:.3f});")
+                texts.append((t_start + .35, f"{f_['title']} {f_.get('text', '')}"))
+                if p.get('pulse_at') is not None:
+                    tl(f"tl.to('#{pid} .skf{i}',{{scale:1.03,duration:.25,yoyo:true,repeat:1,ease:'power1.inOut'}},{T0(p['pulse_at']):.3f});")
+        for i, t in zip(later, ts):
+            tl(f"tl.fromTo('#{pid} .skf{i}',{{autoAlpha:0,y:-70}},{{autoAlpha:1,y:0,duration:.55,ease:'power3.out'}},{t - .15:.3f});")
+            texts.append((t, f"{fl[i]['title']} {fl[i].get('text', '')}"))
+        if ts: tl.draw(sel('.skr'), ts[-1] + .3, .7)
+        for j, (sk, ak) in enumerate((('sub', 'sub_at'), ('sub2', 'sub2_at'))):
+            if p.get(sk):
+                tsb = T0(p[ak]) if p.get(ak) is not None else t_start + 1 + j
+                tl.show(sel(f'.sks{j}'), tsb, .5, 10); texts.append((tsb, p[sk]))
+
+    elif k == 'origin':                      # two partners spot a problem and bring it to the studio
+        ppl = p['people']; pr = p['problem']
+        for i, pe in enumerate(ppl):
+            y = 390 + i * 200
+            ini = ''.join(w_[0] for w_ in pe['name'].split()[:2])
+            h += (f'<div class="og og{i}" style="left:110px;top:{y}px;width:640px;height:150px">'
+                  f'<div class="oav">{E(ini)}</div><div class="onm tx" style="left:150px;top:18px">{E(pe["name"])}</div>'
+                  f'<div class="orl sb" style="left:152px;top:78px">{E(pe.get("role", ""))}</div></div>')
+        px, py = 690, 390
+        h += (f'<div class="opb" style="left:{px}px;top:{py}px;height:380px"><div class="k">{E(pr.get("kicker", "The problem"))}</div>'
+              f'<div class="tt">{T(pr["title"])}</div>'
+              f'<svg class="opc" style="left:36px;top:206px" width="300" height="120" viewBox="0 0 300 120" fill="none">'
+              f'<path d="M0 118H300" stroke="#c9c5bf" stroke-width="2"/>'
+              f'<path class="d opl" d="M4 20C60 24 90 40 130 52S210 92 296 104" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/></svg>'
+              f'<div class="sb" style="left:36px;top:330px;font-size:20px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:#7d7873">{E(pr.get("chart", "Margin"))}</div>'
+              f'<div class="r2" style="left:360px;top:214px;width:210px">{T(pr.get("text", ""))}</div></div>')
+        bx, by, bw, bh = 1400, 420, 410, 320
+        h += (f'<div class="otb" style="left:{bx}px;top:{by}px;width:{bw}px;height:{bh}px">'
+              f'<img src="assets/img/tbv_h_alpha.png" style="left:{(bw - 340) / 2:.0f}px;top:{bh / 2 - 46:.0f}px;width:340px;height:46px">'
+              f'<div class="k" style="top:{bh / 2 + 30:.0f}px">{E(p.get("to_caption", "Studio · Build First"))}</div></div>')
+        h += (f'<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
+              f'<path class="d oa1" stroke="#EF7619" stroke-width="3" d="M{px + 610} {py + 190}H{bx - 18}"/>'
+              f'<path class="d oa2" stroke="#EF7619" stroke-width="3" stroke-linejoin="round" d="M{bx - 34} {py + 174}L{bx - 16} {py + 190}L{bx - 34} {py + 206}"/></svg>')
+        tp = _times(p, len(ppl), T0, t_start, t_end, key='people_at')
+        for i, t in enumerate(tp):
+            tl(f"tl.fromTo('#{pid} .og{i}',{{autoAlpha:0,x:-40}},{{autoAlpha:1,x:0,duration:.5,ease:'power3.out'}},{t - .1:.3f});")
+            texts.append((t, f"{ppl[i]['name']} {ppl[i].get('role', '')}"))
+        tq = T0(pr['at']) if pr.get('at') is not None else tp[-1] + 1
+        tl(f"tl.fromTo('#{pid} .opb',{{autoAlpha:0,y:50,rotation:-1.5}},{{autoAlpha:1,y:0,rotation:0,duration:.55,ease:'back.out(1.4)'}},{tq - .1:.3f});")
+        tl.draw(sel('.opl'), tq + .4, 1.4); texts.append((tq, pr['title']))
+        if pr.get('text'):
+            h = h.replace('<div class="r2"', '<div class="r2 opr"', 1)
+            tr = T0(pr['text_at']) if pr.get('text_at') is not None else tq + 1.2
+            tl.show(sel('.opr'), tr, .4, 8); texts.append((tr, pr['text']))
+        tt = T0(p['to_at']) if p.get('to_at') is not None else tq + 3
+        tl(f"tl.fromTo('#{pid} .otb',{{autoAlpha:0,scale:.92}},{{autoAlpha:1,scale:1,duration:.5,ease:'back.out(1.6)'}},{tt - .5:.3f});")
+        texts.append((tt - .5, 'The Bau Ventures'))
+        tl.draw(sel('.oa1'), tt - .1, .5); tl.draw(sel('.oa2'), tt + .35, .2)
+        tl(f"tl.to('#{pid} .og',{{opacity:.45,duration:.5}},{tt + .1:.3f});")
+        tl(f"tl.to('#{pid} .opb',{{x:{bx + bw / 2 - px - 300:.0f},scale:.5,autoAlpha:0,duration:.8,ease:'power2.in'}},{tt + .6:.3f});")
+        tl(f"tl.to('#{pid} .oa1,#{pid} .oa2',{{opacity:0,duration:.3}},{tt + 1.1:.3f});")
+        tl(f"tl.to('#{pid} .otb',{{boxShadow:'0 0 0 10px rgba(239,118,25,.18)',duration:.35,yoyo:true,repeat:1}},{tt + 1.3:.3f});")
+
+    elif k == 'loop':                        # build, test, validate in a loop; prototypes turn into the real product
+        cx, cy, R = p.get('cx', 590), p.get('cy', 600), p.get('r', 250)
+        nodes = p['nodes']; nn = len(nodes)
+        import math
+        svg = (f'<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
+               f'<circle class="d lpc" cx="{cx}" cy="{cy}" r="{R}" stroke="rgba(245,245,245,.35)" stroke-width="3" transform="rotate(-90 {cx} {cy})"/>'
+               f'<g class="lpd"><circle cx="{cx}" cy="{cy - R}" r="11" fill="#EF7619"/></g></svg>')
+        h += svg
+        angs = [-90 + 360 * i / nn for i in range(nn)]
+        for i, (nd, a) in enumerate(zip(nodes, angs)):
+            x = cx + R * math.cos(math.radians(a)); y = cy + R * math.sin(math.radians(a))
+            h += f'<div class="lpn lpn{i}" style="left:{x - 15:.0f}px;top:{y - 15:.0f}px"></div>'
+            if a < -60: lx, ly, al = x - 300, y - 112, 'center'
+            elif math.cos(math.radians(a)) > 0: lx, ly, al = x + 34, y - 10, 'left'
+            else: lx, ly, al = x - 634, y - 10, 'right'
+            h += f'<div class="lpl tx lpl{i}" style="left:{lx:.0f}px;top:{ly:.0f}px;width:600px;text-align:{al}">{E(nd["title"])}<small>{E(nd.get("text", ""))}</small></div>'
+        h += f'<div class="cap lpk" style="left:{cx - 200}px;width:400px;top:{cy - 104}px;text-align:center;color:var(--orange)">{E(p.get("center", "Build First"))}</div>'
+        for i, ph in enumerate(p.get('team', [])):
+            h += f'<img class="lav lav{i}" src="{ph}" style="left:{cx - 104 + i * 104 - 14 * i:.0f}px;top:{cy - 54}px">'
+        if p.get('team_caption'):
+            h += f'<div class="sb lavc" style="left:{cx - 200}px;width:400px;top:{cy + 66}px;text-align:center;font-size:24px;font-weight:400">{E(p["team_caption"])}</div>'
+        wx, wy, ww, wh = 1140, 320, 600, 390
+        nps = p.get('prototypes', 3)
+        for i in range(nps):
+            ox, oy = wx + 22 * i, wy + 50 * i
+            bars = ''.join(f'<i style="left:{180 + (j % 2) * 10}px;top:{110 + j * 46}px;width:{360 - j * 40 - i * 20}px;height:22px"></i>' for j in range(4))
+            h += (f'<div class="lwf lwf{i}" style="left:{ox}px;top:{oy}px;width:{ww}px;height:{wh}px">'
+                  f'<i style="left:22px;top:56px;width:130px;height:{wh - 80}px"></i><i style="left:180px;top:56px;width:{ww - 210}px;height:30px;background:rgba(239,118,25,.35)"></i>{bars}'
+                  f'<div class="lk">{E(p.get("proto_label", "Prototype"))} {i + 1}</div></div>')
+        fin = p.get('final')
+        if fin:
+            v = fin.get('view'); sz = fin['size']; FW, FH = 690, 440
+            sc_ = FW / v[2]
+            h += (f'<div class="lsh" style="left:1120px;top:340px;width:{FW}px;height:{FH}px"><div style="left:0;top:0;width:{FW}px;height:30px;background:#e9e7e3"></div>'
+                  f'<img src="{fin["src"]}" style="left:{-v[0] * sc_:.0f}px;top:{30 - v[1] * sc_:.0f}px;width:{sz[0] * sc_:.0f}px;height:{sz[1] * sc_:.0f}px"></div>')
+            h += f'<div class="lcap tx" style="left:1120px;top:220px">{T(fin.get("caption", ""))}</div>'
+            if fin.get('tag'): h += f'<div class="cap ltag" style="left:1120px;top:812px;color:var(--orange)">{E(fin["tag"])}</div>'
+        tl.draw(sel('.lpc'), t_start + .05, .7)
+        tl.show(sel('.lpk'), t_start + .1, .4, 0); texts.append((t_start + .3, p.get('center', 'Build First')))
+        tl(f"tl.fromTo('#{pid} .lpd',{{autoAlpha:0}},{{autoAlpha:1,duration:.3}},{t_start + 1.0:.3f});")
+        spin_d = max(1.0, t_end - t_start - 1.0)
+        tl(f"tl.fromTo('#{pid} .lpd',{{rotation:0,svgOrigin:'{cx} {cy}'}},{{rotation:{360 * max(1, round(spin_d / 3.2))},svgOrigin:'{cx} {cy}',duration:{spin_d:.2f},ease:'none'}},{t_start + 1.0:.3f});")
+        if p.get('team'):
+            tt = T0(p['team_at']) if p.get('team_at') is not None else t_start + .6
+            tl(f"tl.fromTo('#{pid} .lav',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.45,ease:'back.out(1.8)',stagger:.15}},{tt - .1:.3f});")
+            if p.get('team_caption'): tl.show(sel('.lavc'), tt + .3, .4, 6); texts.append((tt + .3, p['team_caption']))
+        tn = _times(p, nn, T0, t_start + .8, t_end, key='node_at')
+        for i, t in enumerate(tn):
+            tl(f"tl.fromTo('#{pid} .lpn{i}',{{autoAlpha:0,scale:0}},{{autoAlpha:1,scale:1,duration:.35,ease:'back.out(2)'}},{t - .15:.3f});")
+            tl(f"tl.to('#{pid} .lpn{i}',{{backgroundColor:'#EF7619',duration:.3}},{t + .2:.3f});")
+            tl.show(sel(f'.lpl{i}'), t, .4, 8); texts.append((t, f"{nodes[i]['title']} {nodes[i].get('text', '')}"))
+            if i < nps:
+                tl(f"tl.fromTo('#{pid} .lwf{i}',{{autoAlpha:0,y:30,rotation:{(-2, 1.5, -1)[i % 3]}}},{{autoAlpha:1,y:0,rotation:0,duration:.5,ease:'power3.out'}},{t + .1:.3f});")
+        if fin:
+            tf = T0(fin['at']) if fin.get('at') is not None else tn[-1] + 1.5
+            tl(f"tl.to('#{pid} .lwf',{{autoAlpha:0,y:-20,duration:.4,stagger:.06}},{tf - .3:.3f});")
+            tl(f"tl.fromTo('#{pid} .lsh',{{autoAlpha:0,y:60,scale:.94}},{{autoAlpha:1,y:0,scale:1,duration:.7,ease:'power3.out'}},{tf:.3f});")
+            tl.show(sel('.lcap'), tf + .1, .5, 12); texts.append((tf + .1, fin.get('caption', '')))
+            if fin.get('tag'):
+                tg = T0(fin['tag_at']) if fin.get('tag_at') is not None else tf + .8
+                tl.show(sel('.ltag'), tg, .4, 8); texts.append((tg, fin['tag']))
 
     else:
         raise ValueError(f'unknown visual panel type {k}')

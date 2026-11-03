@@ -1,7 +1,7 @@
 """The fixed scene types of a portfolio briefing. Each takes a block (start/end in film time,
 anchor resolver) plus the company content, and returns a Scene."""
 from .base import E, T, TL, Scene, frame, need_for
-from . import panels as P
+from . import panels as P, visual as V
 from ..config import CHAPTERS, reading_time, chapters, has_interview
 
 def explainer(b, c, chapter_key, spec):
@@ -68,27 +68,48 @@ def _handover_plain(b, c):
     sid = b.sid; tl = TL()
     hv = c.get('handover', {}); bg = hv.get('bg'); shot = hv.get('shot')
     h = (frame(sid, 'dk') + (_bg(sid, bg) if bg else '') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:400px;width:600px;height:170px;object-fit:contain">'
-         f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:610px">{E(c["origin"])}</div>')
+         f'<div class="cap hcap" style="left:0;width:1920px;text-align:center;top:{690 if hv.get("tagline") else 610}px">{E(c["origin"])}</div>')
+    if hv.get('tagline'):
+        h += f'<div class="tx htag h" style="left:0;width:1920px;text-align:center;top:600px;font-size:46px;letter-spacing:-.025em">{E(hv["tagline"])}</div>'
     if shot:      # the product rises under the logo
         h += (f'<div class="hshot h" style="left:360px;top:330px;width:1200px;height:690px;border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff">'
               f'<div style="left:0;top:0;width:1200px;height:34px;background:#e9e7e3"></div>'
               + (lambda v, sz: (f'<img src="{shot}" style="left:{-v[0] * 1200 / v[2]:.0f}px;top:{34 - v[1] * 1200 / v[2]:.0f}px;width:{sz[0] * 1200 / v[2]:.0f}px;height:{sz[1] * 1200 / v[2]:.0f}px"></div>')
                  if v else f'<img src="{shot}" style="left:0;top:34px;width:1200px;height:656px;object-fit:cover;object-position:left top"></div>')(hv.get('shot_view'), hv.get('shot_size')))
         if hv.get('shot_caption'): h += f'<div class="cap hscap h" style="left:0;width:1920px;text-align:center;top:280px;color:var(--orange)">{E(hv["shot_caption"])}</div>'
+    conv = hv.get('converge') or []          # the problem's loose ends fly into the logo
+    for i, ic in enumerate(conv):
+        x, y = _CONV[i % len(_CONV)]
+        h += (f'<div class="hcv hcv{i}" style="left:{x}px;top:{y}px;width:88px;height:88px;border-radius:20px;background:#F5F5F5;box-shadow:0 14px 30px rgba(0,0,0,.4);color:#282524">'
+              f'<div style="left:22px;top:22px">{V.icon(ic, 44)}</div><div style="right:-6px;top:-6px;width:22px;height:22px;border-radius:50%;background:#EF7619"></div></div>')
     h += '</div>'
     tl.on(f'#{sid}', b.t0)
     if bg: tl.vin(f'#{sid} .hbg', b.t0, .6); tl.zoom(f'#{sid} .hbg img', b.t0, max(1, b.t_end - b.t0), 1.0, 1.06)
+    t_logo = b.T(hv['logo_at']) - .15 if hv.get('logo_at') else b.t_speech - .2
+    if conv:
+        tl(f"tl.fromTo('#{sid} .hcv',{{autoAlpha:0,scale:.6}},{{autoAlpha:1,scale:1,duration:.4,ease:'back.out(1.8)',stagger:.07}},{b.t0 + .05:.3f});")
+        for i in range(len(conv)):
+            x, y = _CONV[i % len(_CONV)]
+            tl(f"tl.to('#{sid} .hcv{i}',{{x:{916 - x},y:{441 - y},scale:.25,autoAlpha:0,duration:.75,ease:'power3.in'}},{t_logo - .75 + .03 * i:.3f});")
     if shot:
         ts_ = b.T(hv['shot_at']) - .2
-        tl.hide(f'#{sid} .hcap', ts_ - .1, .3)
+        tl.hide(f'#{sid} .hcap,#{sid} .htag', ts_ - .1, .3)
         tl(f"tl.to('#{sid} .hero',{{y:-300,scale:.55,duration:.8,ease:'power2.inOut'}},{ts_:.3f});")
         tl(f"tl.fromTo('#{sid} .hshot',{{autoAlpha:0,y:120}},{{autoAlpha:1,y:0,duration:.9,ease:'power3.out'}},{ts_ + .2:.3f});")
         if hv.get('shot_caption'): tl.show(f'#{sid} .hscap', ts_ + .6, .45, 8)
-    tl.show(f'#{sid} .hero', b.t_speech - .2, .7, 14); tl.show(f'#{sid} .hcap', b.t_speech + 1.2, .5, 10)
-    tl.hide(f'#{sid} .hero,#{sid} .hcap', b.t_end - .45, .35)
+    t_orig = b.T(hv['origin_at']) if hv.get('origin_at') else b.t_speech + 1.2
+    if conv: tl(f"tl.fromTo('#{sid} .hero',{{autoAlpha:0,scale:1.25}},{{autoAlpha:1,scale:1,duration:.55,ease:'back.out(1.6)'}},{t_logo:.3f});")
+    else: tl.show(f'#{sid} .hero', t_logo, .7, 14)
+    tl.show(f'#{sid} .hcap', t_orig, .5, 10)
+    if hv.get('tagline'):
+        t_tag = b.T(hv['tagline_at']) if hv.get('tagline_at') else t_logo + .8
+        tl.show(f'#{sid} .htag', t_tag, .5, 10)
+    tl.hide(f'#{sid} .hero,#{sid} .hcap,#{sid} .htag', b.t_end - .45, .35)
     tl.off(f'#{sid}', b.t_end + .05)
-    texts = [(b.t_speech + 1.2, c['origin'])]
-    return Scene(h, '', tl.js(), b.t_speech + 1.2 + 2.4 + .45, texts, [])
+    texts = [(t_orig, c['origin'])] + ([(t_tag, hv['tagline'])] if hv.get('tagline') else [])
+    return Scene(h, '', tl.js(), t_orig + 2.4 + .45, texts, [])
+
+_CONV = [(300, 250), (1500, 220), (180, 640), (1640, 600), (620, 820), (1220, 840), (860, 180), (1080, 700)]
 
 def founder(b, c, seg_key, seg):
     """Interview segment: full-frame clip, lower third, optional cutaways and (f4) the three words."""
@@ -226,12 +247,16 @@ def _bg(sid, src):
             f'<img src="{src}" style="left:-40px;top:-20px;width:2000px;height:1120px;object-fit:cover;opacity:.16;filter:grayscale(.3)">'
             f'<div style="left:0;top:0;width:1920px;height:1080px;background:radial-gradient(ellipse at center,rgba(40,37,36,.35) 0%,rgba(40,37,36,.92) 70%)"></div></div>')
 
+def end_line(c):
+    """The line under the TBV logo at the very end."""
+    return c.get('end_line') or f"Portfolio Briefing #{c.get('number', '')}  ·  {c['company']}"
+
 def close(b, c, spec):
     sid = b.sid; tl = TL()
     h = (frame(sid, 'dk') + (_bg(sid, spec['bg']) if spec.get('bg') else '') + f'<img class="hero" src="{c["logo_light"]}" style="left:660px;top:390px;width:600px;height:170px;object-fit:contain">'
          f'<div class="tag tx" style="left:0;width:1920px;top:600px;text-align:center;font-size:46px;letter-spacing:-.025em">{E(spec["tagline"])}</div>'
          f'<img class="tbv" src="assets/img/tbv_h_alpha.png" style="left:568px;top:480px;width:784px;height:106px">'
-         f'<div class="cap tcap" style="left:0;width:1920px;top:650px;text-align:center">Part of The Bau Ventures portfolio</div></div>')
+         f'<div class="cap tcap" style="left:0;width:1920px;top:650px;text-align:center">{E(end_line(c))}</div></div>')
     for s_ in ('.tbv', '.tcap', '.hero', '.tag'): tl(f"gsap.set('#{sid} {s_}',{{autoAlpha:0}});")
     tl.on(f'#{sid}', b.t0)
     if spec.get('bg'): tl.vin(f'#{sid} .hbg', b.t0, .6); tl.zoom(f'#{sid} .hbg img', b.t0, max(1, b.t_lock - b.t0), 1.0, 1.05); tl.hide(f'#{sid} .hbg', b.t_lock - .4, .35)
@@ -240,5 +265,5 @@ def close(b, c, spec):
     tl.show(f'#{sid} .tag', tt, .6, 12)
     tl.hide(f'#{sid} .hero,#{sid} .tag', b.t_lock - .4, .35)
     tl.show(f'#{sid} .tbv', b.t_lock, .6, 10); tl.show(f'#{sid} .tcap', b.t_lock + .35, .5, 8)
-    texts = [(tt, spec['tagline']), (b.t_lock + .35, 'Part of The Bau Ventures portfolio')]
+    texts = [(tt, spec['tagline']), (b.t_lock + .35, end_line(c))]
     return Scene(h, '', tl.js(), max(tt + 2.6 + .4, b.t_lock + 3.2), texts)

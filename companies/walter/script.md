@@ -2,6 +2,7 @@
 <!-- Portfolio briefing #5. Build First film (kind: build_first), voice-over only.
      v3 (Fred, 2 Nov): origin story (Häusser and Eisenmann brought the problem, Build First team built and tested),
      roadmap / first version, market size instead of revenue potential.
+     3 Nov: handover re-recorded as a bridge from the problem ("This is where Valter comes in"), spliced into the v3 take.
      The visuals follow the voice (pacing: voice): the voice-over runs without inserted pauses.
      "Valter" is the phonetic spelling so the English voice says the German name. On screen it stays "walter".
      Sources per sentence: companies/walter/SOURCES.md -->
@@ -10,7 +11,7 @@
 Property management runs on manual work. [pause] Tenant emails, phone calls, invoices, service charge and utility bill statements, owner meetings, each in a different tool. [pause] Good staff are hard to find, and margins are under pressure. [pause] So every new building means more work for the same people.
 
 ## handover
-Valter, from Berlin, is an A I colleague for property managers, [pause] and the first venture from The Bau Ventures' studio to launch fully on the market.
+This is where Valter comes in: [pause] an A I colleague for property managers, from Berlin, [pause] and the first venture from The Bau Ventures' studio to launch fully on the market.
 
 ## how
 Valter is not another tool. He works like a new colleague. [pause] Every building gets its own inbox. Valter reads each request, opens a ticket and books the contractor. [pause] He also handles documents and deadlines, invoices and banking, utility billing, owner meetings, letting and handovers, and an app for tenants and owners. [pause] Valter prepares the work. The property manager approves. [pause] And this is only the first version. [pause] Valter keeps growing along its roadmap, towards the whole property in one system: property, asset and facility management, up to the sale.

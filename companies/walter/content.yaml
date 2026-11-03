@@ -22,6 +22,11 @@ handover:
   shot_view: [0, 0, 890, 487]           # the app only, without the marketing panel on the right
   shot_size: [1407, 766]
   shot_caption: "Build First  ·  first venture fully launched on the market"
+  converge: [mail, phone, invoice, sheet, calendar, alert, chat, wrench]   # the problem's loose ends fly into the logo
+  logo_at: comes in
+  tagline: An AI colleague for property managers
+  tagline_at: an a i
+  origin_at: colleague
 
 problem:
   panels:
@@ -69,34 +74,71 @@ how:
             - {text: Letting and handovers, icon: building}
             - {text: App for tenants and owners, icon: chat}
           row_at: [documents, invoices, utility, owner, letting, an app]
-    - {type: statement, at: valter prepares, text: "walter prepares.<br>People approve.", sub: Nothing goes out without approval, sub_at: the property manager}
-    - {type: statement, at: and this is, text: "This is version one.", sub: It keeps growing along the walter roadmap., sub_at: valter keeps}
-    - type: points
-      at: in one system
-      head: "The walter roadmap: the whole property in one system"
-      items:
-        - {label: Property management, value: residential and commercial}
-        - {label: Asset management, value: "value, returns, reporting"}
-        - {label: Facility management, value: technical operations}
-        - {label: Sale & data room, value: up to the change of owner}
-      item_at: [property asset, asset, facility, the sale]
+          until: valter prepares
+        - at: valter prepares     # walter prepares, the property manager clicks Approve
+          pos: [1110, 230]
+          kicker: walter · proposal
+          title: Water damage, flat 12
+          rows:
+            - {text: Ticket opened, status: Open}
+            - {text: Plumber requested, status: Prepared}
+            - {text: Reply to the tenant, status: Drafted}
+          row_at: [valter prepares, the work, the property]
+          button: Approve
+          done: Approved
+          click_at: approves
+    - type: stack             # version one is the ground floor; the roadmap builds the whole house
+      at: first version
+      text: "This is<br>version one."
+      sub: It keeps growing along the walter roadmap,
+      sub_at: valter keeps
+      sub2: towards the whole property in one system.
+      sub2_at: whole property
+      pulse_at: property asset
+      floors:
+        - {title: Property management, text: "Residential today, commercial next", icon: building, live: true, tag: "Live · version 1"}
+        - {title: Asset management, text: "Value, returns, reporting", icon: euro}
+        - {title: Facility management, text: Technical operations, icon: wrench}
+        - {title: Sale & data room, text: Up to the change of owner, icon: doc}
+      item_at: [asset, facility, the sale]
 
 team:
   panels:
     - {type: statement, at: s0, text: "Built in-house.<br>It started with a problem."}
-    - type: flow              # from a Drees & Sommer problem to a product
-      at: drees and sommer partner
-      head: From a Drees & Sommer problem to a walter prototype
-      inputs: [Thomas Häusser, Karsten Eisenmann]
-      input_at: [thomas, karsten]
-      hub: TBV studio
-      hub_caption: Build First
-      hub_at: they brought
-      outputs: [First prototypes, Tests with property managers, Validated assumptions]
-      output_at: [first prototypes, tested, validated]
-      caption: Property managers under growing margin pressure
-      caption_at: margin pressure
-    - {type: statement, at: customer feedback, text: "Shaped by<br>customer feedback.", sub: Now on the market, sub_at: shaped the}
+    - type: origin            # two Drees & Sommer partners bring a problem to the studio
+      at: thomas
+      people:
+        - {name: Thomas Häusser, role: "Partner · Drees & Sommer"}
+        - {name: Karsten Eisenmann, role: "Associate Partner · Drees & Sommer"}
+      people_at: [thomas, karsten]
+      problem:
+        at: saw property
+        kicker: The problem they saw
+        title: Property managers under growing margin pressure
+        chart: Margin
+        text: Processes must become far more efficient
+        text_at: needing
+      to_at: they brought
+      to_caption: Studio  ·  Build First
+    - type: loop              # Build First: build, test, validate; prototypes become the product
+      at: in our build
+      center: Build First
+      team: [media/face_christoph.jpg, media/face_alex.jpg]
+      team_at: christoph
+      team_caption: Christoph, Alexander and the team
+      nodes:
+        - {title: Build, text: First prototypes, quickly}
+        - {title: Test, text: With property managers}
+        - {title: Validate, text: Assumptions checked}
+      node_at: [first prototypes, tested, validated]
+      final:
+        at: customer feedback
+        src: media/app_home.jpg
+        size: [1407, 766]
+        view: [0, 0, 890, 550]
+        caption: Shaped by customer feedback
+        tag: Now on the market
+        tag_at: shaped the
     - type: faces             # picture: the team
       at: christoph and alexander
       items:
@@ -110,18 +152,15 @@ team:
 traction:
   panels:
     - {type: statement, at: s0, text: "The market<br>is responding."}
-    - type: kpis
+    - type: funnel            # picture: leads, demos, live customers
       at: more than two
       head: Sales funnel
       note: As of November 2026
-      items: [{value: 280+, label: leads}, {value: 170+, label: demos held}]
-      item_at: [two hundred, one hundred and seventy]
-    - type: kpis
-      at: thirty
-      head: Live today
-      note: As of November 2026
-      items: [{value: "30", label: live customers}, {value: "3,200+", label: units they manage}]
-      item_at: [thirty, three thousand]
+      items:
+        - {value: 280, display: "280+", label: Leads}
+        - {value: 170, display: "170+", label: Demos held}
+        - {value: 30, display: "30", label: Customers live on walter, sub: "managing 3,200+ units", sub_at: three thousand}
+      item_at: [two hundred, one hundred and seventy, thirty]
     - type: bars              # picture: from the first pilots to paying customers
       at: the first customers
       head: From pilots to paying customers

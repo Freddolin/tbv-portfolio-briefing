@@ -50,6 +50,11 @@ Research on 2 Nov 2026. Voice-over: script v3 (Fred, 2 Nov), recorded 3 Nov; pic
 | how | Roadmap: property, asset and facility management, sale and data room | Okt-Walter: "Die gesamte Immobilie in einem System" |
 | team | Flow: Thomas Häusser and Karsten Eisenmann (names only, roles in the voice-over) → TBV studio (Build First) → prototypes, tests, validated assumptions | Script v3 (Fred, 2 Nov) |
 | next | DACH, €1.5bn a year | Entscheidungsvorlage (June 2026), TAM ~€1.496bn |
+| handover | Icons of the problem fly into the walter logo; "An AI colleague for property managers" | Voice-over (Fred, 3 Nov: smoother bridge from the problem) |
+| how | Proposal card "Water damage, flat 12" with Approve click on the walter Home screen | Illustration of "Walter schlägt vor. Der Mensch gibt frei." (Okt-Walter); flat number and statuses are illustrative |
+| how | Building: version one (property management, live) as the ground floor, asset and facility management, sale and data room as roadmap floors | Okt-Walter: "Die gesamte Immobilie in einem System"; Fred (2 Nov): first version, keeps developing along the roadmap, residential to commercial |
+| team | Origin: Thomas Häusser and Karsten Eisenmann, problem card "margin pressure", brought to the TBV studio; Build First loop (build, test, validate), prototypes turn into the product | Script v3 (Fred, 2 Nov); the margin line and the wireframes are illustrations, not data |
+| traction | Funnel 280+ leads, 170+ demos, 30 live customers (3,200+ units) | Same figures as the numbers above |
 | team | Portraits | TBV_External_Deck_2026, team slide; roles: Notion, 04 Team & key contacts |
 | traction | Customer bars: June 4, July 8, September 22, today 30 | CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots"; 30: walter team feedback |
 | all | "As of November 2026" | Fred (2 Nov) |
