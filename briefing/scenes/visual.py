@@ -132,6 +132,11 @@ CSS = r"""
 .mcoin{width:120px;height:30px;border-radius:50%;background:#EF7619;border:2px solid #b8560c}
 .mseat{width:76px;height:76px;border-radius:50%;background:#4a4643;color:#F5F5F5}
 .mseat svg{position:absolute !important;left:16px;top:16px}
+.mrn{width:76px;height:76px;border-radius:50%;text-align:center;line-height:76px;font-size:21px;font-weight:600;letter-spacing:0}
+.mrn.t{background:#F5F5F5;color:#1f1d1c}
+.mrn.o{background:#EF7619;color:#1f1d1c}
+.mrn.o svg{position:absolute !important;left:16px;top:16px}
+.mrl{font-weight:600;font-size:17px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:center}
 .mseat.e{background:transparent;border:2.5px dashed #EF7619;color:#EF7619;font-size:44px;text-align:center;line-height:68px}
 
 .ucur{width:46px;height:46px;z-index:5}
@@ -729,6 +734,17 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             elif kd == 'coins':
                 vz = ''.join(f'<div class="mcoin mc{j}" style="left:{w / 2 - 60:.0f}px;top:{170 - j * 26}px"></div>' for j in range(5))
                 vz += f'<div class="mic ms2" style="left:{w / 2 + 80:.0f}px;top:70px;width:76px;height:76px;border-radius:50%">{icon("people", 40)}</div>'
+            elif kd == 'round':              # today only TBV; external investors join the round
+                xs = (w / 2 - 120, w / 2, w / 2 + 120)
+                vz += f'<div class="mrl sb" style="left:{xs[0] - 70:.0f}px;width:140px;top:8px">{E(it.get("own_label", "Today"))}</div>'
+                vz += f'<div class="mrl mrlx" style="left:{(xs[1] + xs[2]) / 2 - 130:.0f}px;width:260px;top:8px;color:var(--orange)">{E(it.get("new_label", "+ External"))}</div>'
+                vz += f'<div class="mrn t mr0" style="left:{xs[0] - 38:.0f}px;top:36px">{E(it.get("own", "TBV"))}</div>'
+                for j in (1, 2):
+                    vz += f'<div class="mrn o mr{j}" style="left:{xs[j] - 38:.0f}px;top:36px">{icon("euro", 44, "#1f1d1c", 2)}</div>'
+                vz += (f'<svg style="left:0;top:0" width="{w:.0f}" height="250" viewBox="0 0 {w:.0f} 250" fill="none">'
+                       + ''.join(f'<path class="d ml{j}" d="M{xs[j]:.0f} 116C{xs[j]:.0f} 150 {w / 2:.0f} 140 {w / 2:.0f} 172" stroke="{"#F5F5F5" if j == 0 else "#EF7619"}" stroke-width="3"/>' for j in range(3))
+                       + '</svg>')
+                vz += f'<img class="mlg" src="{logo_light}" style="left:{w / 2 - 80:.0f}px;top:180px;width:160px;height:44px;object-fit:contain">'
             elif kd == 'seats':
                 for j in range(3):
                     vz += f'<div class="mseat mt{j}" style="left:{w / 2 - 176 + j * 88:.0f}px;top:86px">{icon("people", 44)}</div>'
@@ -749,6 +765,14 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             elif kd == 'coins':
                 tl(f"tl.fromTo('{s_} .mcoin',{{autoAlpha:0,y:-40}},{{autoAlpha:1,y:0,duration:.3,ease:'bounce.out',stagger:.14}},{t + .1:.3f});")
                 tl(f"tl.fromTo('{s_} .ms2',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.4,ease:'back.out(2)'}},{t + .9:.3f});")
+            elif kd == 'round':
+                tl(f"tl.fromTo('{s_} .mr0,{s_} .mlg',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.35,ease:'back.out(2)'}},{t + .05:.3f});")
+                tl.draw(f'{s_} .ml0', t + .3, .4)
+                tl(f"tl.fromTo('{s_} .mr1,{s_} .mr2',{{autoAlpha:0,scale:.4,y:-30}},{{autoAlpha:1,scale:1,y:0,duration:.45,ease:'back.out(2)',stagger:.2}},{t + .8:.3f});")
+                tl(f"tl.to('{s_} .ml1,{s_} .ml2',{{strokeDashoffset:0,duration:.45,stagger:.2}},{t + 1.1:.3f});")
+                tl(f"tl.fromTo('{s_} .mrlx',{{autoAlpha:0}},{{autoAlpha:1,duration:.3}},{t + 1.0:.3f});")
+                tl(f"tl.fromTo('{s_} .mrl.sb',{{autoAlpha:0}},{{autoAlpha:1,duration:.3}},{t + .3:.3f});")
+                tl(f"tl.to('{s_} .mlg',{{scale:1.12,duration:.25,yoyo:true,repeat:1}},{t + 1.7:.3f});")
             elif kd == 'seats':
                 tl(f"tl.fromTo('{s_} .mseat',{{autoAlpha:0,scale:.6}},{{autoAlpha:1,scale:1,duration:.3,ease:'back.out(2)',stagger:.12}},{t + .1:.3f});")
                 tl(f"tl.to('{s_} .mt3',{{scale:1.15,duration:.35,yoyo:true,repeat:3,ease:'power1.inOut'}},{t + .8:.3f});")

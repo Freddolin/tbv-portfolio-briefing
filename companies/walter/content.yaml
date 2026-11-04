@@ -180,7 +180,7 @@ traction:
     - {type: statement, at: s0, text: "The market<br>is responding."}
     - type: funnel            # picture: leads, demos, live customers
       at: more than two
-      head: Sales funnel
+      head: After the first marketing tests
       note: As of November 2026
       items:
         - {value: 280, display: "280+", label: Leads}
@@ -239,7 +239,7 @@ next:
       items:
         - {title: Convert, text: Pilots become paying customers, kind: flip, from: Pilot, to: Paying}
         - {title: Commercial, text: From residential to commercial property management, kind: shift, icon_from: building, icon_to: tower}
-        - {title: Funding, text: First round with external investors, kind: coins}
+        - {title: Funding, text: First round with external investors, kind: round, own: TBV, own_label: Today, new_label: + External investors}
         - {title: Team, text: "Complete it, including co-founders", kind: seats}
       item_at: [turn, grow from, prepare, complete]
 
