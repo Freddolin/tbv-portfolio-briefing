@@ -2,12 +2,12 @@
 the voice-over needs pictures: product walkthroughs on real screenshots, notification piles,
 skylines, portraits, growth bars, funnels and roadmaps.
 
-Types: notify, skyline, ui, faces, bars, funnel, path, units, stack, origin, loop.
+Types: notify, skyline, ui, faces, bars, funnel, path, units, stack, origin, loop, pressure, colleague, market, moves.
 Same contract as panels.build: returns (html, js, texts, holds)."""
 import json
 from .base import E, T, TL
 
-TYPES = ('notify', 'skyline', 'ui', 'faces', 'bars', 'funnel', 'path', 'units', 'stack', 'origin', 'loop')
+TYPES = ('notify', 'skyline', 'ui', 'faces', 'bars', 'funnel', 'path', 'units', 'stack', 'origin', 'loop', 'pressure', 'colleague', 'market', 'moves')
 
 _I = {
     'mail': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
@@ -85,6 +85,55 @@ CSS = r"""
 .dk .pline{background:rgba(245,245,245,.35)} .wm .pline{background:rgba(40,37,36,.3)}
 .vnote{left:110px;top:960px;font-size:24px;font-weight:400;opacity:.75}
 
+/* shared: big statement in the left column, visual on the right */
+.vbig{left:110px;width:860px;font-size:92px;letter-spacing:-.045em;line-height:1.04}
+.vcard{border-radius:22px;background:#F5F5F5;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.vcard .k{left:34px;top:28px;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#7d7873}
+.vcard .tt{left:34px;top:62px;font-size:40px;letter-spacing:-.025em;color:#1f1d1c;white-space:nowrap}
+.vchip{font-weight:600;font-size:19px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:22px;white-space:nowrap}
+.vdark{border-radius:22px;background:rgba(245,245,245,.05);border:1.5px solid rgba(245,245,245,.25)}
+/* pressure */
+.jbn{font-size:150px;letter-spacing:-.05em;line-height:1;color:#1f1d1c}
+.jbl{font-size:30px;font-weight:400;color:#4a4643;white-space:nowrap}
+.mlab{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+/* colleague */
+.twin{width:560px;height:96px;border-radius:16px;background:#3a3634;border:1.5px solid rgba(245,245,245,.25);box-shadow:0 16px 34px rgba(0,0,0,.35);color:#F5F5F5}
+.twin .ic{left:24px;top:24px}
+.twin .l{left:84px;top:30px;font-size:30px;white-space:nowrap;color:#e6e2dd}
+.twin .x{right:22px;top:30px;width:36px;height:36px;border-radius:50%;background:rgba(245,245,245,.12)}
+.trow{left:30px;width:690px;height:96px;border-radius:16px}
+.trow .av{left:16px;top:14px;width:68px;height:68px;border-radius:50%;background:#4a4643;color:#F5F5F5;font-size:24px;text-align:center;line-height:68px}
+.trow .av svg{position:absolute !important;left:14px;top:14px}
+.trow .r1{left:106px;top:16px;font-size:32px;letter-spacing:-.015em;white-space:nowrap;color:#F5F5F5}
+.trow .r2{left:106px;top:56px;font-size:22px;font-weight:400;white-space:nowrap;color:#a9a39d}
+.trow.w{background:rgba(239,118,25,.14);border:2px solid #EF7619}
+.trow.w .av{background:#0d1d00}
+.trow .on{right:22px;top:30px}
+/* market */
+.mkv{left:104px;top:300px;font-size:200px;letter-spacing:-.055em;line-height:1;white-space:nowrap}
+.mkl{left:110px;top:540px;width:760px;font-size:34px;font-weight:400;line-height:1.25}
+.mkr{left:110px;width:800px;height:76px}
+.mkr .ic{left:0;top:6px;width:60px;height:60px;border-radius:14px;border:1.5px solid #EF7619;color:#EF7619}
+.mkr .ic svg{position:absolute !important;left:12px;top:12px}
+.mkr .a{left:84px;top:2px;font-size:32px;letter-spacing:-.015em;white-space:nowrap}
+.mkr .b{left:84px;top:42px;font-size:24px;font-weight:400;white-space:nowrap}
+.mkc{font-weight:600;font-size:20px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:24px;border:1.5px solid rgba(245,245,245,.5);color:#F5F5F5;background:var(--dark);white-space:nowrap}
+.mkin{text-align:center;color:#1f1d1c;font-size:26px;line-height:1.15;letter-spacing:-.01em}
+/* moves */
+.mv{border-radius:22px;background:rgba(245,245,245,.05);border:1.5px solid rgba(245,245,245,.22)}
+.mv .vz{left:0;top:0;height:250px;border-bottom:1.5px solid rgba(245,245,245,.14)}
+.mv .n{left:34px;top:282px;font-weight:600;font-size:22px;letter-spacing:.06em;color:var(--orange)}
+.mv .t{left:34px;top:318px;font-size:42px;letter-spacing:-.03em;white-space:nowrap}
+.mv .d{left:34px;top:376px;font-size:27px;font-weight:400;line-height:1.3}
+.mpill{height:70px;line-height:70px;padding:0 30px;border-radius:40px;font-size:30px;white-space:nowrap}
+.mic{width:96px;height:96px;border-radius:24px;border:1.5px solid rgba(245,245,245,.45);color:#F5F5F5}
+.mic svg{position:absolute !important;left:20px;top:20px}
+.mic.o{border-color:#EF7619;color:#EF7619;background:rgba(239,118,25,.1)}
+.mcoin{width:120px;height:30px;border-radius:50%;background:#EF7619;border:2px solid #b8560c}
+.mseat{width:76px;height:76px;border-radius:50%;background:#4a4643;color:#F5F5F5}
+.mseat svg{position:absolute !important;left:16px;top:16px}
+.mseat.e{background:transparent;border:2.5px dashed #EF7619;color:#EF7619;font-size:44px;text-align:center;line-height:68px}
+
 .ucur{width:46px;height:46px;z-index:5}
 /* stack: the product as a building, floor by floor */
 .skt{left:110px;top:300px;width:820px;font-size:96px;letter-spacing:-.045em;line-height:1.04}
@@ -101,7 +150,7 @@ CSS = r"""
 /* origin: two partners bring a problem to the studio */
 .oav{width:116px;height:116px;border-radius:50%;background:#3a3634;border:2px solid rgba(245,245,245,.35);color:#F5F5F5;font-size:40px;letter-spacing:-.02em;text-align:center;line-height:112px}
 .onm{font-size:40px;letter-spacing:-.025em;white-space:nowrap}
-.orl{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.orl{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;line-height:1.35}
 .opb{width:600px;border-radius:22px;background:#F5F5F5;box-shadow:0 30px 70px rgba(0,0,0,.45)}
 .opb .k{left:36px;top:30px;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#c0392b}
 .opb .tt{left:36px;top:66px;width:530px;font-size:40px;letter-spacing:-.025em;line-height:1.12;color:#1f1d1c}
@@ -381,7 +430,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
     elif k == 'units':                       # a big number and a grid of buildings filling up (one icon per `per` units)
         n = int(round(float(p['value']) / float(p.get('per', 100)))); cols = p.get('cols', 8); sz = p.get('icon_size', 92); gap = p.get('gap', 26)
         gx = 1810 - cols * sz - (cols - 1) * gap; gy = 300
-        h += (f'<div class="sv tx uvn" style="left:104px;top:330px">0</div>'
+        h += (f'<div class="sv tx uvn h" style="left:104px;top:330px">0</div>'
               f'<div class="st2 sb uvl" style="top:600px;width:760px">{T(p.get("label", ""))}</div>')
         for i in range(n):
             r, c_ = divmod(i, cols)
@@ -448,7 +497,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             ini = ''.join(w_[0] for w_ in pe['name'].split()[:2])
             h += (f'<div class="og og{i}" style="left:110px;top:{y}px;width:640px;height:150px">'
                   f'<div class="oav">{E(ini)}</div><div class="onm tx" style="left:150px;top:18px">{E(pe["name"])}</div>'
-                  f'<div class="orl sb" style="left:152px;top:78px">{E(pe.get("role", ""))}</div></div>')
+                  f'<div class="orl sb" style="left:152px;top:72px">{T(pe.get("role", ""))}</div></div>')
         px, py = 690, 390
         h += (f'<div class="opb" style="left:{px}px;top:{py}px;height:380px"><div class="k">{E(pr.get("kicker", "The problem"))}</div>'
               f'<div class="tt">{T(pr["title"])}</div>'
@@ -545,6 +594,164 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             if fin.get('tag'):
                 tg = T0(fin['tag_at']) if fin.get('tag_at') is not None else tf + .8
                 tl.show(sel('.ltag'), tg, .4, 8); texts.append((tg, fin['tag']))
+
+
+    elif k == 'pressure':                    # statement left; right: a job ad nobody fills, then margins squeezed
+        lines = str(p['text']).count('<br>') + 1
+        h += f'<div class="vbig tx vb0" style="top:330px">{T(p["text"])}</div>'
+        y2 = 330 + int(92 * 1.04 * lines) + 70
+        if p.get('text2'): h += f'<div class="vbig tx vb1" style="top:{y2}px">{T(p["text2"])}</div>'
+        job = p.get('job') or {}
+        h += (f'<div class="vcard pj" style="left:1060px;top:200px;width:750px;height:310px"><div class="k">{E(job.get("kicker", "Job ad"))}</div>'
+              f'<div class="tt">{E(job.get("title", "Property manager"))}</div>'
+              f'<div class="jbn pjn" style="left:34px;top:130px">1</div>'
+              f'<div class="jbl" style="left:{34 + 110 if job.get("months", 8) < 10 else 34 + 190}px;top:196px">{E(job.get("unit", "months unfilled"))}</div>'
+              f'<div class="vchip pjc" style="right:30px;top:32px;background:#fbe1dc;color:#c0392b">{E(job.get("status", "Still open"))}</div></div>')
+        W_, H_ = 750, 380
+        h += (f'<div class="vcard pm" style="left:1060px;top:560px;width:{W_}px;height:{H_}px"><div class="k">{E(p.get("chart_kicker", "Property management"))}</div>'
+              f'<svg style="left:0;top:0" width="{W_}" height="{H_}" viewBox="0 0 {W_} {H_}" fill="none">'
+              f'<path d="M50 320H700" stroke="#c9c5bf" stroke-width="2"/>'
+              f'<path class="pma" d="M50 150L700 138L700 172L50 262Z" fill="rgba(239,118,25,.22)" opacity="0"/>'
+              f'<path class="d pmf" d="M50 150L700 138" stroke="#7d7873" stroke-width="5" stroke-linecap="round"/>'
+              f'<path class="d pmc" d="M50 262C220 250 380 222 520 196S650 176 700 172" stroke="#c0392b" stroke-width="5" stroke-linecap="round"/></svg>'
+              f'<div class="mlab pml1" style="left:540px;top:96px;color:#7d7873">{E(p.get("fees", "Fees"))}</div>'
+              f'<div class="mlab pml2" style="left:560px;top:206px;color:#c0392b">{E(p.get("costs", "Costs"))}</div>'
+              f'<div class="mlab pml3" style="left:70px;top:190px;color:#b8560c">{E(p.get("margin", "Margin"))}</div></div>')
+        tl.show(sel('.vb0'), t_start + .1, .6); texts.append((t_start + .1, p['text']))
+        tj = T0(job['at']) if job.get('at') is not None else t_start + .4
+        tl(f"tl.fromTo('#{pid} .pj',{{autoAlpha:0,x:60}},{{autoAlpha:1,x:0,duration:.5,ease:'power3.out'}},{tj:.3f});")
+        tl(f"count('#{pid} .pjn',{tj + .3:.3f},{job.get('months', 8)},1.2);")
+        tl(f"tl.fromTo('#{pid} .pjc',{{scale:.6,autoAlpha:0}},{{scale:1,autoAlpha:1,duration:.35,ease:'back.out(2)'}},{tj + 1.3:.3f});")
+        texts.append((tj, f"{job.get('title', '')} {job.get('unit', '')}"))
+        t2 = T0(p['text2_at']) if p.get('text2_at') is not None else t_start + 2
+        if p.get('text2'): tl.show(sel('.vb1'), t2, .6); texts.append((t2, p['text2']))
+        tl(f"tl.fromTo('#{pid} .pm',{{autoAlpha:0,x:60}},{{autoAlpha:1,x:0,duration:.5,ease:'power3.out'}},{t2 - .2:.3f});")
+        tl.draw(sel('.pmf'), t2 + .05, .6); tl.draw(sel('.pmc'), t2 + .15, .8)
+        tl(f"tl.to('#{pid} .pma',{{opacity:1,duration:.5}},{t2 + .7:.3f});")
+        tl.show(sel('.pml1'), t2 + .4, .3, 0); tl.show(sel('.pml2'), t2 + .55, .3, 0); tl.show(sel('.pml3'), t2 + .6, .4, 0)
+        texts.append((t2 + .6, 'Fees Costs Margin'))
+
+    elif k == 'colleague':                   # not another tool on the pile: a new member of the team
+        h += f'<div class="vbig tx vb0" style="top:330px">{T(p["text"])}</div>'
+        if p.get('text2'): h += f'<div class="vbig tx vb1" style="top:{330 + int(92 * 1.04 * (str(p["text"]).count("<br>") + 1)) + 50}px">{T(p["text2"])}</div>'
+        tools = p.get('tools', [])
+        for i, tw in enumerate(tools):
+            h += (f'<div class="twin tw{i}" style="left:{1150 + (i % 2) * 70}px;top:{250 + i * 112}px;transform:rotate({(-1.5, 1.2, -.8, 1.6, -1)[i % 5]}deg)">'
+                  f'<div class="ic">{icon(tw.get("icon", "doc"), 38)}</div><div class="l">{E(tw["label"])}</div><div class="x"></div></div>')
+        team = p.get('team', [])
+        rows = len(team) + 1
+        ch = 120 + rows * 112
+        h += (f'<div class="vdark ptm" style="left:1060px;top:{560 - ch / 2:.0f}px;width:750px;height:{ch}px">'
+              f'<div class="cap" style="left:30px;top:30px">{E(p.get("team_kicker", "The team"))}</div>')
+        for i, m in enumerate(team):
+            h += (f'<div class="trow tr{i}" style="top:{84 + i * 112}px"><div class="av">{icon(m.get("icon", "people"), 40)}</div>'
+                  f'<div class="r1">{E(m["role"])}</div><div class="r2">{E(m.get("text", ""))}</div></div>')
+        wi = len(team)
+        h += (f'<div class="trow w tr{wi}" style="top:{84 + wi * 112}px"><div class="av"><img src="{logo_light}" style="left:9px;top:22px;width:50px;height:24px;object-fit:contain"></div>'
+              f'<div class="r1">{E(p.get("walter_role", "walter"))}</div><div class="r2">{E(p.get("walter_text", "AI colleague"))}</div>'
+              f'<div class="vchip on" style="background:#EF7619;color:#1f1d1c">{E(p.get("walter_tag", "New"))}</div></div></div>')
+        tl.show(sel('.vb0'), t_start + .1, .6); texts.append((t_start + .1, p['text']))
+        for i in range(len(tools)):
+            tl(f"tl.fromTo('#{pid} .tw{i}',{{autoAlpha:0,y:-40}},{{autoAlpha:1,y:0,duration:.35,ease:'back.out(1.6)'}},{t_start + .15 + i * .12:.3f});")
+        texts.append((t_start + .15, ' '.join(tw['label'] for tw in tools)))
+        tx_ = T0(p['cross_at']) if p.get('cross_at') is not None else t_start + 1.2
+        tl(f"tl.to('#{pid} .twin .x',{{backgroundColor:'#c0392b',duration:.25,stagger:.05}},{tx_:.3f});")
+        t2 = T0(p['text2_at']) if p.get('text2_at') is not None else t_start + 2
+        tl(f"tl.to('#{pid} .twin',{{autoAlpha:0,y:60,duration:.35,stagger:.04,ease:'power2.in'}},{t2 - .45:.3f});")
+        if p.get('text2'): tl.show(sel('.vb1'), t2, .6); texts.append((t2, p['text2']))
+        tl(f"tl.fromTo('#{pid} .ptm',{{autoAlpha:0,x:60}},{{autoAlpha:1,x:0,duration:.45,ease:'power3.out'}},{t2 - .15:.3f});")
+        for i in range(len(team)):
+            tl(f"tl.fromTo('#{pid} .tr{i}',{{autoAlpha:0}},{{autoAlpha:1,duration:.3}},{t2 + .05 + i * .1:.3f});")
+        tw_ = T0(p['walter_at']) if p.get('walter_at') is not None else t2 + .9
+        tl(f"tl.fromTo('#{pid} .tr{wi}',{{autoAlpha:0,y:30,scale:.96}},{{autoAlpha:1,y:0,scale:1,duration:.5,ease:'back.out(1.8)'}},{tw_:.3f});")
+        texts.append((tw_, f"{p.get('walter_role', 'walter')} {p.get('walter_text', '')}"))
+
+    elif k == 'market':                      # the market as a circle; walter starts as a small orange circle inside it
+        cx, cy, R = 1390, 600, 330
+        h += (f'<div class="tx mkv">0</div><div class="sb mkl">{T(p.get("label", ""))}</div>')
+        for i, r_ in enumerate(p.get('rows', [])):
+            h += (f'<div class="mkr mkr{i}" style="top:{660 + i * 96}px"><div class="ic">{icon(r_.get("icon", "check"), 34, "currentColor", 1.8)}</div>'
+                  f'<div class="a tx">{E(r_["title"])}</div><div class="b sb">{E(r_.get("text", ""))}</div></div>')
+        r0, r1 = p.get('start_r', 100), p.get('grow_r', 150)
+        h += (f'<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
+              f'<circle class="mko" cx="{cx}" cy="{cy}" r="{R}" fill="rgba(245,245,245,.06)" opacity="0"/>'
+              f'<circle class="d mkoc" cx="{cx}" cy="{cy}" r="{R}" stroke="rgba(245,245,245,.6)" stroke-width="3" transform="rotate(-90 {cx} {cy})"/>'
+              f'<circle class="mkx" cx="{cx + 150}" cy="{cy + 60}" r="140" fill="rgba(245,245,245,.10)" stroke="rgba(245,245,245,.45)" stroke-width="2" stroke-dasharray="8 8" opacity="0"/>'
+              f'<circle class="mki" cx="{cx - 90}" cy="{cy + 40}" r="{r0}" fill="#EF7619"/></svg>')
+        h += f'<div class="cap mkt" style="left:{cx - 300}px;width:600px;top:{cy - R + 120}px;text-align:center">{E(p.get("circle_label", "Market"))}</div>'
+        h += f'<div class="mkin mkil" style="left:{cx - 90 - 100}px;width:200px;top:{cy + 40 - 16}px">{T(p.get("start_label", "Start"))}</div>'
+        h += f'<div class="sb mkxl" style="left:{cx + 110}px;width:220px;top:{cy + 30}px;font-size:24px;text-align:center;line-height:1.2">{T(p.get("alongside_label", "Existing software"))}</div>'
+        chips = p.get('chips', [])
+        pos = [(cx - 270, cy + R + 34), (cx - 85, cy + R + 34), (cx + 85, cy + R + 34)]
+        for i, ch_ in enumerate(chips):
+            x, y = pos[i % 3]
+            h += f'<div class="mkc mkc{i}" style="left:{x}px;top:{y}px">{E(ch_)}</div>'
+        tl.draw(sel('.mkoc'), t_start + .1, 1.0)
+        tl(f"tl.to('#{pid} .mko',{{opacity:1,duration:.6}},{t_start + .6:.3f});")
+        tl.show(sel('.mkt'), t_start + .5, .4, 0); texts.append((t_start + .5, p.get('circle_label', '')))
+        for i, t in enumerate(_times(p, len(chips), T0, t_start + .6, t_end, key='chips_at', gap=.4)):
+            tl(f"tl.fromTo('#{pid} .mkc{i}',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.35,ease:'back.out(2)'}},{t - .1:.3f});")
+            texts.append((t, chips[i]))
+        tv = T0(p['value_at']) if p.get('value_at') is not None else t_start + 1
+        tl.show(sel('.mkv'), tv - .1, .3, 0)
+        disp = json.dumps(p.get('display', ''))
+        tl(f"count('#{pid} .mkv',{tv:.3f},{float(p['value'])},1.4,n=>n>={float(p['value']) - .05}?{disp}:'€'+n.toFixed(1)+'bn');")
+        tl.show(sel('.mkl'), tv + .4, .45, 10); texts.append((tv + .4, p.get('label', '')))
+        rows = p.get('rows', []); trs = _times(p, len(rows), T0, tv + 2, t_end, key='row_at')
+        for i, t in enumerate(trs):
+            tl(f"tl.fromTo('#{pid} .mkr{i}',{{autoAlpha:0,x:-30}},{{autoAlpha:1,x:0,duration:.45,ease:'power3.out'}},{t - .1:.3f});")
+            texts.append((t, f"{rows[i]['title']} {rows[i].get('text', '')}"))
+        if trs:
+            tl(f"gsap.set('#{pid} .mki',{{scale:0,transformOrigin:'50% 50%'}});")
+            tl(f"tl.to('#{pid} .mki',{{scale:1,duration:.55,ease:'back.out(1.8)'}},{trs[0] - .1:.3f});")
+            tl.show(sel('.mkil'), trs[0] + .3, .35, 0)
+        if len(trs) > 1:
+            tl(f"tl.to('#{pid} .mkx',{{opacity:1,duration:.5}},{trs[1] - .1:.3f});"); tl.show(sel('.mkxl'), trs[1] + .2, .35, 0)
+            texts.append((trs[1] + .2, p.get('alongside_label', '')))
+        if len(trs) > 2:
+            sc = r1 / r0
+            tl(f"tl.to('#{pid} .mki',{{scale:{sc:.3f},duration:1.6,ease:'power2.inOut'}},{trs[2]:.3f});")
+        if p.get('note'):
+            h += f'<div class="vnote tx">{E(p["note"])}</div>'; tl.show(sel('.vnote'), tv + .4, .4, 0)
+
+    elif k == 'moves':                       # next steps as cards, each with a small moving picture
+        its = p['items']; n = len(its); gap = 34; w = (1700 - gap * (n - 1)) / n
+        top = 320 if p.get('head') else 240
+        for i, it in enumerate(its):
+            x = 110 + i * (w + gap); kd = it.get('kind'); vz = ''
+            if kd == 'flip':
+                vz = (f'<div class="mpill mf0" style="left:{w / 2 - 100:.0f}px;top:90px;width:200px;text-align:center;background:rgba(245,245,245,.12);color:#e6e2dd">{E(it.get("from", "Pilot"))}</div>'
+                      f'<div class="mpill mf1" style="left:{w / 2 - 110:.0f}px;top:90px;width:220px;text-align:center;background:#2f7a1d;color:#fff;opacity:0">{E(it.get("to", "Paying"))}</div>')
+            elif kd == 'shift':
+                vz = (f'<div class="mic ms0" style="left:{w / 2 - 150:.0f}px;top:76px">{icon(it.get("icon_from", "building"), 56)}</div>'
+                      f'<svg class="ms1" style="left:{w / 2 - 44:.0f}px;top:108px" width="88" height="32" viewBox="0 0 88 32" fill="none"><path class="d msa" d="M4 16H80M68 4L82 16L68 28" stroke="#EF7619" stroke-width="3"/></svg>'
+                      f'<div class="mic o ms2" style="left:{w / 2 + 54:.0f}px;top:76px">{icon(it.get("icon_to", "tower"), 56)}</div>')
+            elif kd == 'coins':
+                vz = ''.join(f'<div class="mcoin mc{j}" style="left:{w / 2 - 60:.0f}px;top:{170 - j * 26}px"></div>' for j in range(5))
+                vz += f'<div class="mic ms2" style="left:{w / 2 + 80:.0f}px;top:70px;width:76px;height:76px;border-radius:50%">{icon("people", 40)}</div>'
+            elif kd == 'seats':
+                for j in range(3):
+                    vz += f'<div class="mseat mt{j}" style="left:{w / 2 - 176 + j * 88:.0f}px;top:86px">{icon("people", 44)}</div>'
+                vz += f'<div class="mseat e mt3" style="left:{w / 2 + 88:.0f}px;top:86px">+</div>'
+            h += (f'<div class="mv mv{i}" style="left:{x:.0f}px;top:{top}px;width:{w:.0f}px;height:600px"><div class="vz" style="width:{w:.0f}px">{vz}</div>'
+                  f'<div class="n">0{i + 1}</div><div class="t tx">{E(it["title"])}</div><div class="d sb" style="width:{w - 68:.0f}px">{T(it.get("text", ""))}</div></div>')
+        for i, t in enumerate(_times(p, n, T0, t_start, t_end)):
+            it = its[i]; kd = it.get('kind'); s_ = f'#{pid} .mv{i}'
+            tl(f"tl.fromTo('{s_}',{{autoAlpha:0,y:40}},{{autoAlpha:1,y:0,duration:.5,ease:'power3.out'}},{t - .15:.3f});")
+            texts.append((t, f"{it['title']} {it.get('text', '')}"))
+            if kd == 'flip':
+                tl(f"tl.to('{s_} .mf0',{{rotationX:90,autoAlpha:0,duration:.25,ease:'power1.in'}},{t + .7:.3f});")
+                tl(f"tl.fromTo('{s_} .mf1',{{rotationX:-90,opacity:0}},{{rotationX:0,opacity:1,duration:.3,ease:'back.out(2)'}},{t + .95:.3f});")
+            elif kd == 'shift':
+                tl(f"tl.fromTo('{s_} .ms0',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.35}},{t + .1:.3f});")
+                tl.draw(f'{s_} .msa', t + .45, .5)
+                tl(f"tl.fromTo('{s_} .ms2',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.4,ease:'back.out(2)'}},{t + .9:.3f});")
+            elif kd == 'coins':
+                tl(f"tl.fromTo('{s_} .mcoin',{{autoAlpha:0,y:-40}},{{autoAlpha:1,y:0,duration:.3,ease:'bounce.out',stagger:.14}},{t + .1:.3f});")
+                tl(f"tl.fromTo('{s_} .ms2',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.4,ease:'back.out(2)'}},{t + .9:.3f});")
+            elif kd == 'seats':
+                tl(f"tl.fromTo('{s_} .mseat',{{autoAlpha:0,scale:.6}},{{autoAlpha:1,scale:1,duration:.3,ease:'back.out(2)',stagger:.12}},{t + .1:.3f});")
+                tl(f"tl.to('{s_} .mt3',{{scale:1.15,duration:.35,yoyo:true,repeat:3,ease:'power1.inOut'}},{t + .8:.3f});")
 
     else:
         raise ValueError(f'unknown visual panel type {k}')

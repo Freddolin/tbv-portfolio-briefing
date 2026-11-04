@@ -55,6 +55,12 @@ Research on 2 Nov 2026. Voice-over: script v3 (Fred, 2 Nov), recorded 3 Nov; pic
 | how | Building: version one (property management, live) as the ground floor, asset and facility management, sale and data room as roadmap floors | Okt-Walter: "Die gesamte Immobilie in einem System"; Fred (2 Nov): first version, keeps developing along the roadmap, residential to commercial |
 | team | Origin: Thomas Häusser and Karsten Eisenmann, problem card "margin pressure", brought to the TBV studio; Build First loop (build, test, validate), prototypes turn into the product | Script v3 (Fred, 2 Nov); the margin line and the wireframes are illustrations, not data |
 | traction | Funnel 280+ leads, 170+ demos, 30 live customers (3,200+ units) | Same figures as the numbers above |
+| problem | Job ad "Property manager (m/f/d)", 8 months unfilled | walter ads in Drive (B1 "Hausverwalter:in, unbesetzt seit 8 Monaten"); illustration of the staff shortage |
+| problem | Chart: costs climb towards flat fees, margin shrinks | Schematic, no data; Entscheidungsvorlage: "Property management firms face increasing margin pressure." |
+| how | Tool windows crossed out; team list where walter joins as "AI colleague" | hallowalter.com: "Keine Software. Ein neuer Mitarbeiter."; team roles are illustrative |
+| traction | 7,700 units as a grid of buildings (one per 100 units) | Same figure as the pilot above |
+| next | Market circle with walter's start segment, existing software next to it, growing | Entscheidungsvorlage (TAM ~€1.496bn); GTM Strategy v1 (mid-size residential, runs in parallel); per-unit pricing: Entscheidungsvorlage. Circle sizes are not to scale |
+| next | Next-step cards: pilot → paying, residential → commercial, funding, open seat for co-founders | CD deck NEXT (same as the steps above) |
 | team | Portraits | TBV_External_Deck_2026, team slide; roles: Notion, 04 Team & key contacts |
 | traction | Customer bars: June 4, July 8, September 22, today 30 | CD deck: "June: first 4 pilot contracts → July: 8 pilots → September: launch, 22 pilots"; 30: walter team feedback |
 | all | "As of November 2026" | Fred (2 Nov) |

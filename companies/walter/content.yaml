@@ -41,20 +41,46 @@ problem:
         - {icon: calendar, title: Owner meeting, meta: Agenda still missing, time: "18:15"}
         - {icon: alert, kind: error, title: Property software, meta: Export failed, time: "18:21"}
       item_at: [tenant, phone, invoices, service, owner, each in]
-    - {type: statement, at: good staff, text: "Good staff are hard to find.", sub: Margins are under pressure., sub_at: and margins}
+    - type: pressure          # picture: a job ad nobody fills, then fees flat while costs climb
+      at: good staff
+      text: "Good staff are<br>hard to find."
+      job: {kicker: Job ad, title: Property manager (m/f/d), months: 8, unit: months unfilled, status: Still open}
+      text2: "Margins are<br>under pressure."
+      text2_at: and margins
+      chart_kicker: A property management firm
+      fees: Fees
+      costs: Costs
+      margin: Margin
     - type: skyline           # picture: every new building brings its own pile
-      at: so every
-      item_at: [so every, null, null, null, null, null, null, null, null, people]
+      at: new building
+      item_at: [new building, null, null, null, null, null, null, null, null, people]
 
 how:
   panels:
-    - {type: statement, at: s0, text: "Not another tool.<br>A new colleague."}
+    - type: colleague         # picture: no new tool on the pile, a new member of the team
+      at: s0
+      text: "Not another<br>tool."
+      tools:
+        - {label: Property software, icon: doc}
+        - {label: Email inbox, icon: mail}
+        - {label: Excel lists, icon: sheet}
+      cross_at: another tool
+      text2: "A new<br>colleague."
+      text2_at: he works
+      team_kicker: The team
+      team:
+        - {role: Property manager, text: Tenants and owners, icon: people}
+        - {role: Accounting, text: Invoices and billing, icon: invoice}
+      walter_role: walter
+      walter_text: AI colleague, prepares the work
+      walter_tag: New
+      walter_at: like a
     - type: beats             # text left, real walter screen right
-      at: every building
+      at: gets its own
       items:
         - {label: Inbox, head: "One inbox<br>per building", text: "Emails, calls and WhatsApp messages land with the right building.", image: media/shot_inbox.jpg}
         - {label: Request, head: "Reads it, opens a ticket,<br>books the contractor", text: "Example: a tenant reports water damage in the bathroom.", image: media/shot_email.jpg}
-      item_at: [every building, reads]
+      item_at: [gets its own, opens a]
     - type: ui                # the walter home screen with everything else it handles
       at: he also
       src: media/app_home.jpg
@@ -108,8 +134,8 @@ team:
     - type: origin            # two Drees & Sommer partners bring a problem to the studio
       at: thomas
       people:
-        - {name: Thomas Häusser, role: "Partner · Drees & Sommer"}
-        - {name: Karsten Eisenmann, role: "Associate Partner · Drees & Sommer"}
+        - {name: Thomas Häusser, role: "Partner<br>Drees & Sommer"}
+        - {name: Karsten Eisenmann, role: "Associate Partner<br>Drees & Sommer"}
       people_at: [thomas, karsten]
       problem:
         at: saw property
@@ -171,38 +197,50 @@ traction:
         - {label: September, value: 22, tag: Market launch}
         - {label: Today, value: 30, tag: Converting to paid}
       item_at: [the first, customers, are now, being]
-    - type: kpis
+    - type: units             # picture: 7,700 units as a grid of buildings
       at: next in line
       head: Next in line
+      value: 7700
+      per: 100
+      cols: 14
+      icon_size: 52
+      gap: 14
+      display: "7,700"
+      value_at: seven thousand
+      label: units in a pilot agreed by handshake
+      extra: "+ more commercial pilot customers"
+      extra_at: commercial
       note: As of November 2026
-      items: [{value: "7,700", label: units in a pilot agreed by handshake}, {value: More, label: commercial pilot customers}]
-      item_at: [seven thousand, commercial]
 
 next:
   panels:
     - {type: statement, at: s0, text: "The opportunity<br>is large."}
-    - type: kpis
+    - type: market            # picture: the market as a circle, walter starts as a small orange circle inside
       at: software for
       head: The market
-      note: "Total market, walter business plan"
-      items: [{value: DACH, label: "Germany, Austria and Switzerland"}, {value: "€1.5bn", label: a year for property management software}]
-      item_at: [germany, one and a half]
-    - type: steps
-      at: valter starts
-      head: How walter wins its share
-      items:
-        - {title: Start, text: Mid-size residential property managers}
-        - {title: Easy entry, text: Runs alongside the software they already use}
-        - {title: Grow, text: "Priced per unit, grows with every portfolio"}
-      item_at: [valter starts, runs alongside, priced]
-    - type: steps
+      circle_label: Property management software
+      chips: [Germany, Austria, Switzerland]
+      chips_at: [germany, austria, switzerland]
+      value: 1.5
+      display: "€1.5bn"
+      value_at: one and a half
+      label: "a year for property management software in Germany, Austria and Switzerland"
+      start_label: "walter"
+      alongside_label: "Existing<br>software"
+      rows:
+        - {title: Start, text: Mid-size residential property managers, icon: building}
+        - {title: Easy entry, text: Runs alongside the software they already use, icon: sheet}
+        - {title: Grows, text: "Priced per unit, grows with every portfolio", icon: euro}
+      row_at: [valter starts, runs alongside, priced]
+      note: "Total market: walter business plan"
+    - type: moves             # pictures: pilot flips to paying, residential to commercial, funding, an open seat
       at: what comes next
       head: What comes next
       items:
-        - {title: Convert, text: Pilots become paying customers}
-        - {title: Commercial, text: From residential to commercial portfolios}
-        - {title: Funding, text: First round with external investors}
-        - {title: Team, text: "Complete it, including co-founders"}
+        - {title: Convert, text: Pilots become paying customers, kind: flip, from: Pilot, to: Paying}
+        - {title: Commercial, text: From residential to commercial property management, kind: shift, icon_from: building, icon_to: tower}
+        - {title: Funding, text: First round with external investors, kind: coins}
+        - {title: Team, text: "Complete it, including co-founders", kind: seats}
       item_at: [turn, grow from, prepare, complete]
 
 ds:
