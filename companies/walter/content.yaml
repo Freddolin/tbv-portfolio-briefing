@@ -179,7 +179,7 @@ traction:
   panels:
     - {type: statement, at: s0, text: "The market<br>is responding."}
     - type: funnel            # picture: leads, demos, live customers
-      at: more than two
+      at: after only
       head: After the first marketing tests
       note: As of November 2026
       items:

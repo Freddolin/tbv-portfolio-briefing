@@ -55,6 +55,7 @@ Research on 2 Nov 2026. Voice-over: script v3 (Fred, 2 Nov), recorded 3 Nov; pic
 | how | Building: version one (property management, live) as the ground floor, asset and facility management, sale and data room as roadmap floors | Okt-Walter: "Die gesamte Immobilie in einem System"; Fred (2 Nov): first version, keeps developing along the roadmap, residential to commercial |
 | team | Origin: Thomas Häusser and Karsten Eisenmann, problem card "margin pressure", brought to the TBV studio; Build First loop (build, test, validate), prototypes turn into the product | Script v3 (Fred, 2 Nov); the margin line and the wireframes are illustrations, not data |
 | traction | Funnel 280+ leads, 170+ demos, 30 live customers (3,200+ units) | Same figures as the numbers above |
+| traction | "After only the first marketing tests" (voice and funnel heading) | Fred (4 Nov): the leads come from first marketing experiments, not the whole market |
 | problem | Job ad "Property manager (m/f/d)", 8 months unfilled | walter ads in Drive (B1 "Hausverwalter:in, unbesetzt seit 8 Monaten"); illustration of the staff shortage |
 | problem | Chart: costs climb towards flat fees, margin shrinks | Schematic, no data; Entscheidungsvorlage: "Property management firms face increasing margin pressure." |
 | how | Tool windows crossed out; team list where walter joins as "AI colleague" | hallowalter.com: "Keine Software. Ein neuer Mitarbeiter."; team roles are illustrative |
