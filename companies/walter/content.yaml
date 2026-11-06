@@ -199,8 +199,8 @@ traction:
         - {label: Today, value: 30, tag: Converting to paid}
       item_at: [the first, customers, are now, being]
     - type: units             # picture: 7,700 units as a grid of buildings
-      at: next in line
-      head: Next in line
+      at: just signed
+      head: Just signed
       value: 7700
       per: 100
       cols: 14
@@ -208,32 +208,31 @@ traction:
       gap: 14
       display: "7,700"
       value_at: seven thousand
-      label: units in a pilot agreed by handshake
-      extra: "+ more commercial pilot customers"
+      label: units in a new pilot, contract signed
+      extra: "+ more commercial pilot customers next in line"
       extra_at: commercial
       note: As of November 2026
 
 next:
   panels:
     - {type: statement, at: s0, text: "The opportunity<br>is large."}
-    - type: market            # picture: the market as a circle, walter starts as a small orange circle inside
-      at: software for
+    - type: market            # picture: the market to scale: Europe, DACH, and the share walter can realistically win
+      at: in germany
       head: The market
-      circle_label: Property management software
-      chips: [Germany, Austria, Switzerland]
-      chips_at: [germany, austria, switzerland]
       value: 1.5
       display: "€1.5bn"
       value_at: one and a half
-      label: "a year for property management software in Germany, Austria and Switzerland"
-      start_label: "walter"
-      alongside_label: "Existing<br>software"
+      label: "a year: the market walter addresses in Germany, Austria and Switzerland"
+      rings:                  # outer to inner; areas to scale
+        - {value: 3.87, display: "€3.87bn", label: Europe, at: close to four, style: faint}
+        - {value: 1.5, display: "€1.5bn", label: "DACH", at: the market, style: solid}
+        - {value: 0.077, display: "€77M a year", label: "realistically<br>within reach", at: seventy-seven, style: orange}
       rows:
         - {title: Start, text: Mid-size residential property managers, icon: building}
         - {title: Easy entry, text: Runs alongside the software they already use, icon: sheet}
         - {title: Grows, text: "Priced per unit, grows with every portfolio", icon: euro}
       row_at: [valter starts, runs alongside, priced]
-      note: "Total market: walter business plan"
+      note: "Market size (TAM) and obtainable share (SOM): walter business plan. Circle areas to scale."
     - type: moves             # pictures: pilot flips to paying, residential to commercial, funding, an open seat
       at: what comes next
       head: What comes next

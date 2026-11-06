@@ -683,23 +683,54 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         for i, r_ in enumerate(p.get('rows', [])):
             h += (f'<div class="mkr mkr{i}" style="top:{660 + i * 96}px"><div class="ic">{icon(r_.get("icon", "check"), 34, "currentColor", 1.8)}</div>'
                   f'<div class="a tx">{E(r_["title"])}</div><div class="b sb">{E(r_.get("text", ""))}</div></div>')
+        if p.get('rings'):
+            rg = p['rings']; vmax = max(float(x['value']) for x in rg); RR = p.get('ring_r', 330); cx = p.get('cx', 1250); bottom = 945
+            svgr = '<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
+            labs = ''
+            for i, x in enumerate(rg):
+                r = RR * (float(x['value']) / vmax) ** .5; cyi = bottom - r; st = x.get('style', 'solid')
+                fill = {'faint': 'rgba(245,245,245,.04)', 'solid': 'rgba(245,245,245,.09)', 'orange': '#EF7619'}[st]
+                stroke = {'faint': 'rgba(245,245,245,.45)', 'solid': 'rgba(245,245,245,.8)', 'orange': '#EF7619'}[st]
+                dash = ' stroke-dasharray="8 8"' if st == 'faint' else ''
+                svgr += f'<circle class="mrg mrg{i}" cx="{cx}" cy="{cyi:.0f}" r="{r:.0f}" fill="{fill}" stroke="{stroke}" stroke-width="2.5"{dash} style="transform-origin:{cx}px {bottom}px"/>'
+                if st == 'orange':
+                    lx = cx + r + p.get('label_dx', 200)
+                    svgr += f'<path class="d mrl{i}" d="M{cx + r + 8:.0f} {cyi:.0f}H{lx - 14:.0f}" stroke="#EF7619" stroke-width="2"/>'
+                    labs += (f'<div class="tx mrv{i}" style="left:{lx:.0f}px;top:{cyi - 40:.0f}px;font-size:48px;letter-spacing:-.03em;white-space:nowrap;color:var(--orange)">{E(x["display"])}</div>'
+                             f'<div class="cap mrc{i}" style="left:{lx:.0f}px;top:{cyi + 18:.0f}px;line-height:1.35">{T(x.get("label", ""))}</div>')
+                else:
+                    ty = bottom - 2 * r + (44 if i == 0 else r * .55)
+                    labs += (f'<div class="cap mrc{i}" style="left:{cx - 300}px;width:600px;top:{ty:.0f}px;text-align:center">{T(x.get("label", ""))}</div>'
+                             f'<div class="tx mrv{i}" style="left:{cx - 300}px;width:600px;top:{ty + 30:.0f}px;text-align:center;font-size:52px;letter-spacing:-.035em">{E(x["display"])}</div>')
+            h += svgr + '</svg>' + labs
+            for i, x in enumerate(rg):
+                tr = T0(x['at']) if x.get('at') is not None else t_start + .3
+                if x.get('style') == 'orange':
+                    tl(f"tl.fromTo('#{pid} .mrg{i}',{{autoAlpha:0,scale:0}},{{autoAlpha:1,scale:1,duration:.6,ease:'back.out(2)'}},{tr - .1:.3f});")
+                    tl.draw(sel(f'.mrl{i}'), tr + .3, .4)
+                else:
+                    tl(f"tl.fromTo('#{pid} .mrg{i}',{{autoAlpha:0,scale:.85}},{{autoAlpha:1,scale:1,duration:.7,ease:'power3.out'}},{tr - .1:.3f});")
+                tl.show(sel(f'.mrc{i}'), tr + .2, .4, 6); tl.show(sel(f'.mrv{i}'), tr + .35, .4, 6)
+                texts.append((tr + .35, f"{x.get('label', '')} {x['display']}"))
         r0, r1 = p.get('start_r', 100), p.get('grow_r', 150)
-        h += (f'<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
+        old = not p.get('rings')
+        if old: h += (f'<svg class="vx" viewBox="0 0 1920 1080" fill="none">'
               f'<circle class="mko" cx="{cx}" cy="{cy}" r="{R}" fill="rgba(245,245,245,.06)" opacity="0"/>'
               f'<circle class="d mkoc" cx="{cx}" cy="{cy}" r="{R}" stroke="rgba(245,245,245,.6)" stroke-width="3" transform="rotate(-90 {cx} {cy})"/>'
               f'<circle class="mkx" cx="{cx + 150}" cy="{cy + 60}" r="140" fill="rgba(245,245,245,.10)" stroke="rgba(245,245,245,.45)" stroke-width="2" stroke-dasharray="8 8" opacity="0"/>'
               f'<circle class="mki" cx="{cx - 90}" cy="{cy + 40}" r="{r0}" fill="#EF7619"/></svg>')
-        h += f'<div class="cap mkt" style="left:{cx - 300}px;width:600px;top:{cy - R + 120}px;text-align:center">{E(p.get("circle_label", "Market"))}</div>'
-        h += f'<div class="mkin mkil" style="left:{cx - 90 - 100}px;width:200px;top:{cy + 40 - 16}px">{T(p.get("start_label", "Start"))}</div>'
-        h += f'<div class="sb mkxl" style="left:{cx + 110}px;width:220px;top:{cy + 30}px;font-size:24px;text-align:center;line-height:1.2">{T(p.get("alongside_label", "Existing software"))}</div>'
+        if old: h += f'<div class="cap mkt" style="left:{cx - 300}px;width:600px;top:{cy - R + 120}px;text-align:center">{E(p.get("circle_label", "Market"))}</div>'
+        if old: h += f'<div class="mkin mkil" style="left:{cx - 90 - 100}px;width:200px;top:{cy + 40 - 16}px">{T(p.get("start_label", "Start"))}</div>'
+        if old: h += f'<div class="sb mkxl" style="left:{cx + 110}px;width:220px;top:{cy + 30}px;font-size:24px;text-align:center;line-height:1.2">{T(p.get("alongside_label", "Existing software"))}</div>'
         chips = p.get('chips', [])
         pos = [(cx - 270, cy + R + 34), (cx - 85, cy + R + 34), (cx + 85, cy + R + 34)]
         for i, ch_ in enumerate(chips):
             x, y = pos[i % 3]
             h += f'<div class="mkc mkc{i}" style="left:{x}px;top:{y}px">{E(ch_)}</div>'
-        tl.draw(sel('.mkoc'), t_start + .1, 1.0)
-        tl(f"tl.to('#{pid} .mko',{{opacity:1,duration:.6}},{t_start + .6:.3f});")
-        tl.show(sel('.mkt'), t_start + .5, .4, 0); texts.append((t_start + .5, p.get('circle_label', '')))
+        if old:
+            tl.draw(sel('.mkoc'), t_start + .1, 1.0)
+            tl(f"tl.to('#{pid} .mko',{{opacity:1,duration:.6}},{t_start + .6:.3f});")
+            tl.show(sel('.mkt'), t_start + .5, .4, 0); texts.append((t_start + .5, p.get('circle_label', '')))
         for i, t in enumerate(_times(p, len(chips), T0, t_start + .6, t_end, key='chips_at', gap=.4)):
             tl(f"tl.fromTo('#{pid} .mkc{i}',{{autoAlpha:0,scale:.7}},{{autoAlpha:1,scale:1,duration:.35,ease:'back.out(2)'}},{t - .1:.3f});")
             texts.append((t, chips[i]))
@@ -712,14 +743,14 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         for i, t in enumerate(trs):
             tl(f"tl.fromTo('#{pid} .mkr{i}',{{autoAlpha:0,x:-30}},{{autoAlpha:1,x:0,duration:.45,ease:'power3.out'}},{t - .1:.3f});")
             texts.append((t, f"{rows[i]['title']} {rows[i].get('text', '')}"))
-        if trs:
+        if trs and old:
             tl(f"gsap.set('#{pid} .mki',{{scale:0,transformOrigin:'50% 50%'}});")
             tl(f"tl.to('#{pid} .mki',{{scale:1,duration:.55,ease:'back.out(1.8)'}},{trs[0] - .1:.3f});")
             tl.show(sel('.mkil'), trs[0] + .3, .35, 0)
-        if len(trs) > 1:
+        if len(trs) > 1 and old:
             tl(f"tl.to('#{pid} .mkx',{{opacity:1,duration:.5}},{trs[1] - .1:.3f});"); tl.show(sel('.mkxl'), trs[1] + .2, .35, 0)
             texts.append((trs[1] + .2, p.get('alongside_label', '')))
-        if len(trs) > 2:
+        if len(trs) > 2 and old:
             sc = r1 / r0
             tl(f"tl.to('#{pid} .mki',{{scale:{sc:.3f},duration:1.6,ease:'power2.inOut'}},{trs[2]:.3f});")
         if p.get('note'):
