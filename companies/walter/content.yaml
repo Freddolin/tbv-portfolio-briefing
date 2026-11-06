@@ -121,12 +121,13 @@ how:
       sub2: towards the whole property in one system.
       sub2_at: whole property
       pulse_at: property asset
-      floors:
+      floors:                 # bottom to top: the value chain reads Asset, Property, Facility Management from the top
+        - {title: Facility management, text: Technical operations, icon: wrench}
         - {title: Property management, text: "Residential today, commercial next", icon: building, live: true, tag: "Live · version 1"}
         - {title: Asset management, text: "Value, returns, reporting", icon: euro}
-        - {title: Facility management, text: Technical operations, icon: wrench}
-        - {title: Sale & data room, text: Up to the change of owner, icon: doc}
-      item_at: [asset, facility, the sale]
+      item_at: [facility, asset]  # order of the non-live floors above (bottom to top)
+      roof: Up to the sale and data room
+      roof_at: the sale
 
 team:
   panels:

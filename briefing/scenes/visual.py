@@ -468,6 +468,8 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         ytop = base - n * (fh + g)
         svg += f'<path class="d skr" stroke="#EF7619" stroke-width="3" stroke-linejoin="round" d="M{x0 - 10} {ytop + 4}L{x0 + w / 2:.0f} {ytop - 96}L{1820} {ytop + 4}"/></svg>'
         h += svg
+        if p.get('roof'):
+            h += f'<div class="cap skrl" style="left:{x0}px;width:{w}px;top:{ytop - 140}px;text-align:center;color:var(--orange)">{E(p["roof"])}</div>'
         for i, f_ in enumerate(fl):
             y = base - (i + 1) * (fh + g) + g
             live = ' live' if f_.get('live') else ''
@@ -480,6 +482,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
         tl.draw(sel('.skg'), t_start + .05, .7)
         later = [i for i, f_ in enumerate(fl) if not f_.get('live')]
         ts = _times(p, len(later), T0, t_start, t_end)
+        live_i = next((i for i, f_ in enumerate(fl) if f_.get('live')), -1)
         for i, f_ in enumerate(fl):
             if f_.get('live'):
                 tl(f"tl.fromTo('#{pid} .skf{i}',{{autoAlpha:0,y:40}},{{autoAlpha:1,y:0,duration:.6,ease:'power3.out'}},{t_start + .35:.3f});")
@@ -487,9 +490,12 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
                 if p.get('pulse_at') is not None:
                     tl(f"tl.to('#{pid} .skf{i}',{{scale:1.03,duration:.25,yoyo:true,repeat:1,ease:'power1.inOut'}},{T0(p['pulse_at']):.3f});")
         for i, t in zip(later, ts):
-            tl(f"tl.fromTo('#{pid} .skf{i}',{{autoAlpha:0,y:-70}},{{autoAlpha:1,y:0,duration:.55,ease:'power3.out'}},{t - .15:.3f});")
+            dy = 70 if i < live_i else -70          # floors below the live one rise up, floors above drop in
+            tl(f"tl.fromTo('#{pid} .skf{i}',{{autoAlpha:0,y:{dy}}},{{autoAlpha:1,y:0,duration:.55,ease:'power3.out'}},{t - .15:.3f});")
             texts.append((t, f"{fl[i]['title']} {fl[i].get('text', '')}"))
-        if ts: tl.draw(sel('.skr'), ts[-1] + .3, .7)
+        tr = T0(p['roof_at']) if p.get('roof_at') is not None else (max(ts) + .3 if ts else t_start + 1)
+        tl.draw(sel('.skr'), tr - .1, .7)
+        if p.get('roof'): tl.show(sel('.skrl'), tr + .3, .4, 8); texts.append((tr + .3, p['roof']))
         for j, (sk, ak) in enumerate((('sub', 'sub_at'), ('sub2', 'sub2_at'))):
             if p.get(sk):
                 tsb = T0(p[ak]) if p.get(ak) is not None else t_start + 1 + j
