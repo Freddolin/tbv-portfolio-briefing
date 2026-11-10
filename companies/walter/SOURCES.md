@@ -33,6 +33,10 @@ Research on 2 Nov 2026. Voice-over: script v3 (Fred, 2 Nov), recorded 3 Nov; pic
 | ds_d | Introductions to asset managers, portfolio holders, property managers open to a pilot | CD deck: "We welcome introductions to asset managers, portfolio holders and property managers who are open to pilot projects." |
 | ds_d | Exchange on D&S's own utility billing review | CD deck appendix: "Exchange with D&S on its internal utility billing review" |
 
+## Corrections 10 Nov 2026 (feedback via Fred)
+- Not every building necessarily gets its own email address; that is the best case. Voice and screen now say "Ideally".
+- Introductions wanted are for commercial: asset managers and commercial property managers. Residential (property managers, portfolio holders) is already live.
+
 ## Left out on purpose
 - **Customer and lead names** (pilot customers, the 11,800-unit project, retail chains): the CD deck names some, but the film may travel further.
 - **Dates and the launch event.** Timeless rule. Only exception: "As of November 2026" under the traction numbers (Fred, 2 Nov).

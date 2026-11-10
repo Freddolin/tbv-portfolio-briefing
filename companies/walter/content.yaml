@@ -79,7 +79,7 @@ how:
     - type: beats             # text left, real walter screen right
       at: gets its own
       items:
-        - {label: Inbox, head: "One inbox<br>per building", text: "Emails, calls and WhatsApp messages land with the right building.", image: media/shot_inbox.jpg}
+        - {label: Inbox, head: "Ideally, one inbox<br>per building", text: "Emails, calls and WhatsApp messages land with the right building.", image: media/shot_inbox.jpg}
         - {label: Request, head: "Reads it, opens a ticket,<br>books the contractor", text: "Example: a tenant reports water damage in the bathroom.", image: media/shot_email.jpg}
       item_at: [gets its own, opens a]
     - type: ui                # the walter home screen with everything else it handles
@@ -252,7 +252,7 @@ ds:
     names_at: [thomas, karsten]
     steps:
       - [Network, Doors opened, Large retail and real estate companies]
-      - [Intros, Clients open to a pilot, "Asset managers, portfolio holders, property managers"]
+      - [Intros, Commercial pilot clients, "Asset managers and commercial property managers"]
       - [In-house, Utility billing review, "Exchange on Drees & Sommer's own process"]
     at: [their network, introductions, utility]
 
