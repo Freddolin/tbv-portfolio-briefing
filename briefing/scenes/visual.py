@@ -97,10 +97,10 @@ CSS = r"""
 .jbl{font-size:30px;font-weight:400;color:#4a4643;white-space:nowrap}
 .mlab{font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
 /* colleague */
-.twin{width:560px;height:96px;border-radius:16px;background:#3a3634;border:1.5px solid rgba(245,245,245,.25);box-shadow:0 16px 34px rgba(0,0,0,.35);color:#F5F5F5}
+.twin{width:560px;height:96px;border-radius:16px;background:#F5F5F5;box-shadow:0 22px 44px rgba(0,0,0,.38);color:#282524}
 .twin .ic{left:24px;top:24px}
-.twin .l{left:84px;top:30px;font-size:30px;white-space:nowrap;color:#e6e2dd}
-.twin .x{right:22px;top:30px;width:36px;height:36px;border-radius:50%;background:rgba(245,245,245,.12)}
+.twin .l{left:84px;top:30px;font-size:30px;white-space:nowrap;color:#282524}
+.twin .x{right:22px;top:30px;width:36px;height:36px;border-radius:50%;background:#ECE9E4}
 .trow{left:30px;width:690px;height:96px;border-radius:16px}
 .trow .av{left:16px;top:14px;width:68px;height:68px;border-radius:50%;background:#4a4643;color:#F5F5F5;font-size:24px;text-align:center;line-height:68px}
 .trow .av svg{position:absolute !important;left:14px;top:14px}

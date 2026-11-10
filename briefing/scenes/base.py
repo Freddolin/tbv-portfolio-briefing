@@ -7,7 +7,8 @@ from ..config import COLORS, reading_time
 E = lambda s: _h.escape(str(s), quote=False)
 def T(s):
     """Escape text but keep explicit line breaks written as <br> or '\\n'."""
-    return E(s).replace('&lt;br&gt;', '<br>').replace('\n', '<br>')
+    import re
+    return re.sub(r'\*([^*]+)\*', r'<em>\1</em>', E(s).replace('&lt;br&gt;', '<br>').replace('\n', '<br>'))   # *word* = orange accent
 
 CSS = r"""
 @font-face{font-family:Archivo;font-weight:400;src:url(node_modules/@fontsource/archivo/files/archivo-latin-400-normal.woff2) format('woff2')}
@@ -19,6 +20,7 @@ html,body{background:#000;width:1920px;height:1080px;overflow:hidden}
 #stage{position:relative;width:1920px;height:1080px;overflow:hidden;font-family:Archivo,sans-serif;font-weight:500;color:var(--lg);-webkit-font-smoothing:antialiased;background:var(--dark)}
 #stage *{position:absolute}
 #stage .st,#stage .st *{position:static}
+#stage em{position:static;font-style:normal;color:var(--orange)}
 svg{overflow:visible}
 .h{visibility:hidden;opacity:0}
 .sc{left:0;top:0;width:1920px;height:1080px}

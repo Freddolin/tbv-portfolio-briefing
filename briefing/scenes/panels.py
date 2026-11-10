@@ -15,7 +15,7 @@ ARROW = '<svg {a} viewBox="0 0 84 20" fill="none" stroke="#EF7619" stroke-width=
 CSS = r"""
 .pn{left:0;top:0;width:1920px;height:1080px}
 .pn .ph{left:110px;top:186px;width:1700px;font-size:64px;letter-spacing:-.035em;line-height:1.08}
-.pn .pbig{left:110px;top:300px;width:1700px;font-size:104px;letter-spacing:-.045em;line-height:1.04}
+.pn .pbig{left:110px;top:330px;width:1700px;font-size:136px;letter-spacing:-.05em;line-height:1.0}
 .pn .psub{left:110px;width:1700px;font-size:40px;font-weight:400;line-height:1.25}
 .pn .wd{left:110px;font-size:88px;letter-spacing:-.04em;line-height:1;white-space:nowrap}
 .pn .tile{left:110px;width:900px;height:104px;border-radius:14px}
@@ -80,7 +80,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
     sel = lambda c: f'#{pid} {c}'
     if k == 'statement':
         h += f'<div class="pbig tx">{T(p["text"])}</div>'
-        top = 300 + 125 * (str(p['text']).count('<br>') + 1) + 30
+        top = 330 + 136 * (str(p['text']).count('<br>') + 1) + 44
         if p.get('sub'): h += f'<div class="psub sb" style="top:{top}px">{T(p["sub"])}</div>'
         tl.show(sel('.pbig'), t_start + .1, .6); texts.append((t_start + .1, p['text']))
         if p.get('sub'):

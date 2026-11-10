@@ -31,7 +31,7 @@ handover:
 
 problem:
   panels:
-    - {type: statement, at: s0, text: "Property management<br>runs on manual work."}
+    - {type: statement, at: s0, text: "Property management<br>runs on *manual work.*"}
     - type: notify            # picture: everything arrives at once, each in a different tool
       at: tenant
       items:
@@ -66,7 +66,7 @@ how:
         - {label: Email inbox, icon: mail}
         - {label: Excel lists, icon: sheet}
       cross_at: another tool
-      text2: "A new<br>colleague."
+      text2: "A new<br>*colleague.*"
       text2_at: he works
       team_kicker: The team
       team:
@@ -116,7 +116,7 @@ how:
           click_at: approves
     - type: stack             # version one is the ground floor; the roadmap builds the whole house
       at: first version
-      text: "This is<br>version one."
+      text: "This is<br>*version one.*"
       sub: It keeps growing along the walter roadmap,
       sub_at: valter keeps
       sub2: towards the whole property in one system.
@@ -132,13 +132,12 @@ how:
 
 team:
   panels:
-    - {type: statement, at: s0, text: "Built in-house.<br>It started with a problem."}
     - type: origin            # two Drees & Sommer partners bring a problem to the studio
-      at: thomas
+      at: s0
       people:
         - {name: Thomas Häusser, role: "Partner<br>Drees & Sommer"}
         - {name: Karsten Eisenmann, role: "Associate Partner<br>Drees & Sommer"}
-      people_at: [thomas, karsten]
+      people_at: [drees and sommer partner, karsten]
       problem:
         at: saw property
         kicker: The problem they saw
@@ -179,7 +178,7 @@ team:
 
 traction:
   panels:
-    - {type: statement, at: s0, text: "The market<br>is responding."}
+    - {type: statement, at: s0, text: "The market<br>is *responding.*"}
     - type: funnel            # picture: leads, demos, live customers
       at: after only
       head: After the first marketing tests
@@ -216,7 +215,7 @@ traction:
 
 next:
   panels:
-    - {type: statement, at: s0, text: "The opportunity<br>is large."}
+    - {type: statement, at: s0, text: "The opportunity<br>is *large.*"}
     - type: market            # picture: the market to scale: Europe, DACH, and the share walter can realistically win
       at: in germany
       head: The market

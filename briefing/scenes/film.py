@@ -23,13 +23,17 @@ def explainer(b, c, chapter_key, spec):
         t1 = starts[i + 1] - .1 if i + 1 < len(pans) else b.t_end
         ph, pj, pt, ph_holds = P.build(f'{sid}p{i}', p, t0, t1, b.T, logo)
         h += ph; tl(pj); texts += pt; holds += ph_holds
+        if p.get('type') != 'ui':             # nothing stands still: a slow push-in on every panel
+            tl(f"tl.fromTo('#{sid}p{i}',{{scale:1}},{{scale:1.035,duration:{max(.5, t1 - t0 + .4):.2f},ease:'none',transformOrigin:'50% 50%'}},{t0:.3f});")
         if i + 1 < len(pans) and pt:      # the next panel must not replace this one before it was read
             short = max(t + reading_time(x) for t, x in pt) - (t1 - .35)
             if short > .05 and pans[i + 1].get('at') != 'after': holds.append((pans[i + 1]['at'], short))
         if c.get('pacing') != 'voice' and p.get('min') and i + 1 < len(pans) and pans[i + 1].get('at') != 'after' and t1 - t0 < p['min'] - .05:   # visual panels: let the picture breathe
             holds.append((pans[i + 1]['at'], p['min'] - (t1 - t0)))
     h += '</div>'
-    tl.on(f'#{sid}', b.t0); tl.hide(f'#{sid} .chap,#{sid} .rule', b.t_end - .35, .3); tl.off(f'#{sid}', b.t_end + .01)
+    tl.on(f'#{sid}', b.t0); tl.hide(f'#{sid} .chap,#{sid} .rule', b.t_end - .35, .3)
+    tl(f"tl.fromTo('#{sid} .rule',{{scaleX:0,transformOrigin:'0% 50%'}},{{scaleX:1,duration:.8,ease:'power3.out'}},{b.t0 + .02:.3f});")
+    tl(f"tl.fromTo('#{sid} .chap',{{autoAlpha:0,x:-16}},{{autoAlpha:1,x:0,duration:.5,ease:'power2.out'}},{b.t0 + .12:.3f});"); tl.off(f'#{sid}', b.t_end + .01)
     # readability: the last panel decides how long the scene must stay
     last = [x for x in texts if x[0] >= starts[-1] - .2]
     need = max(need_for(last), starts[-1] - .1 + (0 if c.get('pacing') == 'voice' else pans[-1].get('min', 0)) + .35)
