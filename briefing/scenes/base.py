@@ -22,7 +22,8 @@ html,body{background:#000;width:1920px;height:1080px;overflow:hidden}
 svg{overflow:visible}
 .h{visibility:hidden;opacity:0}
 .sc{left:0;top:0;width:1920px;height:1080px}
-.sc.dk{background:var(--dark)} .sc.wm{background:var(--warm)}
+.sc.dk{background:radial-gradient(1500px 1000px at 72% 38%,#34302e 0%,var(--dark) 55%,#1e1b1a 100%)} .sc.wm{background:radial-gradient(1600px 1100px at 30% 30%,#f3f0eb 0%,var(--warm) 60%)}
+#stage::after{content:'';position:absolute;left:0;top:0;width:1920px;height:1080px;background:url(assets/img/grain.png);opacity:.07;mix-blend-mode:overlay;pointer-events:none;z-index:9999}
 .cap{font-weight:600;font-size:22px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
 .dk .cap{color:#cfcbc6} .wm .cap{color:var(--mid)}
 .chap{left:110px;top:64px}

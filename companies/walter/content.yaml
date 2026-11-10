@@ -6,6 +6,7 @@
 company: walter
 kind: build_first
 number: 5
+chapter_titles: {next: Market & next steps}
 pacing: voice            # visuals follow the voice-over; no pauses are inserted into it
 origin: "Berlin, Germany  ·  Founded 2026"
 logo: {light: media/logo_light.png, dark: media/logo_dark.png}   # from the walter slides in the Commitment Days deck (light = walter's sage version, dark = same artwork in walter green #0d1d00)
@@ -225,7 +226,7 @@ next:
       label: "a year: the market walter addresses in Germany, Austria and Switzerland"
       rings:                  # outer to inner; areas to scale
         - {value: 3.87, display: "€3.87bn", label: Europe, at: close to four, style: faint}
-        - {value: 1.5, display: "€1.5bn", label: "DACH", at: the market, style: solid}
+        - {value: 1.5, display: "€1.5bn", label: "DACH", at: in germany, style: solid}
         - {value: 0.077, display: "€77M a year", label: "realistically<br>within reach", at: seventy-seven, style: orange}
       rows:
         - {title: Start, text: Mid-size residential property managers, icon: building}

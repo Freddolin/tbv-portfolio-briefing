@@ -56,21 +56,21 @@ CSS = r"""
 .ulb b{left:26px;top:26px;width:16px;height:16px;border-radius:50%;background:#EF7619}
 .ucd{width:600px;border-radius:20px;background:#fff;box-shadow:0 30px 70px rgba(0,0,0,.45);padding:30px 34px 32px}
 #stage .ucd *{position:static}
-.ucd .k{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#7d7873}
+.ucd .k{font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;color:#7d7873}
 .ucd .hh{font-size:36px;letter-spacing:-.025em;color:#1f1d1c;margin-top:10px;line-height:1.12}
 .ucd .r{display:flex;align-items:center;gap:16px;font-size:26px;font-weight:400;color:#3a3634;margin-top:18px}
-.ucd .r span.s{margin-left:auto;font-size:19px;font-weight:600;letter-spacing:.04em;padding:6px 14px;border-radius:20px;background:#e5efdc;color:#2f5a1d}
+.ucd .r span.s{margin-left:auto;font-size:21px;font-weight:600;letter-spacing:.04em;padding:6px 14px;border-radius:20px;background:#e5efdc;color:#2f5a1d}
 .ucd .btn{display:inline-block;margin-top:28px;font-size:26px;padding:16px 34px;border-radius:40px;background:#0d1d00;color:#fff}
 .ucd .btn.ok{background:#2f7a1d}
 .ucd .r svg{color:#EF7619}
 .ftx{text-align:center}
-.fc .ph2{left:0;top:0;border-radius:18px;object-fit:cover}
+.fc .ph2{left:0;top:0;border-radius:18px;object-fit:cover;filter:grayscale(1) contrast(1.08)}
 .fc .n{left:0;font-size:30px;letter-spacing:-.025em;white-space:nowrap}
-.fc .r{left:0;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.fc .r{left:0;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
 .br{transform-origin:50% 100%;border-radius:12px 12px 0 0}
 .bv{font-size:72px;letter-spacing:-.04em;line-height:1;white-space:nowrap;text-align:center}
 .bl2{font-size:28px;font-weight:400;white-space:nowrap;text-align:center}
-.bs{font-weight:600;font-size:18px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:center;color:var(--orange)}
+.bs{font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:center;color:var(--orange)}
 .fb{height:116px;border-radius:14px;transform-origin:0 50%}
 .fv{font-size:62px;letter-spacing:-.04em;line-height:1;white-space:nowrap}
 .fl2{font-size:34px;font-weight:400;white-space:nowrap}
@@ -88,14 +88,14 @@ CSS = r"""
 /* shared: big statement in the left column, visual on the right */
 .vbig{left:110px;width:860px;font-size:92px;letter-spacing:-.045em;line-height:1.04}
 .vcard{border-radius:22px;background:#F5F5F5;box-shadow:0 30px 70px rgba(0,0,0,.45)}
-.vcard .k{left:34px;top:28px;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#7d7873}
+.vcard .k{left:34px;top:28px;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;color:#7d7873}
 .vcard .tt{left:34px;top:62px;font-size:40px;letter-spacing:-.025em;color:#1f1d1c;white-space:nowrap}
-.vchip{font-weight:600;font-size:19px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:22px;white-space:nowrap}
+.vchip{font-weight:600;font-size:21px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:22px;white-space:nowrap}
 .vdark{border-radius:22px;background:rgba(245,245,245,.05);border:1.5px solid rgba(245,245,245,.25)}
 /* pressure */
 .jbn{font-size:150px;letter-spacing:-.05em;line-height:1;color:#1f1d1c}
 .jbl{font-size:30px;font-weight:400;color:#4a4643;white-space:nowrap}
-.mlab{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.mlab{font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
 /* colleague */
 .twin{width:560px;height:96px;border-radius:16px;background:#3a3634;border:1.5px solid rgba(245,245,245,.25);box-shadow:0 16px 34px rgba(0,0,0,.35);color:#F5F5F5}
 .twin .ic{left:24px;top:24px}
@@ -117,7 +117,7 @@ CSS = r"""
 .mkr .ic svg{position:absolute !important;left:12px;top:12px}
 .mkr .a{left:84px;top:2px;font-size:32px;letter-spacing:-.015em;white-space:nowrap}
 .mkr .b{left:84px;top:42px;font-size:24px;font-weight:400;white-space:nowrap}
-.mkc{font-weight:600;font-size:20px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:24px;border:1.5px solid rgba(245,245,245,.5);color:#F5F5F5;background:var(--dark);white-space:nowrap}
+.mkc{font-weight:600;font-size:22px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:24px;border:1.5px solid rgba(245,245,245,.5);color:#F5F5F5;background:var(--dark);white-space:nowrap}
 .mkin{text-align:center;color:#1f1d1c;font-size:26px;line-height:1.15;letter-spacing:-.01em}
 /* moves */
 .mv{border-radius:22px;background:rgba(245,245,245,.05);border:1.5px solid rgba(245,245,245,.22)}
@@ -133,7 +133,7 @@ CSS = r"""
 .mseat{width:76px;height:76px;border-radius:50%;background:#4a4643;color:#F5F5F5}
 .mseat svg{position:absolute !important;left:16px;top:16px}
 .mrn{width:76px;height:76px;border-radius:50%;text-align:center;line-height:76px;font-size:21px;font-weight:600;letter-spacing:0}
-.mrn.t{background:#F5F5F5;color:#1f1d1c}
+.mrn.tb{background:#F5F5F5;color:#1f1d1c}
 .mrn.o{background:#EF7619;color:#1f1d1c}
 .mrn.o svg{position:absolute !important;left:16px;top:16px}
 .mrl{font-weight:600;font-size:17px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;text-align:center}
@@ -150,27 +150,27 @@ CSS = r"""
 .skf .ic svg{position:absolute !important;left:13px;top:13px}
 .skf .t1{left:116px;font-size:36px;letter-spacing:-.02em;white-space:nowrap;color:#F5F5F5}
 .skf .t2{left:116px;font-size:24px;font-weight:400;white-space:nowrap;color:#a9a39d}
-.skf .tg{right:26px;font-weight:600;font-size:18px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;padding:8px 14px;border-radius:20px;border:1.5px solid rgba(245,245,245,.4);color:#cfcbc6}
+.skf .tg{right:26px;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;padding:8px 14px;border-radius:20px;border:1.5px solid rgba(245,245,245,.4);color:#cfcbc6}
 .skf.live .tg{background:#EF7619;border-color:#EF7619;color:#1f1d1c}
 /* origin: two partners bring a problem to the studio */
 .oav{width:116px;height:116px;border-radius:50%;background:#3a3634;border:2px solid rgba(245,245,245,.35);color:#F5F5F5;font-size:40px;letter-spacing:-.02em;text-align:center;line-height:112px}
 .onm{font-size:40px;letter-spacing:-.025em;white-space:nowrap}
-.orl{font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;line-height:1.35}
+.orl{font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;line-height:1.35}
 .opb{width:600px;border-radius:22px;background:#F5F5F5;box-shadow:0 30px 70px rgba(0,0,0,.45)}
-.opb .k{left:36px;top:30px;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#c0392b}
+.opb .k{left:36px;top:30px;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;color:#c0392b}
 .opb .tt{left:36px;top:66px;width:530px;font-size:40px;letter-spacing:-.025em;line-height:1.12;color:#1f1d1c}
 .opb .r2{left:36px;font-size:27px;font-weight:400;color:#4a4643;width:530px;line-height:1.25}
 .otb{border-radius:22px;border:2px solid #EF7619;background:rgba(239,118,25,.08)}
-.otb .k{left:0;width:100%;text-align:center;font-weight:600;font-size:19px;letter-spacing:.09em;text-transform:uppercase;color:#EF7619}
+.otb .k{left:0;width:100%;text-align:center;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;color:#EF7619}
 /* loop: build, test, validate */
 .lpn{width:30px;height:30px;border-radius:50%;border:4px solid #EF7619;background:var(--dark)}
 .lpn.on{background:#EF7619}
 .lpl{font-size:34px;letter-spacing:-.02em;white-space:nowrap;line-height:1.1}
 #stage .lpl small{display:block;position:static;font-size:23px;font-weight:400;color:#a9a39d;letter-spacing:0;margin-top:6px}
-.lav{width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid var(--dark)}
+.lav{filter:grayscale(1) contrast(1.08);width:104px;height:104px;border-radius:50%;object-fit:cover;border:3px solid var(--dark)}
 .lwf{border-radius:16px;background:#33302e;border:1.5px solid rgba(245,245,245,.3);box-shadow:0 24px 50px rgba(0,0,0,.4)}
 .lwf i{background:rgba(245,245,245,.16);border-radius:6px}
-.lwf .lk{left:22px;top:14px;font-weight:600;font-size:18px;letter-spacing:.09em;text-transform:uppercase;color:#cfcbc6}
+.lwf .lk{left:22px;top:14px;font-weight:600;font-size:21px;letter-spacing:.09em;text-transform:uppercase;color:#cfcbc6}
 .lsh{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .lcap{font-size:52px;letter-spacing:-.035em;line-height:1.08;white-space:nowrap}
 /* funnel: a real funnel, values inside, labels outside */
@@ -337,8 +337,8 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             if b_ is not None and b_ != a_ and tb_ - ta_ < need - .05: holds.append((b_, round(need - (tb_ - ta_), 2)))
 
     elif k == 'faces':
-        n = len(p['items']); gap = 40; w = (1700 - gap * (n - 1)) / n; ph = min(420, w * 1.25)
-        top = 300 if p.get('head') else 220
+        n = len(p['items']); gap = 40; w = (1700 - gap * (n - 1)) / n; ph = min(460, w * 1.36)
+        top = 300 if p.get('head') else 250
         for i, it in enumerate(p['items']):
             x = 110 + i * (w + gap)
             h += (f'<div class="fc fc{i}" style="left:{x:.0f}px;top:{top}px;width:{w:.0f}px;height:{ph + 140:.0f}px">'
@@ -763,7 +763,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
             x = 110 + i * (w + gap); kd = it.get('kind'); vz = ''
             if kd == 'flip':
                 vz = (f'<div class="mpill mf0" style="left:{w / 2 - 100:.0f}px;top:90px;width:200px;text-align:center;background:rgba(245,245,245,.12);color:#e6e2dd">{E(it.get("from", "Pilot"))}</div>'
-                      f'<div class="mpill mf1" style="left:{w / 2 - 110:.0f}px;top:90px;width:220px;text-align:center;background:#2f7a1d;color:#fff;opacity:0">{E(it.get("to", "Paying"))}</div>')
+                      f'<div class="mpill mf1" style="left:{w / 2 - 110:.0f}px;top:90px;width:220px;text-align:center;background:#b0cc9b;color:#0d1d00;opacity:0">{E(it.get("to", "Paying"))}</div>')
             elif kd == 'shift':
                 vz = (f'<div class="mic ms0" style="left:{w / 2 - 150:.0f}px;top:76px">{icon(it.get("icon_from", "building"), 56)}</div>'
                       f'<svg class="ms1" style="left:{w / 2 - 44:.0f}px;top:108px" width="88" height="32" viewBox="0 0 88 32" fill="none"><path class="d msa" d="M4 16H80M68 4L82 16L68 28" stroke="#EF7619" stroke-width="3"/></svg>'
@@ -775,7 +775,7 @@ def build(pid, p, t_start, t_end, T0, logo_light=None):
                 xs = (w / 2 - 120, w / 2, w / 2 + 120)
                 vz += f'<div class="mrl sb" style="left:{xs[0] - 70:.0f}px;width:140px;top:8px">{E(it.get("own_label", "Today"))}</div>'
                 vz += f'<div class="mrl mrlx" style="left:{(xs[1] + xs[2]) / 2 - 130:.0f}px;width:260px;top:8px;color:var(--orange)">{E(it.get("new_label", "+ External"))}</div>'
-                vz += f'<div class="mrn t mr0" style="left:{xs[0] - 38:.0f}px;top:36px">{E(it.get("own", "TBV"))}</div>'
+                vz += f'<div class="mrn tb mr0" style="left:{xs[0] - 38:.0f}px;top:36px">{E(it.get("own", "TBV"))}</div>'
                 for j in (1, 2):
                     vz += f'<div class="mrn o mr{j}" style="left:{xs[j] - 38:.0f}px;top:36px">{icon("euro", 44, "#1f1d1c", 2)}</div>'
                 vz += (f'<svg style="left:0;top:0" width="{w:.0f}" height="250" viewBox="0 0 {w:.0f} 250" fill="none">'

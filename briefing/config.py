@@ -100,7 +100,10 @@ def variant(content):
     return VARIANTS[k]
 
 def chapters(content):
-    if content.get('kind') == 'build_first': return dict(BUILD_FIRST_CHAPTERS)
+    if content.get('kind') == 'build_first':
+        ch = dict(BUILD_FIRST_CHAPTERS)
+        for k, t in (content.get('chapter_titles') or {}).items(): ch[k] = (ch[k][0], t)   # per-film chapter names
+        return ch
     ch = dict(CHAPTERS); ch['why'] = ('03', variant(content)['why']); return ch
 NUM_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
              'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty']
